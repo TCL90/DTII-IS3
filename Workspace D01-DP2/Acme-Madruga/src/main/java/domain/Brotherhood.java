@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -16,10 +17,20 @@ import org.hibernate.validator.constraints.NotBlank;
 @Access(AccessType.PROPERTY)
 public class Brotherhood extends Actor {
 
-	private String				title;
-	private Date				stablishmentDate;
-	private Collection<String>	urls;
+	private String					title;
+	private Date					stablishmentDate;
+	private Collection<String>		urls;
+	private Collection<Enrolement>	enrolements;
 
+
+	@OneToMany(mappedBy = "brotherhood")
+	public Collection<Enrolement> getEnrolements() {
+		return this.enrolements;
+	}
+
+	public void setEnrolements(final Collection<Enrolement> enrolements) {
+		this.enrolements = enrolements;
+	}
 
 	@NotBlank
 	public String getTitle() {

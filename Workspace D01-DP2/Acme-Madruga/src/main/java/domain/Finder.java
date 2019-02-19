@@ -1,7 +1,6 @@
 
 package domain;
 
-import java.awt.geom.Area;
 import java.util.Collection;
 import java.util.Date;
 
