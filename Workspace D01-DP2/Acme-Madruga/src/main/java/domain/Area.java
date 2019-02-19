@@ -7,6 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -15,9 +16,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Access(AccessType.PROPERTY)
 public class Area extends DomainEntity {
 
-	private String				name;
-	private Collection<String>	pictures;
+	private String					name;
+	private Collection<String>		pictures;
+	private Collection<Brotherhood>	brotherhoods;
 
+
+	@OneToMany(mappedBy = "area")
+	public Collection<Brotherhood> getBrotherhoods() {
+		return this.brotherhoods;
+	}
+
+	public void setBrotherhoods(final Collection<Brotherhood> brotherhoods) {
+		this.brotherhoods = brotherhoods;
+	}
 
 	@NotBlank
 	public String getName() {

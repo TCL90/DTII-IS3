@@ -4,7 +4,7 @@ package domain;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -39,9 +39,13 @@ public class Position extends DomainEntity {
 	private Collection<Enrolement>	enrolements;
 
 
-	@ManyToOne
+	@OneToMany
 	public Collection<Enrolement> getEnrolements() {
 		return this.enrolements;
+	}
+
+	public void setEnrolements(final Collection<Enrolement> enrolements) {
+		this.enrolements = enrolements;
 	}
 
 }

@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
-import javax.swing.Box;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -121,7 +120,7 @@ public abstract class Actor extends DomainEntity {
 
 
 	@Valid
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	public Collection<SocialProfile> getSocialProfiles() {
 		return this.socialProfiles;
 	}

@@ -3,7 +3,6 @@ package domain;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -70,7 +69,7 @@ public class Request extends DomainEntity {
 		this.procession = procession;
 	}
 
-	@OneToMany
+	@ManyToOne
 	public Member getMember() {
 		return this.member;
 	}

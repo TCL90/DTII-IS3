@@ -7,6 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -49,6 +50,7 @@ public class Box extends DomainEntity {
 		this.predefined = predefined;
 	}
 
+	@OneToMany
 	public Collection<Box> getDescendants() {
 		return this.descendants;
 	}

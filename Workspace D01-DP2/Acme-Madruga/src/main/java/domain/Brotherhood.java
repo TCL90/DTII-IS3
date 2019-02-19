@@ -6,7 +6,9 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -21,7 +23,17 @@ public class Brotherhood extends Actor {
 	private Date					stablishmentDate;
 	private Collection<String>		urls;
 	private Collection<Enrolement>	enrolements;
+	private Area					area;
 
+
+	@ManyToOne(optional = false)
+	public Area getArea() {
+		return this.area;
+	}
+
+	public void setArea(final Area area) {
+		this.area = area;
+	}
 
 	@OneToMany(mappedBy = "brotherhood")
 	public Collection<Enrolement> getEnrolements() {
@@ -51,6 +63,7 @@ public class Brotherhood extends Actor {
 		this.stablishmentDate = stablishmentDate;
 	}
 
+	@ElementCollection
 	public Collection<String> getUrls() {
 		return this.urls;
 	}

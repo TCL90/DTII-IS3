@@ -9,14 +9,25 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Enrolement {
+public class Enrolement extends DomainEntity {
 
 	private Date	enrolMoment;
 	private Date	dropOutMoment;
+	private String	status;
 
+
+	@Pattern(regexp = "^PENDING|APPROVED|REJECTED$")
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(final String status) {
+		this.status = status;
+	}
 
 	@Past
 	@NotNull

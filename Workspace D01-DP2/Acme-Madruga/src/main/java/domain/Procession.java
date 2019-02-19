@@ -76,15 +76,15 @@ public class Procession extends DomainEntity {
 
 
 	//Relaciones
-	private Collection<Float>	floats;
+	private Collection<FloatMadruga>	floats;
 
 
 	@ManyToMany
-	public Collection<Float> getFloats() {
+	public Collection<FloatMadruga> getFloats() {
 		return this.floats;
 	}
 
-	public void setFloats(final Collection<Float> floats) {
+	public void setFloats(final Collection<FloatMadruga> floats) {
 		this.floats = floats;
 	}
 
