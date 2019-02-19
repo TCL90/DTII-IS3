@@ -7,9 +7,13 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -20,7 +24,7 @@ public class Enrolement extends DomainEntity {
 	private String	status;
 
 
-	@Pattern(regexp = "^PENDING|APPROVED|REJECTED$")
+	@Pattern(regexp = "^PENDING|APPROVED|REJECTED|EXPELLED$")
 	public String getStatus() {
 		return this.status;
 	}
@@ -29,8 +33,10 @@ public class Enrolement extends DomainEntity {
 		this.status = status;
 	}
 
-	@Past
 	@NotNull
+	@Past
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getEnrolMoment() {
 		return this.enrolMoment;
 	}
@@ -40,6 +46,8 @@ public class Enrolement extends DomainEntity {
 	}
 
 	@Past
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getDropOutMoment() {
 		return this.dropOutMoment;
 	}

@@ -47,11 +47,11 @@ public class Procession extends DomainEntity {
 
 	@Temporal(TemporalType.DATE)
 	@NotNull
-	public Date getdepartureDate() {
+	public Date getDepartureDate() {
 		return this.departureDate;
 	}
 
-	public void setdepartureDate(final Date departureDate) {
+	public void setDepartureDate(final Date departureDate) {
 		this.departureDate = departureDate;
 	}
 

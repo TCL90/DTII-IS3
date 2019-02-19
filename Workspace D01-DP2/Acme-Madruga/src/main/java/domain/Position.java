@@ -1,10 +1,7 @@
 
 package domain;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -31,21 +28,6 @@ public class Position extends DomainEntity {
 
 	public void setPositionEng(final String positionEng) {
 		this.positionEng = positionEng;
-	}
-
-
-	//------------Relationships---------------
-
-	private Collection<Enrolement>	enrolements;
-
-
-	@OneToMany
-	public Collection<Enrolement> getEnrolements() {
-		return this.enrolements;
-	}
-
-	public void setEnrolements(final Collection<Enrolement> enrolements) {
-		this.enrolements = enrolements;
 	}
 
 }

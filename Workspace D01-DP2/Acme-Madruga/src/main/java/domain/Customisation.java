@@ -1,7 +1,6 @@
 
 package domain;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -10,11 +9,8 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-
-
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -60,8 +56,8 @@ public class Customisation extends DomainEntity {
 	public void setPositiveWords(final List<String> positiveWords) {
 		this.positiveWords = positiveWords;
 	}
-	
-	@Min(value =1L)
+
+	@Min(value = 1L)
 	@Max(value = 24)
 	public Double getFinderDuration() {
 		return this.finderDuration;
@@ -95,16 +91,16 @@ public class Customisation extends DomainEntity {
 	public void setBannerURL(final String bannerURL) {
 		this.bannerURL = bannerURL;
 	}
-	
+
 	@ElementCollection(targetClass = String.class)
 	public Collection<String> getWelcomeMessage() {
 		return this.welcomeMessage;
 	}
-	
+
 	public void setWelcomeMessage(final Collection<String> welcomeMessage) {
 		this.welcomeMessage = welcomeMessage;
 	}
-	
+
 	@Column
 	@ElementCollection(targetClass = String.class)
 	public List<String> getSpamWords() {
@@ -114,18 +110,21 @@ public class Customisation extends DomainEntity {
 	public void setSpamWords(final List<String> spamWords) {
 		this.spamWords = spamWords;
 	}
-	
-	
 
-	public String getPhonePrefix() {
+	public String getPhoneNumberCountryCode() {
 		return this.phoneNumberCountryCode;
 	}
 
-	public void setPhonePrefix(final String phoneNumberCountryCode) {
+	public void setPhoneNumberCountryCode(final String phoneNumberCountryCode) {
 		this.phoneNumberCountryCode = phoneNumberCountryCode;
 	}
-	
 
-	
+	public String getMessagePriorities() {
+		return this.messagePriorities;
+	}
+
+	public void setMessagePriorities(final String messagePriorities) {
+		this.messagePriorities = messagePriorities;
+	}
 
 }
