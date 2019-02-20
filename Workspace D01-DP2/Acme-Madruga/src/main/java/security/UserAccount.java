@@ -51,7 +51,6 @@ public class UserAccount extends DomainEntity implements UserDetails {
 	private String					username;
 	private String					password;
 	private Collection<Authority>	authorities;
-	private boolean					accountNonLocked;
 
 
 	@Size(min = 5, max = 32)
@@ -111,11 +110,10 @@ public class UserAccount extends DomainEntity implements UserDetails {
 	@Transient
 	@Override
 	public boolean isAccountNonLocked() {
-		return this.accountNonLocked;
-	}
-
-	public void setAccountNonLocked(final boolean accountnonlocked) {
-		this.accountNonLocked = accountnonlocked;
+		//para que funcionen los baneos hay que obtener el miembro a partir de la userAccount
+		//y comparar la propiedad isBan
+		//return !usuario.getIsBan();
+		return true;
 	}
 
 	@Transient

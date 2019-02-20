@@ -65,7 +65,6 @@
 	<bean id="userAccount1" class="security.UserAccount">
 		<property name="username" value="admin" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
-		<property name="accountNonLocked" value="false" />		
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -79,7 +78,6 @@
 		<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="admin2" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
-		<property name="accountNonLocked" value="false" />		
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -92,12 +90,11 @@
 	
 			<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="brotherhood1" />
-		<property name="password" value="479e3180a45b21ea8e88beb0c45aa8ed" />
-		<property name="accountNonLocked" value="false" />		
+		<property name="password" value="44843b89fec33a1c48bbb3967b65abce" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
+					<property name="authority" value="BROTHERHOOD" />
 				</bean>
 			</list>
 		
@@ -106,12 +103,11 @@
 	
 			<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="brotherhood2" />
-		<property name="password" value="88f1b810c40cd63107fb758fef4d77db" />
-		<property name="accountNonLocked" value="false" />		
+		<property name="password" value="44843b89fec33a1c48bbb3967b65abce" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
+					<property name="authority" value="BROTHERHOOD" />
 				</bean>
 			</list>
 		
@@ -1001,29 +997,29 @@
     </bean>
 
 
-	<!-- *******************************FLOAT****************************** -->
-	<bean id="float1" class="domain.Float">
+	<!-- *******************************FLOATMADRUGA****************************** -->
+	<bean id="float1" class="domain.FloatMadruga">
 	<property name="title" value="Nuestro señor del Gran Poder" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
 	<property name="brotherhood" ref="brotherhood1" />
 	</bean>
 	
-	<bean id="float2" class="domain.Float">
+	<bean id="float2" class="domain.FloatMadruga">
 	<property name="title" value="La Virgen de Los remedios" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
 	<property name="brotherhood" ref="brotherhood1" />
 	</bean>
 	
-	<bean id="float3" class="domain.Float">
+	<bean id="float3" class="domain.FloatMadruga">
 	<property name="title" value="Nuestro señor de las tres caídas" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
 	<property name="brotherhood" ref="brotherhood2" />
 	</bean>
 	
-	<bean id="float4" class="domain.Float">
+	<bean id="float4" class="domain.FloatMadruga">
 	<property name="title" value="Esperanza de Triana" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
@@ -1223,8 +1219,8 @@
   <!-- Member1 -->
   
   <bean id="userAccount5" class="security.UserAccount">
-  <property name="username" value="member1" /> 
-  <property name="password" value="63b32227963f7462f1342a2f1051722d" /> 
+  <property name="username" value="member" /> 
+  <property name="password" value="aa08769cdcb26674c6706093503ff0a3" /> 
   <property name="authorities">
   	<list>
   		<bean class="security.Authority">
@@ -1278,7 +1274,7 @@
   
   <bean id="userAccount6" class="security.UserAccount">
   <property name="username" value="member2" /> 
-  <property name="password" value="63b32227963f7462f1342a2f1051722d" /> 
+  <property name="password" value="aa08769cdcb26674c6706093503ff0a3" /> 
   <property name="authorities">
   	<list>
   		<bean class="security.Authority">
