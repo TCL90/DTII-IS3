@@ -8,12 +8,14 @@ import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class FloatMadruga extends DomainEntity {
+@Table(name = "`float`")
+public class Float extends DomainEntity {
 
 	private String				title;
 

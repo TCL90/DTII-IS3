@@ -9,6 +9,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -76,16 +77,26 @@ public class Procession extends DomainEntity {
 
 
 	//Relaciones
-	private Collection<FloatMadruga>	floats;
+	private Collection<Float>	floats;
+	private Brotherhood			brotherhood;
 
 
 	@ManyToMany
-	public Collection<FloatMadruga> getFloats() {
+	public Collection<Float> getFloats() {
 		return this.floats;
 	}
 
-	public void setFloats(final Collection<FloatMadruga> floats) {
+	public void setFloats(final Collection<Float> floats) {
 		this.floats = floats;
+	}
+
+	@ManyToOne(optional = false)
+	public Brotherhood getBrotherhood() {
+		return this.brotherhood;
+	}
+
+	public void setBrotherhood(final Brotherhood brotherhood) {
+		this.brotherhood = brotherhood;
 	}
 
 }

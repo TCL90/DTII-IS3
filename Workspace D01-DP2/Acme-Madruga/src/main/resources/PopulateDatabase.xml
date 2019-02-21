@@ -997,29 +997,29 @@
     </bean>
 
 
-	<!-- *******************************FLOATMADRUGA****************************** -->
-	<bean id="float1" class="domain.FloatMadruga">
+	<!-- *******************************Float****************************** -->
+	<bean id="float1" class="domain.Float">
 	<property name="title" value="Nuestro señor del Gran Poder" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
 	<property name="brotherhood" ref="brotherhood1" />
 	</bean>
 	
-	<bean id="float2" class="domain.FloatMadruga">
+	<bean id="float2" class="domain.Float">
 	<property name="title" value="La Virgen de Los remedios" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
 	<property name="brotherhood" ref="brotherhood1" />
 	</bean>
 	
-	<bean id="float3" class="domain.FloatMadruga">
+	<bean id="float3" class="domain.Float">
 	<property name="title" value="Nuestro señor de las tres caídas" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
 	<property name="brotherhood" ref="brotherhood2" />
 	</bean>
 	
-	<bean id="float4" class="domain.FloatMadruga">
+	<bean id="float4" class="domain.Float">
 	<property name="title" value="Esperanza de Triana" />
 	<property name="description" value="El paso de nuestro señor" />
 	<property name="pictures" ref="pics" />
@@ -1145,6 +1145,7 @@
 	</property>
 	<property name="ticker" value="000101-AAAAAD" /> 
     <property name="departureDate" value="10/10/2018" />
+    <property name="brotherhood" ref="brotherhood1" />
     </bean>
     
     <bean id="procession2" class="domain.Procession">
@@ -1159,6 +1160,7 @@
 	</property>
 	<property name="ticker" value="000101-AAAAAC" /> 
     <property name="departureDate" value="10/12/2018" />
+    <property name="brotherhood" ref="brotherhood2" />
     </bean>
     
     
@@ -1261,11 +1263,7 @@
 				<ref bean="enrolement1" />
 			</list>
   </property>
-  <property name="requests">
-			<list>
-				<ref bean="request1" />
-			</list>
-  </property> 
+
    
   </bean>
   
@@ -1315,11 +1313,7 @@
 				<ref bean="enrolement2" />
 			</list>
   </property>
-  <property name="requests">
-			<list>
-				<ref bean="request2" />
-			</list>
-  </property>
+
   </bean>
   
     
