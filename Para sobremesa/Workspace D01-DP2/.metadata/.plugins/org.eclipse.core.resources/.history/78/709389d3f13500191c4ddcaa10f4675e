@@ -1,0 +1,52 @@
+
+package brotherhood.member;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import services.BrotherhoodService;
+import services.EnrolementService;
+import services.MemberService;
+import controllers.AbstractController;
+import domain.Brotherhood;
+import domain.Enrolement;
+import domain.Member;
+
+@Controller
+@RequestMapping("/brotherhood/member")
+public class BrotherhoodMemberController extends AbstractController {
+
+	@Autowired
+	BrotherhoodService	brotherhoodService;
+
+	@Autowired
+	MemberService		memberService;
+
+	@Autowired
+	EnrolementService	enrolementService;
+
+
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(@RequestParam final int brotherhoodId) {
+		final ModelAndView res;
+		final Brotherhood brotherhood;
+		final Enrolement enrolement;
+		final Member m;
+
+		final Brotherhood b = new Brotherhood();
+		b.setId(brotherhoodId);
+		brotherhood = this.brotherhoodService.findOne(b);
+		m = this.memberService.findOnePrincipal();
+		enrolement = this.enrolementService.findEnrolementByIds(b, m);
+
+		res = new ModelAndView("members/brotherhood/show");
+		res.addObject("brotherhood", brotherhood);
+		res.addObject("enrolement", enrolement);
+
+		return res;
+	}
+}

@@ -1,0 +1,28 @@
+
+package services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import domain.Brotherhood;
+
+import repositories.BrotherhoodRepository;
+
+@Service
+@Transactional
+public class BrotherhoodService {
+
+	@Autowired
+	public BrotherhoodRepository	brotherhoodRepository;
+	
+	//Constructor
+		public BrotherhoodService() {
+			super();
+		}
+		
+	public Brotherhood findOne(Brotherhood brotherhood){
+		return this.brotherhoodRepository.findOne(brotherhood.getId());
+	}
+
+}

@@ -1,0 +1,26 @@
+
+package controllers.enrolement;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import services.BrotherhoodService;
+import services.EnrolementService;
+import services.MemberService;
+import controllers.AbstractController;
+
+@Controller
+@RequestMapping("/enrolement/member")
+public class EnrolementMemberController extends AbstractController {
+
+	@Autowired
+	MemberService		memberService;
+
+	@Autowired
+	BrotherhoodService	brotherhoodService;
+
+	@Autowired
+	EnrolementService	enrolementService;
+
+}

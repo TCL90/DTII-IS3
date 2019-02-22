@@ -1,0 +1,48 @@
+
+package services;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import repositories.BrotherhoodRepository;
+import repositories.MemberRepository;
+import security.LoginService;
+import domain.Actor;
+import domain.Brotherhood;
+import domain.Member;
+
+@Service
+@Transactional
+public class BrotherhoodService {
+
+	@Autowired
+	public BrotherhoodRepository	brotherhoodRepository;
+
+	@Autowired
+	public MemberService			memberService;
+
+	@Autowired
+	public ActorService				actorService;
+
+
+	//Constructor
+	public BrotherhoodService() {
+		super();
+	}
+
+	public Actor findByPrincipal(){
+		
+		return this.actorService.findByPrincipal();
+	}
+	public Brotherhood findOne(final Brotherhood brotherhood) {
+		return this.brotherhoodRepository.findOne(brotherhood.getId());
+	}
+
+	public Brotherhood deleteMember(final Brotherhood brotherhood){
+		final Collection<Member> members=this.memberService.membersByBrotherhood(brotherhood));
+		members.remove(o)
+	}
+}

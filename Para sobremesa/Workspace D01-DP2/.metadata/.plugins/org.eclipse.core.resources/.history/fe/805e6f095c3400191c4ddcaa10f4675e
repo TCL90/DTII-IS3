@@ -1,0 +1,11 @@
+
+package repositories;
+
+import org.springframework.stereotype.Repository;
+
+import domain.Enrolement;
+
+@Repository
+public class EnrolementRepository extends JpaRepository<Enrolement, Integer> {
+
+}

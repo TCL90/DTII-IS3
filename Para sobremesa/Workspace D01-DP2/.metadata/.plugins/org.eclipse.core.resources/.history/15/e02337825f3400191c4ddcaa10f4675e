@@ -1,0 +1,29 @@
+
+package services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import repositories.MemberRepository;
+import domain.Member;
+
+@Service
+@Transactional
+public class MemberService {
+
+	@Autowired
+	public MemberRepository	memberRepository;
+
+
+	//Constructor
+	public MemberService() {
+		super();
+	}
+
+	//Simple CRUD
+	public Member findOne(final Member member) {
+		return this.memberRepository.findOne(member.getId());
+	}
+
+}

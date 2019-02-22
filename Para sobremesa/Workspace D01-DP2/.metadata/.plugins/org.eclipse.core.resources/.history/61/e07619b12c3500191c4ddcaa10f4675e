@@ -1,0 +1,44 @@
+
+package controllers.members;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import services.ActorService;
+import services.BrotherhoodService;
+import services.MemberService;
+import controllers.AbstractController;
+import domain.Member;
+
+@Controller
+@RequestMapping("/members/brotherhood")
+public class MembersBrotherhoodController extends AbstractController {
+
+	@Autowired
+	MemberService		memberService;
+
+	@Autowired
+	BrotherhoodService	brotherhoodService;
+
+	@Autowired
+	ActorService		ActorService;
+
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		final ModelAndView res;
+		final Collection<Member> members;
+		
+		this.memberService.membersByBrotherhood()
+		res = new ModelAndView("/list");
+		res.addObject("applications", applications);
+		res.addObject("vat", VAT);
+		res.addObject("requestURI", "application/handyWorker/list.do");
+
+		return res;
+	}
+}

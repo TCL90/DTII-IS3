@@ -1,0 +1,10 @@
+
+package converters;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Transactional
+public class StringToMemberConverter implements Converter<String, Member> {
+
+}

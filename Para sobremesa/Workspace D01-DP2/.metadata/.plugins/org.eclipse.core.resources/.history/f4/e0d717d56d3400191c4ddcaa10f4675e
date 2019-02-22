@@ -1,0 +1,18 @@
+
+package repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import domain.Enrolement;
+
+@Repository
+public interface EnrolementRepository extends JpaRepository<Enrolement, Integer> {
+
+	@Query("select e from Member m join m.enrolements e where e.brotherhood.id=?1 and m.id=?2")
+	public Enrolement findEnrolementByIds(Integer brotherhoodId, Integer memberId);
+	
+	@Query("select e from Member m join m.enrolements e where m.id=?1")
+	public Enrolement findEnrolementByMemberId(Integer memberId);
+}

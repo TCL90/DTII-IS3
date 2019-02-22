@@ -1,0 +1,18 @@
+
+package services;
+
+@Service
+@Transactional
+public class MemberService {
+
+	@Autowired
+	public MemberRepository	memberRepository;
+
+
+	//Constructor
+	public ApplicationService() {
+		super();
+	}
+
+	//Simple CRUD
+}

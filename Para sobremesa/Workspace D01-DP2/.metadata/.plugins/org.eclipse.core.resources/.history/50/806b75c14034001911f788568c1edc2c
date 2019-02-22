@@ -1,0 +1,10 @@
+
+package domain;
+
+import javax.persistence.Entity;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public class Finder extends DomainEntity {
+
+}

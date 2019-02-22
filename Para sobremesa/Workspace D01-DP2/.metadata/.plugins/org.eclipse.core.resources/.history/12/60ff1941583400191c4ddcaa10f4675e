@@ -1,0 +1,7 @@
+package converters;
+
+@Component
+@Transactional
+public class MemberToStringConverter implements Converter<Member,String>{
+
+}

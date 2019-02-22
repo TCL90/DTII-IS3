@@ -1,0 +1,61 @@
+
+package controllers.enrolements;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import services.BrotherhoodService;
+import services.EnrolementService;
+import services.MemberService;
+import controllers.AbstractController;
+import domain.Enrolement;
+import domain.Member;
+
+@Controller
+@RequestMapping("/enrolements/member")
+public class EnrolementsMemberController extends AbstractController {
+
+	@Autowired
+	MemberService		memberService;
+
+	@Autowired
+	BrotherhoodService	brotherhoodService;
+
+	@Autowired
+	EnrolementService	enrolementService;
+
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		final ModelAndView res;
+		final Collection<Enrolement> enrolements;
+
+		final Member member = this.memberService.findOnePrincipal();
+		enrolements = this.enrolementService.findEnrolementsByMemberId(member);
+		res = new ModelAndView("enrolements/member/list");
+		res.addObject("enrolements", enrolements);
+		res.addObject("requestURI", "enrolements/member/list.do");
+
+		return res;
+	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+		final ModelAndView res;
+		final Enrolement res;
+
+		final Member member = this.memberService.findOnePrincipal();
+		res=this.enrolementService.create(brotherhoodId)
+		res = new ModelAndView("enrolements/member/list");
+		res.addObject("enrolements", enrolements);
+		res.addObject("requestURI", "enrolements/member/list.do");
+
+		return res;
+	}
+
+}

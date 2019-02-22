@@ -1,0 +1,44 @@
+
+package domain;
+
+import java.util.Date;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public class Finder extends DomainEntity {
+
+	private String	keyword;
+	private Date	startDate;
+	private Date	endDate;
+	private Date	moment;
+
+
+	public String getKeyword() {
+		return this.keyword;
+	}
+
+	public void setKeyword(final String keyword) {
+		this.keyword = keyword;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(final Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(final Date endDate) {
+		this.endDate = endDate;
+	}
+
+}
