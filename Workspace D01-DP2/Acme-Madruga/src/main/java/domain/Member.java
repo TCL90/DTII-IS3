@@ -16,6 +16,7 @@ public class Member extends Actor {
 	//Relationships
 	private Collection<Enrolement>	enrolements;
 	private Finder					finder;
+	private Collection<Request>		requests;
 
 
 	@OneToMany
@@ -34,6 +35,15 @@ public class Member extends Actor {
 
 	public void setFinder(final Finder finder) {
 		this.finder = finder;
+	}
+
+	@OneToMany
+	public Collection<Request> getRequests() {
+		return this.requests;
+	}
+
+	public void setRequests(final Collection<Request> requests) {
+		this.requests = requests;
 	}
 
 }

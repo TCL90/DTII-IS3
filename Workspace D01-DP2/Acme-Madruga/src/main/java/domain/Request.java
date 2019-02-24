@@ -57,7 +57,6 @@ public class Request extends DomainEntity {
 	//------------Relationships------------
 
 	private Procession	procession;
-	private Member		member;
 
 
 	@ManyToOne
@@ -67,15 +66,6 @@ public class Request extends DomainEntity {
 
 	public void setProcession(final Procession procession) {
 		this.procession = procession;
-	}
-
-	@ManyToOne
-	public Member getMember() {
-		return this.member;
-	}
-
-	public void setMember(final Member member) {
-		this.member = member;
 	}
 
 }
