@@ -51,6 +51,10 @@
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 	
+		<security:intercept-url pattern="/members/brotherhood/**" access="hasRole('BROTHERHOOD')" />
+		<security:intercept-url pattern="/enrolements/member/**" access="hasRole('MEMBER')" />
+		<security:intercept-url pattern="/enrolements/brotherhood/**" access="hasRole('BROTHERHOOD')" />
+		<security:intercept-url pattern="/brotherhood/member/**" access="hasRole('MEMBER')" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 
