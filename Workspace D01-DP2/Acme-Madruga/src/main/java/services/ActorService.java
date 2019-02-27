@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.ActorRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import security.UserAccountRepository;
@@ -51,6 +52,24 @@ public class ActorService {
 
 		res = this.actorRepository.findByUserAccountId(userAccount.getId());
 
+		return res;
+	}
+
+	public boolean checkBrotherhood() {
+		boolean res;
+		final Authority a = new Authority();
+		final UserAccount user = LoginService.getPrincipal();
+		a.setAuthority(Authority.BROTHERHOOD);
+		res = user.getAuthorities().contains(a);
+		return res;
+	}
+
+	public boolean checkMember() {
+		boolean res;
+		final Authority a = new Authority();
+		final UserAccount user = LoginService.getPrincipal();
+		a.setAuthority(Authority.MEMBER);
+		res = user.getAuthorities().contains(a);
 		return res;
 	}
 

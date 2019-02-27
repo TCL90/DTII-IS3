@@ -22,15 +22,20 @@
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
 		-->
-  <bean class="converters.BrotherhoodToStringConverter" />
-		  <bean class="converters.MemberToStringConverter" />
-		  <bean class="converters.EnrolementToStringConverter" />
-		  <bean class="converters.PositionToStringConverter" />
+  <bean class="converters.BrotherhoodToStringConverter" /> 
+  <bean class="converters.MemberToStringConverter" /> 
+  <bean class="converters.EnrolementToStringConverter" /> 
+  <bean class="converters.PositionToStringConverter" /> 
+  <bean class="converters.StringToBrotherhoodConverter" /> 
+  <bean class="converters.StringToMemberConverter" /> 
+  <bean class="converters.StringToEnrolementConverter" /> 
+  <bean class="converters.StringToPositionConverter" /> 
 		  
-		  <bean class="converters.StringToBrotherhoodConverter" />
-		  <bean class="converters.StringToMemberConverter" />
-		  <bean class="converters.StringToEnrolementConverter" />
-		  <bean class="converters.StringToPositionConverter" />
+		    <bean class="converters.AuthorityToStringConverter" /> 
+ 		 <bean class="converters.StringToAuthorityConverter" /> 
+ 		 <bean class="converters.UserAccountToStringConverter" /> 
+ 		 <bean class="converters.StringToUserAccountConverter" /> 
+		  
 	</util:list>
 	
 </beans>

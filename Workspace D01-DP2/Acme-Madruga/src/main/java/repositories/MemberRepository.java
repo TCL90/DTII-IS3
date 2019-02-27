@@ -17,4 +17,10 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 	@Query("select m from Member m join m.enrolements m1 where m1.id=?1")
 	public Member memberByEnrolementId(int id);
+
+	@Query("select m from Member m where m.userAccount.id = ?1")
+	Member findByUserAccountId(int userAccount);
+
+	@Query("select m from Member m join m.requests r where r.id = ?1")
+	Member findByRequestId(int requestId);
 }

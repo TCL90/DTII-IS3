@@ -51,7 +51,18 @@
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
 	
-		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
+		<security:intercept-url pattern="/members/brotherhood/**" access="hasRole('BROTHERHOOD')" />
+		<security:intercept-url pattern="/enrolements/member/**" access="hasRole('MEMBER')" />
+		<security:intercept-url pattern="/enrolements/brotherhood/**" access="hasRole('BROTHERHOOD')" />
+		<security:intercept-url pattern="/brotherhood/member/**" access="hasRole('MEMBER')" />
+
+
+ 		 <security:intercept-url pattern="/brotherhood/brotherhood/edit.do" access="hasRole('BROTHERHOOD')" /> 
+ 		 <security:intercept-url pattern="/brotherhood/register.do" access="isAnonymous()" /> 
+ 		 <security:intercept-url pattern="/member/member/edit.do" access="hasRole('MEMBER')" /> 
+		  <security:intercept-url pattern="/member/register.do" access="isAnonymous()" /> 
+
+	<security:intercept-url pattern="/security/termsAndConditions.do" access="permitAll" /> 
 
 		<security:form-login 
 			login-page="/security/login.do"

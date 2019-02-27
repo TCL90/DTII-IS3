@@ -30,6 +30,9 @@
 		<value>/views/enrolements/member/tiles.xml</value>
 		<value>/views/enrolements/brotherhood/tiles.xml</value>
 		<value>/views/brotherhood/member/tiles.xml</value>
+		<value>/views/brotherhood/tiles.xml</value>
+		<value>/views/member/tiles.xml</value>
+
 	</util:list>
 
 </beans>
