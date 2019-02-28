@@ -32,6 +32,8 @@
 		<value>/views/brotherhood/member/tiles.xml</value>
 		<value>/views/brotherhood/tiles.xml</value>
 		<value>/views/member/tiles.xml</value>
+		<value>/views/float/tiles.xml</value>
+		<value>/views/area/tiles.xml</value>
 
 	</util:list>
 
