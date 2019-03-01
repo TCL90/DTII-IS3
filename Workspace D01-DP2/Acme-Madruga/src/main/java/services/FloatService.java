@@ -48,4 +48,8 @@ public class FloatService {
 		Assert.notNull(f);
 		this.floatRepository.delete(f);
 	}
+
+	public Collection<domain.Float> findByBrotherhoodId(final int brotherhoodId) {
+		return this.floatRepository.findByBrotherhoodId(brotherhoodId);
+	}
 }

@@ -8,16 +8,14 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<head>
-<title><spring:message code="float.list" /></title>
-</head>
+
 <spring:message code="float.title" var="title" />
 <spring:message code="float.description" var="description" />
 <spring:message code="float.brotherhood" var="brotherhood" />
 <spring:message code="float.pictures" var="pictures" />
 
-<display:table name="float" id="row"
-	requestURI="float/brotherhood/list.do" pagesize="5">
+<display:table pagesize="5" class="displaytag" keepStatus="true"
+	name="floats" requestURI="${requestURI}" id="row">
 	<security:authorize access="hasRole('BROTHERHOOD')">
 		<display:column>
 			<a href="float/brotherhood/edit.do?floatId=${row.id}"> <spring:message
@@ -29,15 +27,17 @@
 	<display:column property="brotherhood.title" title="${brotherhood}"></display:column>
 	<display:column property="title" title="${title}"></display:column>
 	<display:column property="description" title="${description}"></display:column>
-	<display:column property="pictures" title="${pictures}"></display:column>
 
+	<security:authorize access="hasRole('BROTHERHOOD')">
 	<display:column>
 		<a href="float/brotherhood/show.do?floatId=${row.id}"> <spring:message
 				code="float.show"></spring:message></a>
 	</display:column>
+	</security:authorize>
 </display:table>
 
+<security:authorize access="hasRole('BROTHERHOOD')">
 <input type="submit" name="create"
 	value="<spring:message code="float.create" />"
 	onclick="javascript: relativeRedir('float/brotherhood/create.do');" />
-
+</security:authorize>

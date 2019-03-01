@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.BrotherhoodService;
 import services.FloatService;
+import services.ProcessionService;
 import domain.Float;
 
 @Controller
@@ -162,4 +163,22 @@ public class FloatController extends AbstractController {
 
 		return res;
 	}
+
+
+	@Autowired
+	private ProcessionService	processionService;
+
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam final int brotherhoodId) {
+		final ModelAndView res;
+
+		final Collection<Float> floats = this.floatService.findByBrotherhoodId(brotherhoodId);
+
+		res = new ModelAndView("float/list");
+		res.addObject("requestURI", "float/list.do");
+		res.addObject("floats", floats);
+		return res;
+	}
+
 }

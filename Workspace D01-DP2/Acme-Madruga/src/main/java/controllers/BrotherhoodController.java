@@ -110,4 +110,16 @@ public class BrotherhoodController extends AbstractController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		final ModelAndView res;
+
+		final Collection<Brotherhood> brotherhoods = this.brotherhoodService.findAll();
+
+		res = new ModelAndView("brotherhood/list");
+		res.addObject("requestURI", "brotherhood/list.do");
+		res.addObject("brotherhoods", brotherhoods);
+		return res;
+	}
 }
