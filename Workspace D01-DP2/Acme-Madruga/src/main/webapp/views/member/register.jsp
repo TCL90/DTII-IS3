@@ -15,7 +15,7 @@
 	<legend align="left"><spring:message code="member.edit.contact" /></legend>
 	
 		<form:label path="name">
-			<spring:message code="member.edit.label.name" />:
+			<spring:message code="member.edit.label.name" />* :
 		</form:label>
 		<form:input path="name"/>
 		<form:errors cssClass="error" path="name" />		
@@ -33,7 +33,7 @@
 		<br/>
 		
 		<form:label path="surname">
-			<spring:message code="member.edit.label.surname" />:
+			<spring:message code="member.edit.label.surname" />* :
 		</form:label>
 		<form:input path="surname"/>
 		<form:errors cssClass="error" path="surname" />		
@@ -42,7 +42,7 @@
 		<br/>
 		
 		<form:label path="address">
-			<spring:message code="member.edit.label.address" />:
+			<spring:message code="member.edit.label.address" />* :
 		</form:label>
 		<form:input path="address"/>
 		<form:errors cssClass="error" path="address" />		
@@ -98,7 +98,7 @@
 	<fieldset>
 		<legend align="left"><spring:message code="member.edit.useraccount" /></legend>
 		<form:label path="userAccount.username">
-			<spring:message code="member.edit.label.username" />:
+			<spring:message code="member.edit.label.username" />* :
 		</form:label>
 		<form:input path="userAccount.username"/>
 		<form:errors cssClass="error" path="userAccount.username" />
@@ -107,7 +107,7 @@
 		<br/>
 		
 		<form:label path="userAccount.password">
-			<spring:message code="member.edit.label.password" />:
+			<spring:message code="member.edit.label.password" />* :
 		</form:label>
 		<form:password path="userAccount.password"/>
 		<form:errors cssClass="error" path="userAccount.password" />
@@ -116,7 +116,7 @@
 	<br/>
 	
 	<form:label path="conditionsAccepted">
-		<spring:message code="member.conditions" />:
+		<spring:message code="member.conditions" />* :
 	</form:label>
 	<form:checkbox path="conditionsAccepted"/>
 	<form:errors cssClass="error" path="conditionsAccepted" />

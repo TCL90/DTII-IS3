@@ -1,6 +1,8 @@
 
 package controllers.brotherhood;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -8,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import repositories.AreaRepository;
 import security.UserAccount;
 import services.BrotherhoodService;
 import controllers.AbstractController;
+import domain.Area;
 import domain.Brotherhood;
 
 @Controller
@@ -19,6 +23,9 @@ public class BrotherhoodBrotherhoodController extends AbstractController {
 
 	@Autowired
 	BrotherhoodService	brotherhoodService;
+
+	@Autowired
+	AreaRepository		areaRepository;
 
 
 	// Constructors -----------------------------------------------------------
@@ -92,14 +99,20 @@ public class BrotherhoodBrotherhoodController extends AbstractController {
 		//if (boxes.isEmpty())
 		//	boxes = null;
 
+		Area area = null;
+		area = brotherhood.getArea();
+		final Collection<Area> areas = this.areaRepository.findAll();
+
 		result = new ModelAndView("brotherhood/edit");
 		result.addObject("brotherhood", brotherhood);
+		result.addObject("areas", areas);
 		//		result.addObject("boxes", boxes);
 		//		result.addObject("socialProfiles", socialProfiles);
 		result.addObject("message", message);
 		//		result.addObject("endorsements", endorsements);
 		//		result.addObject("fixUpTasks", fixUpTasks);
 		result.addObject("userAccount", userAccount);
+		result.addObject("area", area);
 		return result;
 	}
 

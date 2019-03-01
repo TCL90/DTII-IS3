@@ -59,6 +59,8 @@
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
+			<li><a class="fNiv" href="member/register.do"><spring:message code="master.page.member.register" /></a></li>
+			<li><a class="fNiv" href="brotherhood/register.do"><spring:message code="master.page.brotherhood.register" /></a></li>
 			<li><a class="fNiv" href="brotherhood/list.do"><spring:message code="master.page.brotherhoods" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>

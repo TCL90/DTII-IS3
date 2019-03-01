@@ -29,7 +29,7 @@ public class Brotherhood extends Actor {
 	private Area					area;
 
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	public Area getArea() {
 		return this.area;
 	}

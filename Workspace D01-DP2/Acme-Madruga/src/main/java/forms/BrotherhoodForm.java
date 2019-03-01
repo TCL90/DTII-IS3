@@ -112,7 +112,7 @@ public class BrotherhoodForm {
 		this.userAccount = userAccount;
 	}
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	public Area getArea() {
 		return this.area;
 	}

@@ -15,11 +15,10 @@
 	<legend align="left"><spring:message code="brotherhood.edit.contact" /></legend>
 	
 		<form:label path="name">
-			<spring:message code="brotherhood.edit.label.name" />:
+			<spring:message code="brotherhood.edit.label.name" />* :
 		</form:label>
 		<form:input path="name"/>
 		<form:errors cssClass="error" path="name" />		
-	
 		<br/>
 		<br/>
 	
@@ -28,25 +27,22 @@
 		</form:label>
 		<form:input path="middleName"/>
 		<form:errors cssClass="error" path="middleName" />		
-		
 		<br/>
 		<br/>
 		
 		<form:label path="surname">
-			<spring:message code="brotherhood.edit.label.surname" />:
+			<spring:message code="brotherhood.edit.label.surname" />* :
 		</form:label>
 		<form:input path="surname"/>
 		<form:errors cssClass="error" path="surname" />		
-		
 		<br/>
 		<br/>
 		
 		<form:label path="address">
-			<spring:message code="brotherhood.edit.label.address" />:
+			<spring:message code="brotherhood.edit.label.address" />* :
 		</form:label>
 		<form:input path="address"/>
 		<form:errors cssClass="error" path="address" />		
-		
 		<br/>
 		<br/>
 	
@@ -99,27 +95,29 @@
 	<fieldset>
 		<legend align="left"><spring:message code="brotherhood.brotherhood"/></legend>
 		<form:label path="title">
-			<spring:message code="brotherhood.title"/>
+			<spring:message code="brotherhood.title"/>* :
 		</form:label>
 		<form:input path="title"/>
 		<form:errors cssClass="error" path="photo" />
 		<br/><br/>
+		
 		<form:label path="stablishmentDate">
-		<spring:message code="brotherhood.stablishment.date"/>
+		<spring:message code="brotherhood.stablishment.date"/>* :
 		</form:label>
 		<form:input path="stablishmentDate"/>
 		<form:errors cssClass="error" path="stablishmentDate" />
 		<br/><br/>
+		
 		<form:label path="urls">
-		<spring:message code="brotherhood.photos"/>
+		<spring:message code="brotherhood.photos"/>:
 		</form:label>
 		<input id="urls" name="urls" value="${urlImages}"/>
 		<jstl:set var="urls" value="${urlImages}"/>
 		<form:errors cssClass="error" path="photo" />
 		<br/>
+		<br/>
 		
-		
-		<jstl:if test="${area!=null}">
+		<jstl:if test="${area==null}">
 		<form:label path="area">
 			<spring:message code="brotherhood.area" />:
 		</form:label>
@@ -131,6 +129,7 @@
 		</jstl:if>
 		
 	</fieldset>
+
 
 	<br/>
 	<br/>

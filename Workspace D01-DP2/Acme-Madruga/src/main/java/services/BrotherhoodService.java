@@ -176,6 +176,10 @@ public class BrotherhoodService {
 			logBrotherhood = this.findByPrincipal();
 			Assert.notNull(logBrotherhood);
 			Assert.notNull(logBrotherhood.getId());
+
+			//	La brotherhood editada no puede tener un área asociada
+			final Brotherhood oldBro = this.findOne(brotherhood.getId());
+			Assert.isTrue(oldBro.getArea() != null);
 		} else {
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = brotherhood.getUserAccount().getPassword();
@@ -363,6 +367,7 @@ public class BrotherhoodService {
 			res.setAddress(brotherhood.getAddress());
 			res.setPhoneNumber(brotherhood.getPhoneNumber());
 			res.setPhoto(brotherhood.getPhoto());
+			res.setArea(brotherhood.getArea());
 
 			this.validator.validate(res, binding);
 		}
