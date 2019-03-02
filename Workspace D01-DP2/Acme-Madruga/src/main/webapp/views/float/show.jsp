@@ -20,31 +20,7 @@
 	<display:column property="title" title="${title}" />
 	<display:column property="description" title="${description}" />
 	<display:column property="pictures" title="${pictures}" />
+
+
+ 
 </display:table>
-
-	<h4>
-		<spring:message code="float.title" />:
-	</h4>
-	<jstl:out value="${domain.Float.title}"></jstl:out>
-
-	<h4>
-		<spring:message code="float.description" />:
-	</h4>
-	<jstl:out value="${domain.Float.description}"></jstl:out>
-	
-	<h4>
-		<spring:message code="float.pictures" />:
-	</h4>
-	<jstl:out value="${domain.Float.pictures}"></jstl:out>
-	
-	<h4>
-		<spring:message code="float.brotherhood" />:
-	</h4>
-	<jstl:out value="${domain.Float.brotherhood}"></jstl:out>
-		
-<br/>
-<br/>
-
-	<input type="button" name="back" onclick="javascript: window.location.replace('welcome/index.do')"
-		value="<spring:message code="brotherhood.back" />" />
-

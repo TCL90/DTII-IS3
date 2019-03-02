@@ -16,7 +16,14 @@
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="floats" requestURI="${requestURI}" id="row">
-	
+	<security:authorize access="hasRole('BROTHERHOOD')">
+		<display:column>
+			<a href="float/brotherhood/edit.do?floatId=${row.id}"> <spring:message
+					code="float.edit"></spring:message>
+			</a>
+		</display:column>
+	</security:authorize>
+
 	<display:column property="brotherhood.title" title="${brotherhood}"></display:column>
 	<display:column property="title" title="${title}"></display:column>
 	<display:column property="description" title="${description}"></display:column>
@@ -26,12 +33,6 @@
 		<a href="float/brotherhood/show.do?floatId=${row.id}"> <spring:message
 				code="float.show"></spring:message></a>
 	</display:column>
-
-		<display:column>
-			<a href="float/brotherhood/edit.do?floatId=${row.id}"> <spring:message
-					code="float.edit"></spring:message>
-			</a>
-		</display:column>
 	</security:authorize>
 </display:table>
 

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.FloatRepository;
-import domain.Brotherhood;
 import domain.Float;
 
 @Service
@@ -19,10 +18,7 @@ public class FloatService {
 
 	//Managed repository
 	@Autowired
-	private FloatRepository		floatRepository;
-
-	@Autowired
-	private BrotherhoodService	brotherhoodService;
+	private FloatRepository	floatRepository;
 
 
 	//Simple CRUD Methods
@@ -36,14 +32,9 @@ public class FloatService {
 
 	public Float save(final Float f) {
 		Assert.notNull(f);
-
-		if (f.getId() == 0) {
-			final Brotherhood logBro = this.brotherhoodService.findByPrincipal();
-			f.setBrotherhood(logBro);
-		}
-
 		return this.floatRepository.save(f);
 	}
+
 	public Float findOne(final Integer id) {
 		Assert.isTrue(id != 0);
 		return this.floatRepository.findOne(id);

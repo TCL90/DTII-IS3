@@ -14,7 +14,7 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
 	@Query("select r from Request r where r.procession.id = ?1")
 	Collection<Request> findByProcessionId(int processionId);
-
+	
 	@Query("select r from Member m join m.requests r where r.procession.id=?1 and m.id=?2")
 	public Request findRequestByIds(Integer processionId, Integer memberId);
 
@@ -35,5 +35,6 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
 	@Query("select r from Request r join r.procession p where r.rowPosition=?1 and r.columnPosition=?2 and p.id=?3")
 	public Request checkPosition(Integer row, Integer column, Integer processionId);
+
 
 }

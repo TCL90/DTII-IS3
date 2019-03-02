@@ -14,12 +14,11 @@
 
 <body>
 
-	<form:form modelAttribute="flo" action="float/brotherhood/edit.do">
+	<form:form modelAttribute="float" action="float/brotherhood/edit.do">
 		<form:hidden path="id" />
 		<form:hidden path="version" />
 
 		<!-- Brotherhood -->
-		<jstl:if test="${flo.id != 0}">
 		<form:label path="brotherhood">
 			<spring:message code="float.brotherhood" />
 		</form:label>
@@ -33,7 +32,7 @@
 		<form:errors path="brotherhood.title" />
 		<br>
 		<br>
-		</jstl:if>
+
 		<!-- Title -->
 		<acme:textbox code="float.title" path="title"/>
 		<br>
@@ -52,10 +51,8 @@
 		<input type="submit" name="saveEdit"
 			value="<spring:message code="float.save" />" />
 
-		<jstl:if test="${flo.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="float.delete" />" />
-		</jstl:if>
 	</form:form>
 
 	<input type="submit" name="cancel"
