@@ -100,14 +100,11 @@ public class ProcessionService {
 	public Collection<Procession> findByBrotherhoodId(final int brotherhoodId) {
 		return this.processionRepository.findByBrotherhoodId(brotherhoodId);
 	}
-	
+
 	public Collection<Procession> findAllFinalMode() {
 		return this.processionRepository.findAllFinalMode();
 	}
-	
-
 	public Procession findByRequestId(final Integer requestId) {
-		// TODO Auto-generated method stub
 		return this.processionRepository.findByRequestId(requestId);
 	}
 
@@ -119,6 +116,5 @@ public class ProcessionService {
 	public Procession findOne(final Procession p1) {
 		return this.processionRepository.findOne(p1.getId());
 	}
-
 
 }
