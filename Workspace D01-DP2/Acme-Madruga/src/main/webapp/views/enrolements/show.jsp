@@ -42,7 +42,7 @@
 	<jstl:out value="${member.email}"/>
 	
 	<h2>
-		<spring:message code="enrolement.enrolMoment1" />
+		<spring:message code="enrolement.enrolMoment" />
 	</h2>
 	<jstl:out value="${enrolement.enrolMoment}"/>
 	

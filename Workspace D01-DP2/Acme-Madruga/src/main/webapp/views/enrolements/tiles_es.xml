@@ -15,18 +15,18 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
       
 <tiles-definitions>
-	<definition name="enrolements/brotherhood/list" extends="master.page">	
+	<definition name="enrolements/list" extends="master.page">	
 		<put-attribute name="title" value="Lista de solicitudes" />
-		<put-attribute name="body" value="/views/enrolements/brotherhood/list.jsp" />
+		<put-attribute name="body" value="/views/enrolements/list.jsp" />
 	</definition>
 	
-	<definition name="enrolements/brotherhood/edit" extends="master.page">	
+	<definition name="enrolements/edit" extends="master.page">	
 		<put-attribute name="title" value="Editando solicitud" />
-		<put-attribute name="body" value="/views/enrolements/brotherhood/edit.jsp" />
+		<put-attribute name="body" value="/views/enrolements/edit.jsp" />
 	</definition>
 	
-	<definition name="enrolements/brotherhood/show" extends="master.page">	
+	<definition name="enrolements/show" extends="master.page">	
 		<put-attribute name="title" value="Mostrar solicitud" />
-		<put-attribute name="body" value="/views/enrolements/brotherhood/show.jsp" />
+		<put-attribute name="body" value="/views/enrolements/show.jsp" />
 	</definition>
 </tiles-definitions>

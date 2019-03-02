@@ -17,17 +17,17 @@
 <tiles-definitions>
 	<definition name="members/brotherhood/list" extends="master.page">	
 		<put-attribute name="title" value="Lista de hermanos" />
-		<put-attribute name="body" value="/views/members/brotherhood/list.jsp" />
+		<put-attribute name="body" value="/views/members/list.jsp" />
 	</definition>
 	
 		<definition name="members/brotherhood/show" extends="master.page">	
 		<put-attribute name="title" value="Mostrar hermano" />
-		<put-attribute name="body" value="/views/members/brotherhood/show.jsp" />
+		<put-attribute name="body" value="/views/members/show.jsp" />
 	</definition>
 	
 	<definition name="members/brotherhood/edit" extends="master.page">	
 		<put-attribute name="title" value="Editar hermano" />
-		<put-attribute name="body" value="/views/members/brotherhood/edit.jsp" />
+		<put-attribute name="body" value="/views/members/edit.jsp" />
 	</definition>
 	
 </tiles-definitions>

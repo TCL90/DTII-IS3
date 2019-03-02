@@ -47,7 +47,7 @@ public class MembersBrotherhoodController extends AbstractController {
 
 		final Brotherhood b = this.brotherhoodService.findOnePrincipal();
 		members = this.memberService.membersByBrotherhood(b);
-		res = new ModelAndView("members/brotherhood/list");
+		res = new ModelAndView("members/list");
 		res.addObject("members", members);
 		res.addObject("requestURI", "members/brotherhood/list.do");
 
@@ -67,7 +67,7 @@ public class MembersBrotherhoodController extends AbstractController {
 		b = this.brotherhoodService.findOnePrincipal();
 		enrolement = this.enrolementService.findEnrolementByIds(b, member);
 
-		res = new ModelAndView("members/brotherhood/show");
+		res = new ModelAndView("members/show");
 		res.addObject("member", member);
 		res.addObject("enrolement", enrolement);
 
@@ -80,9 +80,9 @@ public class MembersBrotherhoodController extends AbstractController {
 
 		try {
 			this.brotherhoodService.deleteMember(m);
-			res = new ModelAndView("members/brotherhood/list");
+			res = new ModelAndView("members/list");
 		} catch (final Throwable oops) {
-			res = new ModelAndView("members/brotherhood/list");
+			res = new ModelAndView("members/list");
 		}
 		return res;
 
@@ -93,9 +93,10 @@ public class MembersBrotherhoodController extends AbstractController {
 
 		try {
 			final Enrolement e1 = this.enrolementService.findOne(e);
+			this.brotherhoodService.checkBrotherhood(e1);
 			res = this.createEditModelAndView(e1);
 		} catch (final Throwable oops) {
-			res = new ModelAndView("members/brotherhood/list");
+			res = new ModelAndView("members/list");
 		}
 		return res;
 
@@ -106,10 +107,11 @@ public class MembersBrotherhoodController extends AbstractController {
 		ModelAndView res;
 
 		try {
+			this.brotherhoodService.checkBrotherhood(e);
 			this.enrolementService.saveDirectly(e);
-			res = new ModelAndView("members/brotherhood/list");
+			res = new ModelAndView("members/list");
 		} catch (final Throwable oops) {
-			res = new ModelAndView("members/brotherhood/list");
+			res = new ModelAndView("members/list");
 		}
 		return res;
 
@@ -124,7 +126,7 @@ public class MembersBrotherhoodController extends AbstractController {
 
 	private ModelAndView createEditModelAndView(final Enrolement e1, final String messageCode) {
 		ModelAndView res;
-		res = new ModelAndView("members/brotherhood/edit");
+		res = new ModelAndView("members/edit");
 		final List<Position> lp = new ArrayList<>(this.positionService.findAll());
 
 		res.addObject("enrolement", e1);

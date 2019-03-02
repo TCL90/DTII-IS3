@@ -148,6 +148,7 @@ public class BrotherhoodService {
 
 	}
 
+
 	public void acceptMember(final Enrolement enrolement) {
 		enrolement.setStatus("APPROVED");
 		Assert.isTrue(enrolement.getPosition() != null);
@@ -158,6 +159,18 @@ public class BrotherhoodService {
 		enrolement.setStatus("REJECTED");
 		this.enrolementService.save(enrolement);
 	}
+
+
+	public Collection<Brotherhood> findAll() {
+		return this.brotherhoodRepository.findAll();
+	}
+
+	public void checkBrotherhood(final Enrolement enrolement) {
+		final Brotherhood b = this.findOnePrincipal();
+		Assert.isTrue(enrolement.getBrotherhood().getId() == b.getId());
+
+	}
+
 
 	public Brotherhood save(final Brotherhood brotherhood) {
 		Assert.notNull(brotherhood);

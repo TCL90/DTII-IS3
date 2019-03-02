@@ -10,7 +10,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<security:authorize access="hasRole('BROTHERHOOD')">
+<jstl:if test="${brotherhoodView==true }">
 <form:form action="enrolements/brotherhood/enrol.do" modelAttribute="enrolement">
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
@@ -34,6 +34,8 @@
 		</form:select>
 		</jstl:if>
 		<form:errors cssClass="error" path="position"/>
+		
+		
 	
 	<br/>
 	<br/>
@@ -43,5 +45,28 @@
 		value="<spring:message code="enrolement.back" />" />
 		<br/>
 	</form:form>
+	</jstl:if>
 	
-</security:authorize>
+	<jstl:if test="${memberView==true }">
+	<form:form action="enrolements/member/edit.do" modelAttribute="enrolement">
+	<form:hidden path="id"/>
+	<form:hidden path="version"/>
+	<form:hidden path="enrolMoment"/>
+	<form:hidden path="status"/>
+		<h2><form:label path="brotherhood">
+			<spring:message code="enrolement.brotherhood"/>:
+		</form:label></h2>
+		<form:select path="brotherhood">
+			<form:options items="${listBrotherhoods}" itemLabel="title" itemValue="id"/>								 		
+		</form:select>
+		<form:errors cssClass="error" path="brotherhood"/>
+	
+	<br/>
+	<br/>
+	<input type="submit" name="save"
+			value="<spring:message code="enrolement.save" />" />
+			<input type="button" name="back" onclick="javascript: window.location.replace('enrolements/member/list.do')"
+		value="<spring:message code="enrolement.back" />" />
+		<br/>
+	</form:form>
+		</jstl:if>

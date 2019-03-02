@@ -36,6 +36,7 @@ public class EnrolementService {
 	}
 
 	public Enrolement findEnrolementByIds(final Brotherhood brotherhood, final Member member) {
+
 		return this.enrolementRepository.findEnrolementByIds(brotherhood.getId(), member.getId());
 	}
 
@@ -43,6 +44,7 @@ public class EnrolementService {
 		Enrolement res;
 
 		final Member m = this.memberService.findOnePrincipal();
+		Assert.isTrue(m.getEnrolements().contains(enrolement));
 		if (enrolement.getId() == 0)
 			if (this.enrolementRepository.existEnrolement(m.getId(), enrolement.getBrotherhood().getId()) != null) {
 				final Enrolement e = this.enrolementRepository.existEnrolement(m.getId(), enrolement.getBrotherhood().getId());
@@ -70,9 +72,11 @@ public class EnrolementService {
 		return res;
 	}
 	public Enrolement updateEnrol(final Enrolement e) {
-		e.setEnrolMoment(Calendar.getInstance().getTime());
-		e.setDropOutMoment(null);
-		e.setStatus("PENDING");
+		if (e.getStatus() != "APPROVED") {
+			e.setEnrolMoment(Calendar.getInstance().getTime());
+			e.setDropOutMoment(null);
+			e.setStatus("PENDING");
+		}
 		final Enrolement res = this.enrolementRepository.save(e);
 		return res;
 	}
@@ -97,6 +101,7 @@ public class EnrolementService {
 		this.enrolementRepository.save(e);
 	}
 	public Enrolement create() {
+		Assert.isTrue(this.memberService.findOnePrincipal() != null);
 		final Enrolement res = new Enrolement();
 		res.setId(0);
 		res.setEnrolMoment(Calendar.getInstance().getTime());
@@ -109,6 +114,8 @@ public class EnrolementService {
 		return this.enrolementRepository.save(e);
 	}
 	public Collection<Enrolement> enrolementsPending(final Integer brotherhoodId) {
+		final Brotherhood b = this.brotherhoodService.findOnePrincipal();
+		Assert.isTrue(b.getId() == brotherhoodId);
 		return this.enrolementRepository.enrolementsPending(brotherhoodId);
 	}
 

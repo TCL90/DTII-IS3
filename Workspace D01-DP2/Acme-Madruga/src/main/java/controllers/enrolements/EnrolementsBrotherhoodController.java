@@ -49,10 +49,8 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 
 		final Brotherhood b = this.brotherhoodService.findOnePrincipal();
 		enrolements = this.enrolementService.enrolementsPending(b.getId());
-		//		final Collection<Member> m = this.memberService.membersByEnrolemetId(enrolements);
-		res = new ModelAndView("enrolements/brotherhood/list");
+		res = new ModelAndView("enrolements/list");
 		res.addObject("enrolements", enrolements);
-		//		res.addObject("members", m);
 		res.addObject("requestURI", "enrolements/brotherhood/list.do");
 
 		return res;
@@ -66,9 +64,10 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 			final Enrolement e = new Enrolement();
 			e.setId(enrolementId);
 			final Enrolement enrolement = this.enrolementService.findOne(e);
+			this.brotherhoodService.checkBrotherhood(enrolement);
 			res = this.createEditModelAndView(enrolement);
 		} catch (final Throwable oops) {
-			res = new ModelAndView("enrolements/brotherhood/list");
+			res = new ModelAndView("enrolements/list");
 		}
 
 		return res;
@@ -83,7 +82,7 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 		else
 
 			try {
-
+				this.brotherhoodService.checkBrotherhood(e);
 				this.enrolementService.enrolMember(e);
 				res = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
@@ -102,9 +101,9 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 
 	private ModelAndView createEditModelAndView(final Enrolement e, final String messageCode) {
 		ModelAndView res;
-		res = new ModelAndView("enrolements/brotherhood/edit");
+		res = new ModelAndView("enrolements/edit");
 		final List<Position> lp = new ArrayList<>(this.positionService.findAll());
-
+		res.addObject("brotherhoodView", true);
 		res.addObject("enrolement", e);
 		res.addObject("message", messageCode);
 		res.addObject("listPositions", lp);
@@ -119,10 +118,11 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 			final Enrolement e = new Enrolement();
 			e.setId(enrolementId);
 			final Enrolement enrolement = this.enrolementService.findOne(e);
+			this.brotherhoodService.checkBrotherhood(enrolement);
 			this.enrolementService.rejectMember(enrolement);
 			res = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
-			res = new ModelAndView("enrolements/brotherhood/list");
+			res = new ModelAndView("enrolements/list");
 		}
 
 		return res;
@@ -136,9 +136,10 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 		final Enrolement e = new Enrolement();
 		e.setId(enrolementId);
 		enrolement = this.enrolementService.findOne(e);
+		this.brotherhoodService.checkBrotherhood(enrolement);
 		member = this.memberService.memberByEnrolemetId(enrolementId);
 
-		res = new ModelAndView("enrolements/brotherhood/show");
+		res = new ModelAndView("enrolements/show");
 		res.addObject("member", member);
 		res.addObject("enrolement", enrolement);
 

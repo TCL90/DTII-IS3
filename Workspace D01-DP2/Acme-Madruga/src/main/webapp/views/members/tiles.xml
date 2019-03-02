@@ -15,19 +15,19 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
 <tiles-definitions>
-	<definition name="members/brotherhood/list" extends="master.page">	
+	<definition name="members/list" extends="master.page">	
 		<put-attribute name="title" value="List of members" />
-		<put-attribute name="body" value="/views/members/brotherhood/list.jsp" />
+		<put-attribute name="body" value="/views/members/list.jsp" />
 	</definition>
 	
-		<definition name="members/brotherhood/show" extends="master.page">	
+		<definition name="members/show" extends="master.page">	
 		<put-attribute name="title" value="Show member" />
-		<put-attribute name="body" value="/views/members/brotherhood/show.jsp" />
+		<put-attribute name="body" value="/views/members/show.jsp" />
 	</definition>
 	
-	<definition name="members/brotherhood/edit" extends="master.page">	
+	<definition name="members/edit" extends="master.page">	
 		<put-attribute name="title" value="Edit member" />
-		<put-attribute name="body" value="/views/members/brotherhood/edit.jsp" />
+		<put-attribute name="body" value="/views/members/edit.jsp" />
 	</definition>
 	
 </tiles-definitions>

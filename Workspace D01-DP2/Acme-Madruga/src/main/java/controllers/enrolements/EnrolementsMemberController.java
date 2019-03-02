@@ -43,7 +43,7 @@ public class EnrolementsMemberController extends AbstractController {
 
 		final Member member = this.memberService.findOnePrincipal();
 		enrolements = this.enrolementService.findEnrolementsByMemberId(member);
-		res = new ModelAndView("enrolements/member/list");
+		res = new ModelAndView("enrolements/list");
 		res.addObject("enrolements", enrolements);
 		res.addObject("requestURI", "enrolements/member/list.do");
 
@@ -89,9 +89,10 @@ public class EnrolementsMemberController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Enrolement e, final String messageCode) {
 		ModelAndView res;
-		res = new ModelAndView("enrolements/member/edit");
+		res = new ModelAndView("enrolements/edit");
 		final List<Brotherhood> lb = new ArrayList<>(this.brotherhoodService.findAll());
 
+		res.addObject("memberView", true);
 		res.addObject("enrolement", e);
 		res.addObject("message", messageCode);
 		res.addObject("listBrotherhoods", lb);

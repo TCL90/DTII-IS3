@@ -9,7 +9,6 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="isAuthenticated()">
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="members" requestURI="${requestURI}" id="row">
 
@@ -17,6 +16,7 @@
 		<display:column property="name" titleKey="member.name" sortable="true"/>
 		<display:column property="surname" titleKey="member.surname" sortable="true"/>
 		<display:column property="middleName" titleKey="member.midleName"/>
+		<security:authorize access="hasRole('BROTHERHOOD')">
 		<display:column property="email" titleKey="member.email"/>
 		
 <!-- Actions -->
@@ -27,9 +27,10 @@
 			</a>
 
 		</display:column>
-		
+		</security:authorize>
 	</display:table>
 
+<security:authorize access="hasRole('BROTHERHOOD')">
 <div>
 	<a href="enrolements/brotherhood/list.do"> 
 	<spring:message	code="enrolement.list" />

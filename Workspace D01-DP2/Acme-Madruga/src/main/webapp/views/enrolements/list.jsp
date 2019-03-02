@@ -9,7 +9,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="isAuthenticated()">
+
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="enrolements" requestURI="${requestURI}" id="row">
 
@@ -24,7 +24,17 @@
 		
 
 		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:lightgrey;"/>
-		<display:column style="background-color:lightgrey;"></display:column>
+		<display:column style="background-color:lightgrey;">
+		</display:column>
+		<security:authorize access="hasRole('BROTHERHOOD')">
+		<display:column style="background-color:lightgrey;"><a href="enrolements/brotherhood/enrol.do?enrolementId=${row.id}">
+			<spring:message code="enrolement.acept"/></a></display:column>
+
+		<display:column style="background-color:lightgrey;"><div style="align:center;"><a href="enrolements/brotherhood/reject.do?enrolementId=${row.id}">
+			<spring:message code="enrolement.reject" /></a></div></display:column>
+		<display:column style="background-color:lightgrey;"><a href="enrolements/brotherhood/show.do?enrolementId=${row.id }">
+		<spring:message code="enrolement.showMore"/></a></display:column>
+		</security:authorize>
 		</jstl:when>
 		
 		<jstl:when test="${row.status=='APPROVED'}">
@@ -35,6 +45,12 @@
 		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:lightgreen;"/>
 		
 		<display:column style="background-color:lightgreen;"><a href="brotherhood/member/show.do?brotherhoodId=${row.brotherhood.id}"><spring:message code="brotherhood.show"/></a></display:column>
+		<security:authorize access="hasRole('BROTHERHOOD')">
+		<display:column style="background-color:lightgreen;">></display:column>
+		<display:column style="background-color:lightgreen;">></display:column>
+		<display:column style="background-color:lightgreen;">></display:column>
+		<display:column style="background-color:lightgreen;">></display:column>
+		</security:authorize>
 		</jstl:when>
 		
 		<jstl:when test="${row.status=='REJECTED'}">
@@ -43,6 +59,13 @@
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:orange;"/>
 		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:orange;"/>
 		<display:column style="background-color:orange;"></display:column>
+		
+		<security:authorize access="hasRole('BROTHERHOOD')">
+		<display:column style="background-color:orange;">></display:column>
+		<display:column style="background-color:orange;">></display:column>
+		<display:column style="background-color:orange;">></display:column>
+		<display:column style="background-color:orange;">></display:column>
+		</security:authorize>
 		</jstl:when>
 		
 		<jstl:when test="${row.status=='EXPELLED'}">
@@ -52,13 +75,20 @@
 	
 		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:orange;"/>
 		<display:column style="background-color:orange;"></display:column>
+		
+		<security:authorize access="hasRole('BROTHERHOOD')">
+		<display:column style="background-color:orange;">></display:column>
+		<display:column style="background-color:orange;">></display:column>
+		<display:column style="background-color:orange;">></display:column>
+		<display:column style="background-color:orange;">></display:column>
+		</security:authorize>
 		</jstl:when>
 		
 		</jstl:choose>
 		
 		
 	</display:table>
-
+<security:authorize access="hasRole('MEMBER')">
 <div>
 	<a href="enrolements/member/create.do"> 
 	<spring:message	code="enrolement.create" />
