@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.AdministratorRepository;
 import security.Authority;
@@ -18,6 +20,7 @@ import security.UserAccount;
 import domain.Administrator;
 import domain.Box;
 import domain.SocialProfile;
+import forms.AdministratorForm;
 
 @Service
 @Transactional
@@ -176,5 +179,69 @@ public class AdministratorService {
 
 		Assert.notNull(c);
 		return c;
+	}
+
+	public Administrator reconstruct(final AdministratorForm administratorForm, final BindingResult binding) {
+		final Administrator administrator = this.create();
+
+		Assert.isTrue(administratorForm.isConditionsAccepted());
+		final Authority adm = new Authority();
+		adm.setAuthority(Authority.ADMIN);
+		Assert.isTrue(administratorForm.getUserAccount().getAuthorities().contains(adm));
+		final Collection<Authority> colAdm = new ArrayList<Authority>();
+		final Authority memb = new Authority();
+		memb.setAuthority(Authority.ADMIN);
+		colAdm.add(memb);
+		//Assert.isTrue(memberForm.getUserAccount().getAuthorities() == colMem);
+		//Damos valores a los atributos del member que devolveremos con los datos que nos llegan
+
+		administrator.setAddress(administratorForm.getAddress());
+		administrator.setEmail(administratorForm.getEmail());
+		administrator.setMiddleName(administratorForm.getMiddleName());
+		administrator.setName(administratorForm.getName());
+		administrator.setPhoneNumber(administratorForm.getPhoneNumber());
+		administrator.setPhoto(administratorForm.getPhoto());
+		administrator.setSurname(administratorForm.getSurname());
+		administrator.setUserAccount(administratorForm.getUserAccount());
+
+		//		member.setFlagSpam(memberForm.isFlagSpam());
+		//		member.setPolarityScore(memberForm.getPolarityScore());
+		//		member.setBan(memberForm.getBan());
+
+		administrator.setBan(false);
+
+		return administrator;
+	}
+
+
+	@Autowired
+	private Validator	validator;
+
+
+	public Administrator reconstruct(final Administrator administrator, final BindingResult binding) {
+		Administrator res;
+
+		//Check authority
+		final Authority a = new Authority();
+		final UserAccount user = administrator.getUserAccount();
+		a.setAuthority(Authority.ADMIN);
+		Assert.isTrue(user.getAuthorities().contains(a) && user.getAuthorities().size() == 1);
+
+		if (administrator.getId() == 0)
+			res = administrator;
+		else {
+			res = this.administratorRepository.findOne(administrator.getId());
+
+			res.setName(administrator.getName());
+			res.setEmail(administrator.getEmail());
+			res.setMiddleName(administrator.getMiddleName());
+			res.setSurname(administrator.getSurname());
+			res.setAddress(administrator.getAddress());
+			res.setPhoneNumber(administrator.getPhoneNumber());
+			res.setPhoto(administrator.getPhoto());
+
+			this.validator.validate(res, binding);
+		}
+		return res;
 	}
 }
