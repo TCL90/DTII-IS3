@@ -57,4 +57,10 @@ public class AreaService {
 				this.areaRepository.delete(a);
 	}
 
+	public Area getProcessionArea(final int id) {
+		Assert.isTrue(id != 0);
+		return this.areaRepository.getProcessionArea(id);
+
+	}
+
 }

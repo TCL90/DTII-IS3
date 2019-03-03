@@ -31,6 +31,7 @@
 					<li><a href="area/administrator/list.do"><spring:message code="master.page.area.list" /></a></li>
 					<li><a href="position/administrator/list.do"><spring:message code="master.page.administrator.position" /></a></li>
 					<li><a href="customisation/edit.do"><spring:message code="master.page.customisation" /></a></li>					
+					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.dashboard"/></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -49,7 +50,8 @@
 			<li><a class="fNiv"><spring:message	code="master.page.member" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="member/member/edit.do"><spring:message code="master.page.member.edit" /></a></li>					
+					<li><a href="member/member/edit.do"><spring:message code="master.page.member.edit" /></a></li>
+					<li><a href="finder/member/show.do"><spring:message code="master.page.finder" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

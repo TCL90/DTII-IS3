@@ -1,6 +1,5 @@
-INDEX VERSION 1.122+Z:\DTII-IS3\Workspace D01-DP2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1370035764.index
-2508328468.index
+INDEX VERSION 1.122+C:\Documents and Settings\Student\Desktop\backup git\worspace\Workspace D01-DP2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2972938686.index
+968856984.index
+1257362118.index
 2817099979.index
-3321683146.index
-454636348.index

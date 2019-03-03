@@ -15,20 +15,20 @@ import domain.Finder;
 public class StringToFinderConverter implements Converter<String, Finder> {
 
 	@Autowired
-	private FinderRepository	finderRepository;
+	FinderRepository	repository;
 
 
 	@Override
-	public Finder convert(final String text) {
+	public Finder convert(final String s) {
 		Finder res;
 		int id;
 
 		try {
-			if (StringUtils.isEmpty(text))
+			if (StringUtils.isEmpty(s))
 				res = null;
 			else {
-				id = Integer.valueOf(text);
-				res = this.finderRepository.findOne(id);
+				id = Integer.valueOf(s);
+				res = this.repository.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);

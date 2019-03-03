@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="103" version="2.0">
+<workbench progressCount="61" version="2.0">
 <workbenchAdvisor/>
 <window height="834" maximized="true" width="1149" x="116" y="18">
 <fastViewData fastViewLocation="1024"/>
@@ -41,10 +41,31 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AreaRepository.java" partName="AreaRepository.java" path="C:/Documents and Settings/Student/Desktop/backup git/worspace/Workspace D01-DP2/Acme-Madruga/src/main/java/repositories/AreaRepository.java" title="AreaRepository.java" tooltip="Acme-Madruga/src/main/java/repositories/AreaRepository.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Acme-Madruga/src/main/java/repositories/AreaRepository.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="417" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ProcessionRepository.java" partName="ProcessionRepository.java" path="C:/Documents and Settings/Student/Desktop/backup git/worspace/Workspace D01-DP2/Acme-Madruga/src/main/java/repositories/ProcessionRepository.java" title="ProcessionRepository.java" tooltip="Acme-Madruga/src/main/java/repositories/ProcessionRepository.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Acme-Madruga/src/main/java/repositories/ProcessionRepository.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1315" selectionTopPixel="74"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AreaService.java" partName="AreaService.java" path="C:/Documents and Settings/Student/Desktop/backup git/worspace/Workspace D01-DP2/Acme-Madruga/src/main/java/services/AreaService.java" title="AreaService.java" tooltip="Acme-Madruga/src/main/java/services/AreaService.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Acme-Madruga/src/main/java/services/AreaService.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1418" selectionTopPixel="465"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ProcessionService.java" partName="ProcessionService.java" path="C:/Documents and Settings/Student/Desktop/backup git/worspace/Workspace D01-DP2/Acme-Madruga/src/main/java/services/ProcessionService.java" title="ProcessionService.java" tooltip="Acme-Madruga/src/main/java/services/ProcessionService.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Acme-Madruga/src/main/java/services/ProcessionService.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="20" selectionOffset="4513" selectionTopPixel="35"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.jdt.junit.ResultView" partName="JUnit">
@@ -94,6 +115,10 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (4 items)"/>
+<category IMemento.internal.id="Errors"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="219" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -109,7 +134,7 @@
 <viewState CommonNavigator.LINKING_ENABLED="0"/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.wst.server.ui.ServersView" activePerspective="org.eclipse.jst.j2ee.J2EEPerspective">
+<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="org.eclipse.jst.j2ee.J2EEPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jst.j2ee.internal.perspective.J2EEPerspective" id="org.eclipse.jst.j2ee.J2EEPerspective" label="Java EE"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -286,7 +311,51 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Acme-Madruga/src/main/java/repositories/AreaRepository.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Acme-Madruga/src/main/java/repositories/ProcessionRepository.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Acme-Madruga/src/main/java/services/AreaService.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Acme-Madruga/src/main/java/services/ProcessionService.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Acme-Madruga/src/main/java/controllers/member/FinderMemberController.java"/>
+</editors>
+<item historyLabel="AreaRepository.java" index="0">
+<position info="not_deleted" x="417" y="0"/>
+</item>
+<item historyLabel="ProcessionRepository.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ProcessionRepository.java" index="1">
+<position info="not_deleted" x="1113" y="0"/>
+</item>
+<item historyLabel="ProcessionRepository.java" index="1">
+<position info="not_deleted" x="1164" y="4"/>
+</item>
+<item historyLabel="ProcessionRepository.java" index="1">
+<position info="not_deleted" x="1315" y="0"/>
+</item>
+<item historyLabel="AreaService.java" index="2">
+<position info="not_deleted" x="1418" y="0"/>
+</item>
+<item historyLabel="ProcessionService.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ProcessionService.java" index="3">
+<position info="not_deleted" x="3450" y="12"/>
+</item>
+<item historyLabel="ProcessionService.java" index="3">
+<position info="not_deleted" x="4757" y="3"/>
+</item>
+<item historyLabel="ProcessionService.java" index="3">
+<position info="not_deleted" x="4513" y="20"/>
+</item>
+<item historyLabel="FinderMemberController.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="ProcessionService.java" index="3">
+<position info="not_deleted" x="4513" y="20"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -304,6 +373,21 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FinderMemberController.java" tooltip="Acme-Madruga/src/main/java/controllers/member/FinderMemberController.java">
+<persistable path="/Acme-Madruga/src/main/java/controllers/member/FinderMemberController.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ProcessionService.java" tooltip="Acme-Madruga/src/main/java/services/ProcessionService.java">
+<persistable path="/Acme-Madruga/src/main/java/services/ProcessionService.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AreaService.java" tooltip="Acme-Madruga/src/main/java/services/AreaService.java">
+<persistable path="/Acme-Madruga/src/main/java/services/AreaService.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ProcessionRepository.java" tooltip="Acme-Madruga/src/main/java/repositories/ProcessionRepository.java">
+<persistable path="/Acme-Madruga/src/main/java/repositories/ProcessionRepository.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AreaRepository.java" tooltip="Acme-Madruga/src/main/java/repositories/AreaRepository.java">
+<persistable path="/Acme-Madruga/src/main/java/repositories/AreaRepository.java"/>
+</file>
 <file factoryID="org.eclipse.wst.server.ui.editor.input.factory" id="org.eclipse.wst.server.ui.editor" name="Tomcat v7.0 Server at localhost" tooltip="Tomcat v7.0 Server at localhost">
 <persistable server-id="Tomcat v7.0 Server at localhost"/>
 </file>
@@ -322,12 +406,6 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" name="tiles.xml" tooltip="Acme-Madruga/src/main/resources/spring/config/tiles.xml">
 <persistable path="/Acme-Madruga/src/main/resources/spring/config/tiles.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AreaService.java" tooltip="Acme-Madruga/src/main/java/services/AreaService.java">
-<persistable path="/Acme-Madruga/src/main/java/services/AreaService.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AreaRepository.java" tooltip="Acme-Madruga/src/main/java/repositories/AreaRepository.java">
-<persistable path="/Acme-Madruga/src/main/java/repositories/AreaRepository.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StringToBoxConverter.java" tooltip="Acme-Madruga/src/main/java/converters/StringToBoxConverter.java">
 <persistable path="/Acme-Madruga/src/main/java/converters/StringToBoxConverter.java"/>
 </file>
@@ -339,15 +417,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor" name="create-database.sql" tooltip="Scrapbook/create-database.sql">
 <persistable path="/Scrapbook/create-database.sql"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor" name="revoke-privileges.sql" tooltip="Scrapbook/revoke-privileges.sql">
-<persistable path="/Scrapbook/revoke-privileges.sql"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor" name="drop-users.sql" tooltip="Scrapbook/drop-users.sql">
-<persistable path="/Scrapbook/drop-users.sql"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor" name="hash-password.sql" tooltip="Scrapbook/hash-password.sql">
-<persistable path="/Scrapbook/hash-password.sql"/>
 </file>
 </mruList>
 </workbench>

@@ -3,6 +3,8 @@ package services;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,9 @@ import org.springframework.util.Assert;
 
 import repositories.ProcessionRepository;
 import repositories.RequestRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Brotherhood;
 import domain.Member;
@@ -115,6 +120,60 @@ public class ProcessionService {
 
 	public Procession findOne(final Procession p1) {
 		return this.processionRepository.findOne(p1.getId());
+	}
+
+	private boolean checkMember() {
+		final Authority a = new Authority();
+		final UserAccount user = LoginService.getPrincipal();
+		a.setAuthority(Authority.MEMBER);
+		return user.getAuthorities().contains(a);
+	}
+
+	public Collection<Procession> findProcessionsByKeyworkd(final String keyword) {
+		Assert.isTrue(this.checkMember());
+		return this.processionRepository.findProcessionsByKeyword("%" + keyword + "%");
+	}
+
+	public Collection<Procession> findProcessionsByArea(final int id) {
+		Assert.isTrue(this.checkMember());
+		return this.processionRepository.findProcessionsByAreaId(id);
+	}
+
+	public Collection<Procession> findProcessionsByMinimumDate(final Date minDate) {
+		Assert.isTrue(this.checkMember());
+		return this.processionRepository.findProcessionsByMinimumDate(minDate);
+	}
+
+	public Collection<Procession> findProcessionsByMaximumDate(final Date maxDate) {
+		Assert.isTrue(this.checkMember());
+		return this.processionRepository.findProcessionsByMaximumDate(maxDate);
+	}
+
+	public Collection<Procession> findProcessionsByDateRange(final Date minDate, final Date maxDate) {
+		Assert.isTrue(this.checkMember());
+		return this.processionRepository.findProcessionsByDateRange(minDate, maxDate);
+	}
+
+	public Collection<Procession> finderResults(final String keyword, final Integer areaId, final Date min, final Date max) {
+		Assert.isTrue(this.checkMember());
+		final Set<Procession> results = new HashSet<>();
+
+		if (keyword != null && keyword != "")
+			results.addAll(this.findProcessionsByKeyworkd(keyword));
+		else
+			results.addAll(this.findAll());
+
+		if (areaId != 0 && areaId != null)
+			results.addAll(this.findProcessionsByArea(areaId));
+		else
+			results.addAll(this.findAll());
+		if (min != null && max == null)
+			results.addAll(this.findProcessionsByMinimumDate(min));
+		else if (max != null && min == null)
+			results.addAll(this.findProcessionsByMaximumDate(max));
+		else
+			results.addAll(this.findProcessionsByDateRange(min, max));
+		return results;
 	}
 
 }

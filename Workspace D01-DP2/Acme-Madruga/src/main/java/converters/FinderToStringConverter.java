@@ -12,14 +12,13 @@ import domain.Finder;
 public class FinderToStringConverter implements Converter<Finder, String> {
 
 	@Override
-	public String convert(final Finder fin) {
+	public String convert(final Finder finder) {
 		String res;
 
-		if (fin == null)
+		if (finder == null)
 			res = null;
 		else
-			//res = String.valueOf(Float);
-			res = String.valueOf(fin.getId());
+			res = String.valueOf(finder.getId());
 		return res;
 	}
 }

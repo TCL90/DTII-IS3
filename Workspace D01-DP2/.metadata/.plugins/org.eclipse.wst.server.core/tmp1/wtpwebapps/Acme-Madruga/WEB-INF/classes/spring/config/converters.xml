@@ -30,11 +30,20 @@
   <bean class="converters.StringToMemberConverter" /> 
   <bean class="converters.StringToEnrolementConverter" /> 
   <bean class="converters.StringToPositionConverter" /> 
+<bean class="converters.ProcessionToStringConverter"/>
+<bean class="converters.StringToProcessionConverter"/>
+<bean class="converters.StringToFinderConverter"/>
+<bean class="converters.FinderToStringConverter"/>
 		  
 		    <bean class="converters.AuthorityToStringConverter" /> 
  		 <bean class="converters.StringToAuthorityConverter" /> 
  		 <bean class="converters.UserAccountToStringConverter" /> 
  		 <bean class="converters.StringToUserAccountConverter" /> 
+		  
+		  <bean class="converters.AreaToStringConverter" /> 
+ 		 <bean class="converters.StringToAreaConverter" /> 
+ 		 <bean class="converters.CustomisationToStringConverter" /> 
+ 		 <bean class="converters.StringToCustomisationConverter" /> 
 		  
 	</util:list>
 	

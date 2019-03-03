@@ -15,7 +15,7 @@
 	<legend align="left"><spring:message code="member.edit.contact" /></legend>
 	
 		<form:label path="name">
-			<spring:message code="member.edit.label.name" />:
+			<spring:message code="member.edit.label.name" />* :
 		</form:label>
 		<form:input path="name"/>
 		<form:errors cssClass="error" path="name" />		
@@ -33,7 +33,7 @@
 		<br/>
 		
 		<form:label path="surname">
-			<spring:message code="member.edit.label.surname" />:
+			<spring:message code="member.edit.label.surname" />* :
 		</form:label>
 		<form:input path="surname"/>
 		<form:errors cssClass="error" path="surname" />		
@@ -42,7 +42,7 @@
 		<br/>
 		
 		<form:label path="address">
-			<spring:message code="member.edit.label.address" />:
+			<spring:message code="member.edit.label.address" />* :
 		</form:label>
 		<form:input path="address"/>
 		<form:errors cssClass="error" path="address" />		

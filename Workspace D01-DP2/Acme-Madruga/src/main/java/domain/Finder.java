@@ -11,8 +11,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -32,6 +33,7 @@ public class Finder extends DomainEntity {
 		this.keyword = keyword;
 	}
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -39,6 +41,7 @@ public class Finder extends DomainEntity {
 	public void setStartDate(final Date startDate) {
 		this.startDate = startDate;
 	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	public Date getEndDate() {
 		return this.endDate;
@@ -47,10 +50,9 @@ public class Finder extends DomainEntity {
 	public void setEndDate(final Date endDate) {
 		this.endDate = endDate;
 	}
-
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past
 	@Temporal(TemporalType.DATE)
-	@NotNull
 	public Date getMoment() {
 		return this.moment;
 	}
