@@ -18,27 +18,31 @@
 		<jstl:choose>
 		
 		<jstl:when test="${row.status=='PENDING'}">
+		<jstl:if test="${memberView==true}">
 		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:lightgrey;"/>
+		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:lightgrey;"/>
+		</jstl:if>
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:lightgrey;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:lightgrey;"/>
+		<jstl:if test="${memberView==true}">
+		<display:column style="background-color:lightgrey;"/>
+		</jstl:if>
 		
-
-		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:lightgrey;"/>
-		<display:column style="background-color:lightgrey;">
-		</display:column>
-		<security:authorize access="hasRole('BROTHERHOOD')">
+		<jstl:if test="${brotherhoodView==true}">
 		<display:column style="background-color:lightgrey;"><a href="enrolements/brotherhood/enrol.do?enrolementId=${row.id}">
 			<spring:message code="enrolement.acept"/></a></display:column>
-
+		
 		<display:column style="background-color:lightgrey;"><div style="align:center;"><a href="enrolements/brotherhood/reject.do?enrolementId=${row.id}">
 			<spring:message code="enrolement.reject" /></a></div></display:column>
 		<display:column style="background-color:lightgrey;"><a href="enrolements/brotherhood/show.do?enrolementId=${row.id }">
 		<spring:message code="enrolement.showMore"/></a></display:column>
-		</security:authorize>
+		</jstl:if>
 		</jstl:when>
 		
 		<jstl:when test="${row.status=='APPROVED'}">
+		<jstl:if test="${memberView==true}">
 		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:lightgreen;"/>
+		</jstl:if>
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:lightgreen;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:lightgreen;"/>
 	
@@ -54,11 +58,12 @@
 		</jstl:when>
 		
 		<jstl:when test="${row.status=='REJECTED'}">
+		<jstl:if test="${memberView==true}">
 		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:orange;"/>
+		</jstl:if>
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:orange;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:orange;"/>
 		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:orange;"/>
-		<display:column style="background-color:orange;"></display:column>
 		
 		<security:authorize access="hasRole('BROTHERHOOD')">
 		<display:column style="background-color:orange;">></display:column>
@@ -69,7 +74,9 @@
 		</jstl:when>
 		
 		<jstl:when test="${row.status=='EXPELLED'}">
-		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:orange;"/>
+		<jstl:if test="${memberView==true}">
+		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:lightgrey;"/>
+		</jstl:if>
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:orange;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:orange;"/>
 	

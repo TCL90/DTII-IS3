@@ -20,7 +20,6 @@ import services.MemberService;
 import services.ProcessionService;
 import services.RequestService;
 import controllers.AbstractController;
-import domain.Brotherhood;
 import domain.Procession;
 import domain.Request;
 
@@ -42,18 +41,6 @@ public class RequestBrotherhoodController extends AbstractController {
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-		final ModelAndView res;
-		final Brotherhood b = this.brotherhoodService.findOnePrincipal();
-		final Collection<Procession> processions = this.processionService.findByBrotherhood(b);
-		res = new ModelAndView("requests/brotherhood/list");
-		res.addObject("processions", processions);
-		res.addObject("requestURI", "requests/brotherhood/list.do");
-
-		return res;
-	}
-
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int processionId) {
 		final ModelAndView res;
 		final Procession p;
@@ -63,9 +50,12 @@ public class RequestBrotherhoodController extends AbstractController {
 		p1.setId(processionId);
 		p = this.processionService.findOne(p1);
 
-		res = new ModelAndView("requests/brotherhood/show");
+		this.brotherhoodService.checkBrotherhoodOwnsProcession(p);
+
+		res = new ModelAndView("requests/list");
 		res.addObject("procession", p);
 		res.addObject("requests", requests);
+		res.addObject("brotherhoodView", true);
 
 		return res;
 	}
@@ -78,6 +68,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		final Request r1 = new Request();
 		r1.setId(requestIdA);
 		r = this.requestService.findOne(r1);
+		this.requestService.checkRequestOwnsBrotherhood(r);
 		res = this.createEditModelAndView(r, "APPROVED");
 
 		return res;
@@ -91,6 +82,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		final Request r1 = new Request();
 		r1.setId(requestIdR);
 		r = this.requestService.findOne(r1);
+		this.requestService.checkRequestOwnsBrotherhood(r);
 		res = this.createEditModelAndView(r, "REJECTED");
 
 		return res;
@@ -99,12 +91,18 @@ public class RequestBrotherhoodController extends AbstractController {
 	private ModelAndView createEditModelAndView(final Request r, final String status) {
 		ModelAndView res;
 		final List<Integer> li = new ArrayList<>(this.requestService.suggestPosition(r.getProcession()));
-		res = new ModelAndView("requests/brotherhood/edit");
+		res = new ModelAndView("requests/edit");
 
 		res.addObject("row", li.get(0));
 		res.addObject("column", li.get(1));
 		res.addObject("request", r);
 		res.addObject("status", status);
+		res.addObject("brotherhoodView", true);
+		res.addObject("formAction", "requests/brotherhood/edit.do");
+		String redirect = "requests/brotherhood/list.do?processionId=";
+		redirect = redirect + r.getProcession().getId();
+
+		res.addObject("formBack", redirect);
 
 		return res;
 	}
@@ -119,8 +117,11 @@ public class RequestBrotherhoodController extends AbstractController {
 
 			try {
 
-				this.requestService.save(r);
-				res = new ModelAndView("redirect:list.do");
+				final Request r1 = this.requestService.saveDirectly(r);
+				this.requestService.checkPositionBeforeSave(r1);
+				String redirect = "redirect:list.do?processionId=";
+				redirect = redirect + r1.getProcession().getId();
+				res = new ModelAndView(redirect);
 			} catch (final Throwable oops) {
 				res = this.createEditModelAndView(r, "error.request");
 			}

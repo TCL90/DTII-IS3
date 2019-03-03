@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RequestRepository;
+import domain.Brotherhood;
 import domain.Member;
 import domain.Procession;
 import domain.Request;
@@ -24,6 +25,9 @@ public class RequestService {
 
 	@Autowired
 	public ProcessionService	processionService;
+
+	@Autowired
+	public BrotherhoodService	brotherhoodService;
 
 	@Autowired
 	public MemberService		memberService;
@@ -126,4 +130,24 @@ public class RequestService {
 		return res;
 	}
 
+	public void checkRequestOwnsBrotherhood(final Request r) {
+		final Brotherhood b = this.brotherhoodService.findOnePrincipal();
+		Assert.isTrue(r.getProcession().getBrotherhood().getId() == b.getId());
+	}
+
+	public void checkPositionBeforeSave(final Request r) {
+		Assert.isTrue(r.getColumnPosition() >= 0);
+		Assert.isTrue(r.getRowPosition() >= 0);
+
+	}
+
+	public void checkRequestOwnsMember(final Request r1) {
+		final Member m = this.memberService.findOnePrincipal();
+		Assert.isTrue(m.getRequests().contains(r1));
+
+	}
+
+	public Request saveDirectly(final Request r) {
+		return this.requestRepository.save(r);
+	}
 }

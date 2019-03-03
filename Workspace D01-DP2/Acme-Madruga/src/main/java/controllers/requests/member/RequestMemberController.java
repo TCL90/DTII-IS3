@@ -44,9 +44,10 @@ public class RequestMemberController extends AbstractController {
 
 		final Member member = this.memberService.findOnePrincipal();
 		requests = this.requestService.findRequestsByMemberId(member);
-		res = new ModelAndView("requests/member/list");
+		res = new ModelAndView("requests/list");
 		res.addObject("requests", requests);
 		res.addObject("requestURI", "requests/member/list.do");
+		res.addObject("memberView", true);
 
 		return res;
 	}
@@ -61,8 +62,9 @@ public class RequestMemberController extends AbstractController {
 		final Request r1 = new Request();
 		r1.setId(requestId);
 		r = this.requestService.findOne(r1);
+		this.requestService.checkRequestOwnsMember(r1);
 
-		res = new ModelAndView("requests/member/show");
+		res = new ModelAndView("requests/show");
 		res.addObject("procession", p);
 		res.addObject("request", r);
 
@@ -121,12 +123,15 @@ public class RequestMemberController extends AbstractController {
 
 	private ModelAndView createEditModelAndView(final Request r, final String messageCode) {
 		ModelAndView res;
-		res = new ModelAndView("requests/member/edit");
+		res = new ModelAndView("requests/edit");
 		final List<Procession> lp = new ArrayList<>(this.processionService.findAllFinalMode());
 
 		res.addObject("request", r);
 		res.addObject("message", messageCode);
 		res.addObject("listProcessions", lp);
+		res.addObject("memberView", true);
+		res.addObject("formAction", "requests/member/edit.do");
+		res.addObject("formBack", "requests/member/list.do");
 
 		return res;
 	}

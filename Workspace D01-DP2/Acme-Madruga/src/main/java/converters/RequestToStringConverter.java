@@ -12,14 +12,14 @@ import domain.Request;
 public class RequestToStringConverter implements Converter<Request, String> {
 
 	@Override
-	public String convert(final Request req) {
+	public String convert(final Request request) {
 		String res;
 
-		if (req == null)
+		if (request == null)
 			res = null;
 		else
-			//res = String.valueOf(Float);
-			res = String.valueOf(req.getId());
+			res = String.valueOf(request.getId());
+
 		return res;
 	}
 }

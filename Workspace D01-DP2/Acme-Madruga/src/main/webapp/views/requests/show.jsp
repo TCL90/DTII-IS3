@@ -23,7 +23,7 @@
 	<p><jstl:out value="${procession.description}"/></p>
 	
 	<h2>
-		<spring:message code="request.procession.departureDate" />
+		<spring:message code="request.departureDate" />
 	</h2>
 	<p><jstl:out value="${procession.departureDate}"/></p>
 	

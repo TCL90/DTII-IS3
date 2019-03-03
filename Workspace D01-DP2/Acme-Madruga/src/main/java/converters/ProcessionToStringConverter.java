@@ -19,6 +19,7 @@ public class ProcessionToStringConverter implements Converter<Procession, String
 			res = null;
 		else
 			res = String.valueOf(procession.getId());
+
 		return res;
 	}
 }

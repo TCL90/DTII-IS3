@@ -121,13 +121,19 @@ public class MemberService {
 	}
 
 	public Member findOnePrincipal() {
+		final Authority a1 = new Authority();
+		a1.setAuthority(Authority.MEMBER);
+
 		final Actor a = this.actorService.findByPrincipal();
+
+		Assert.isTrue(a.getUserAccount().getAuthorities().contains(a1));
 		final Member m = new Member();
 		m.setId(a.getId());
 		final Member res = this.findOne(m);
 
 		return res;
 	}
+
 
 	// Returns logged member
 	public Member findByPrincipal() {
@@ -200,7 +206,7 @@ public class MemberService {
 		final List<Member> res = new ArrayList<>();
 		for (final Enrolement e : enrolements)
 			res.add(this.memberByEnrolemetId(e.getId()));
-		return null;
+		return res;
 	}
 
 	public Member findOne(final int memberId) {

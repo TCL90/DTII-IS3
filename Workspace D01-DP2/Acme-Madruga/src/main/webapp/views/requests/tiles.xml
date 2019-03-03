@@ -15,19 +15,19 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
 <tiles-definitions>
-	<definition name="requests/member/list" extends="master.page">	
+	<definition name="requests/list" extends="master.page">	
 		<put-attribute name="title" value="Request list" />
-		<put-attribute name="body" value="/views/requests/member/list.jsp" />
+		<put-attribute name="body" value="/views/requests/list.jsp" />
 	</definition>
 	
-	<definition name="requests/member/edit" extends="master.page">	
+	<definition name="requests/edit" extends="master.page">	
 		<put-attribute name="title" value="Request edit" />
-		<put-attribute name="body" value="/views/requests/member/edit.jsp" />
+		<put-attribute name="body" value="/views/requests/edit.jsp" />
 	</definition>
 	
-	<definition name="requests/member/show" extends="master.page">	
-		<put-attribute name="title" value="Showing request" />
-		<put-attribute name="body" value="/views/requests/member/show.jsp" />
+	<definition name="requests/show" extends="master.page">	
+		<put-attribute name="title" value="Showing requests" />
+		<put-attribute name="body" value="/views/requests/show.jsp" />
 	</definition>
 	
 </tiles-definitions>

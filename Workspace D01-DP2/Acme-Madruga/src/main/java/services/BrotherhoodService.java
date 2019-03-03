@@ -25,6 +25,7 @@ import domain.Brotherhood;
 import domain.Customisation;
 import domain.Enrolement;
 import domain.Member;
+import domain.Procession;
 import domain.SocialProfile;
 import forms.BrotherhoodForm;
 
@@ -144,6 +145,7 @@ public class BrotherhoodService {
 		final Brotherhood b1 = this.brotherhoodRepository.findOne(b.getId());
 
 		final Enrolement e = this.enrolementService.findEnrolementByIds(b1, member);
+		this.checkBrotherhood(e);
 		final Date today = Calendar.getInstance().getTime();
 		e.setDropOutMoment(today);
 		e.setStatus("EXPELLED");
@@ -162,9 +164,24 @@ public class BrotherhoodService {
 		this.enrolementService.save(enrolement);
 	}
 
+	public void saveDirectly(final Brotherhood b) {
+		this.brotherhoodRepository.save(b);
+
+	}
+
+	public Collection<Brotherhood> findAll() {
+		return this.brotherhoodRepository.findAll();
+	}
+
 	public void checkBrotherhood(final Enrolement enrolement) {
 		final Brotherhood b = this.findOnePrincipal();
 		Assert.isTrue(enrolement.getBrotherhood().getId() == b.getId());
+
+	}
+
+	public void checkBrotherhoodOwnsProcession(final Procession p) {
+		final Brotherhood b = this.findOnePrincipal();
+		Assert.isTrue(p.getBrotherhood().getId() == b.getId());
 
 	}
 
@@ -218,10 +235,6 @@ public class BrotherhoodService {
 		res = this.brotherhoodRepository.findByUserAccountId(userAccount.getId());
 
 		return res;
-	}
-
-	public Collection<Brotherhood> findAll() {
-		return this.brotherhoodRepository.findAll();
 	}
 
 	public Brotherhood saveScore(final Brotherhood brotherhood, final Customisation custo) {

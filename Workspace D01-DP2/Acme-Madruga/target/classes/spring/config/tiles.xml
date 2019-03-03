@@ -26,11 +26,10 @@
 		<value>/views/administrator/tiles.xml</value>
 		<value>/views/customer/tiles.xml</value>
 		<value>/views/profile/tiles.xml</value>
-		<value>/views/members/brotherhood/tiles.xml</value>
-		<value>/views/enrolements/member/tiles.xml</value>
-		<value>/views/enrolements/brotherhood/tiles.xml</value>
-		<value>/views/brotherhood/member/tiles.xml</value>
+		<value>/views/members/tiles.xml</value>
+		<value>/views/enrolements/tiles.xml</value>
 		<value>/views/brotherhood/tiles.xml</value>
+		<value>/views/requests/tiles.xml</value>
 		<value>/views/member/tiles.xml</value>
 		<value>/views/float/tiles.xml</value>
 		<value>/views/area/tiles.xml</value>

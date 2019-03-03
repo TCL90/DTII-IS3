@@ -15,7 +15,7 @@ import domain.Request;
 public class StringToRequestConverter implements Converter<String, Request> {
 
 	@Autowired
-	private RequestRepository	requestRepository;
+	RequestRepository	requestRepository;
 
 
 	@Override
@@ -35,4 +35,5 @@ public class StringToRequestConverter implements Converter<String, Request> {
 		}
 		return res;
 	}
+
 }

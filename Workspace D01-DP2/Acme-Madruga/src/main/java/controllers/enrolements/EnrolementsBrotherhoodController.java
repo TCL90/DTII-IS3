@@ -51,6 +51,7 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 		enrolements = this.enrolementService.enrolementsPending(b.getId());
 		res = new ModelAndView("enrolements/list");
 		res.addObject("enrolements", enrolements);
+		res.addObject("brotherhoodView", true);
 		res.addObject("requestURI", "enrolements/brotherhood/list.do");
 
 		return res;

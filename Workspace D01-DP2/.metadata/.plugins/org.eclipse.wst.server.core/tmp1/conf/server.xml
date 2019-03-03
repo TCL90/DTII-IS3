@@ -61,7 +61,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL HTTP/1.1 Connector on port 80
     -->
-    <Connector connectionTimeout="20000" port="80" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log." suffix=".txt"/>
 
-      <Context docBase="C:\Documents and Settings\Student\Desktop\backup git\worspace\Workspace D01-DP2\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Documents and Settings\Student\Desktop\backup git\worspace\Workspace D01-DP2\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Acme-Madruga" path="/Acme-Madruga" reloadable="true" source="org.eclipse.jst.jee.server:Acme-Madruga"/></Host>
+      <Context docBase="C:\Documents and Settings\Student\Desktop\Workspace D01-DP2-2\Workspace D01-DP2\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Documents and Settings\Student\Desktop\Workspace D01-DP2-2\Workspace D01-DP2\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Acme-Madruga" path="/Acme-Madruga" reloadable="true" source="org.eclipse.jst.jee.server:Acme-Madruga"/></Host>
     </Engine>
   </Service>
 </Server>

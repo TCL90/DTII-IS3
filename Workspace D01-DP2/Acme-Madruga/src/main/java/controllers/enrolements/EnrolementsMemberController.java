@@ -45,6 +45,7 @@ public class EnrolementsMemberController extends AbstractController {
 		enrolements = this.enrolementService.findEnrolementsByMemberId(member);
 		res = new ModelAndView("enrolements/list");
 		res.addObject("enrolements", enrolements);
+		res.addObject("memberView", true);
 		res.addObject("requestURI", "enrolements/member/list.do");
 
 		return res;

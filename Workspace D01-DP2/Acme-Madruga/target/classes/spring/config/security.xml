@@ -82,12 +82,12 @@
 
 		<security:intercept-url pattern="/members/brotherhood/**"
 			access="hasRole('BROTHERHOOD')" />
-		<security:intercept-url pattern="/enrolements/member/**"
-			access="hasRole('MEMBER')" />
-		<security:intercept-url pattern="/enrolements/brotherhood/**"
-			access="hasRole('BROTHERHOOD')" />
-		<security:intercept-url pattern="/brotherhood/member/**"
-			access="hasRole('MEMBER')" />
+		<security:intercept-url pattern="/enrolements/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/requests/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/brotherhood/**"
+			access="permitAll" />
 		<security:intercept-url pattern="/finder/member/**" access="hasRole('MEMBER')"/>
 
 

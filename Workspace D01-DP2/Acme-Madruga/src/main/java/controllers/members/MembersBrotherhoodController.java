@@ -65,7 +65,9 @@ public class MembersBrotherhoodController extends AbstractController {
 		m.setId(memberId);
 		member = this.memberService.findOne(m);
 		b = this.brotherhoodService.findOnePrincipal();
+
 		enrolement = this.enrolementService.findEnrolementByIds(b, member);
+		this.brotherhoodService.checkBrotherhood(enrolement);
 
 		res = new ModelAndView("members/show");
 		res.addObject("member", member);
@@ -80,9 +82,9 @@ public class MembersBrotherhoodController extends AbstractController {
 
 		try {
 			this.brotherhoodService.deleteMember(m);
-			res = new ModelAndView("members/list");
+			res = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
-			res = new ModelAndView("members/list");
+			res = new ModelAndView("redirect:list.do");
 		}
 		return res;
 
@@ -96,7 +98,7 @@ public class MembersBrotherhoodController extends AbstractController {
 			this.brotherhoodService.checkBrotherhood(e1);
 			res = this.createEditModelAndView(e1);
 		} catch (final Throwable oops) {
-			res = new ModelAndView("members/list");
+			res = new ModelAndView("redirect:list.do");
 		}
 		return res;
 
@@ -109,9 +111,9 @@ public class MembersBrotherhoodController extends AbstractController {
 		try {
 			this.brotherhoodService.checkBrotherhood(e);
 			this.enrolementService.saveDirectly(e);
-			res = new ModelAndView("members/list");
+			res = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
-			res = new ModelAndView("members/list");
+			res = new ModelAndView("redirect:list.do");
 		}
 		return res;
 

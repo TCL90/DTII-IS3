@@ -9,59 +9,38 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+	<h2>
+		<spring:message code="brotherhood.title" />
+	</h2>
+	<p><jstl:out value="${brotherhood.title}"/></p>
 	
-	<h4>
-		<spring:message code="brotherhood.edit.label.name" />:
-	</h4>
-	<jstl:out value="${brotherhood.name}"></jstl:out>
+	<h2>
+		<spring:message code="brotherhood.establishmentDate" />
+	</h2>
+	<p><jstl:out value="${brotherhood.stablishmentDate}"/></p>
 	
-	<h4>
-		<spring:message code="brotherhood.edit.label.middleName" />:
-	</h4>
-	<jstl:out value="${brotherhood.middleName}"></jstl:out>
-
-	<h4>
-		<spring:message code="brotherhood.edit.label.surname" />:
-	</h4>
-	<jstl:out value="${brotherhood.surname}"></jstl:out>
+	<h2>
+		<spring:message code="enrolement.position" />
+	</h2>
+	<jstl:if test="${ pageContext.response.locale.language=='en'}">
+	<p><jstl:out value="${enrolement.position.positionEng}"/></p>
+	</jstl:if>
 	
-	<h4>
-		<spring:message code="brotherhood.edit.label.address" />:
-	</h4>
-	<jstl:out value="${brotherhood.address}"></jstl:out>
+	<jstl:if test="${ pageContext.response.locale.language=='es'}">
+	<p><jstl:out value="${enrolement.position.positionEsp}"/></p>
+	</jstl:if>
 	
-	<h4>
-		<spring:message code="brotherhood.edit.label.email" />:
-	</h4>
-	<jstl:out value="${brotherhood.email}"></jstl:out>
+	<br/>
+<security:authorize access="hasRole('MEMBER')">
+	<jstl:if test="${enrolement.status=='APPROVED'}">
+	<form:form action="brotherhood/member/show.do" modelAttribute="brotherhood">
+	<form:hidden path="id"/>
+	<input type="submit" name="delete"
+			value="<spring:message code="brotherhood.delete" />"
+			onclick="return confirm('<spring:message code="message.confirm.delete" />')" />&nbsp;
+	</form:form>
+	</jstl:if>
 	
-	<h4>
-		<spring:message code="brotherhood.edit.label.phoneNumber" />:
-	</h4>
-	<jstl:out value="${brotherhood.phoneNumber}"></jstl:out>
-
-	<h4>
-		<spring:message code="brotherhood.edit.label.username" />:
-	</h4>
-	<jstl:out value="${brotherhood.userAccount.username}"></jstl:out>
-	
-		<h4>
-		<spring:message code="brotherhood.edit.label.title" />:
-	</h4>
-	<jstl:out value="${brotherhood.title}"></jstl:out>
-
-	<h4>
-		<spring:message code="brotherhood.edit.label.stablishmentDate" />:
-	</h4>
-	<jstl:out value="${brotherhood.stablishmentDate}"></jstl:out>
-
-	<h4>
-		<spring:message code="brotherhood.urlImages" />:
-	</h4>
-	<jstl:out value="${brotherhood.urlImages}"></jstl:out>
-<br/>
-<br/>
-
-	<input type="button" name="back" onclick="javascript: window.location.replace('welcome/index.do')"
-		value="<spring:message code="brotherhood.back" />" />
-	
+	<input type="button" name="back" onclick="javascript: window.location.replace('enrolements/member/list.do')"
+		value="<spring:message code="member.back" />" />
+	</security:authorize>

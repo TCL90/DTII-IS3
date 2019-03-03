@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;repositories.BoxRepositoy&apos; to &apos;BoxRepository&apos;&#x0D;&#x0A;- Original project: &apos;Acme-Madruga&apos;&#x0D;&#x0A;- Original element: &apos;repositories.BoxRepositoy&apos;&#x0D;&#x0A;- Renamed element: &apos;repositories.BoxRepository&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;BoxRepositoy&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;repositories{BoxRepositoy.java[BoxRepositoy" matchStrategy="1" name="BoxRepository" qualified="false" references="true" similarDeclarations="false" stamp="1551371182459" textual="false" version="1.0"/>
+</session>

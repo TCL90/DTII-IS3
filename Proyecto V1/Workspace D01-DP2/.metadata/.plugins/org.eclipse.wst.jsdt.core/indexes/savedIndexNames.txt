@@ -1,0 +1,5 @@
+INDEX VERSION 1.122+C:\Documents and Settings\Student\Desktop\backup git\worspace\Workspace D01-DP2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2972938686.index
+968856984.index
+1257362118.index
+2817099979.index

@@ -26,10 +26,11 @@
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
-		<value>/views/members/brotherhood/messages</value>
-		<value>/views/enrolements/member/messages</value>
-		<value>/views/enrolements/brotherhood/messages</value>
-		<value>/views/brotherhood/member/messages</value>
+		<value>/views/members/messages</value>
+		<value>/views/enrolements/messages</value>
+
+		<value>/views/brotherhood/messages</value>
+		<value>/views/requests/messages</value>
 		<value>/views/member/messages</value>
 		<value>/views/brotherhood/messages</value>
 		<value>/views/float/messages</value>

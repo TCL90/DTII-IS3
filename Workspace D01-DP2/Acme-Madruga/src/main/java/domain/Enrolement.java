@@ -71,7 +71,7 @@ public class Enrolement extends DomainEntity {
 		this.brotherhood = brotherhood;
 	}
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	public Position getPosition() {
 		return this.position;
 	}

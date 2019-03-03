@@ -98,7 +98,7 @@ public class EnrolementService {
 		e.setDropOutMoment(Calendar.getInstance().getTime());
 		e.setStatus("EXPELLED");
 		e.setPosition(null);
-		this.enrolementRepository.save(e);
+		this.saveDirectly(e);
 	}
 	public Enrolement create() {
 		Assert.isTrue(this.memberService.findOnePrincipal() != null);
@@ -133,6 +133,7 @@ public class EnrolementService {
 	public void rejectMember(final Enrolement enrolement) {
 		// TODO Auto-generated method stub
 		enrolement.setStatus("REJECTED");
+
 		enrolement.setDropOutMoment(Calendar.getInstance().getTime());
 		this.enrolementRepository.save(enrolement);
 
