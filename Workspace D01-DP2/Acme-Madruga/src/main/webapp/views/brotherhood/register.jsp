@@ -101,7 +101,7 @@
 			<spring:message code="brotherhood.title"/>* :
 		</form:label>
 		<form:input path="title"/>
-		<form:errors cssClass="error" path="photo" />
+		<form:errors cssClass="error" path="title" />
 		<br/><br/>
 		<form:label path="stablishmentDate">
 			<spring:message code="brotherhood.stablishment.date"/>* :
@@ -109,12 +109,12 @@
 		<form:input path="stablishmentDate"/>
 		<form:errors cssClass="error" path="stablishmentDate" />
 		<br/><br/>
+		
 		<form:label path="urls">
 			<spring:message code="brotherhood.photos"/>:
 		</form:label>
-		<input id="urls" name="urls" value="${urlImages}"/>
-		<jstl:set var="urls" value="${urlImages}"/>
-		<form:errors cssClass="error" path="photo" />
+		<form:textarea path="urls" />
+		<form:errors cssClass="error" path="urls" />
 		<br/><br/>
 		<form:label path="area">
 	<spring:message code="brotherhood.area" />:

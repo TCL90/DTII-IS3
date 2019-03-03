@@ -59,7 +59,6 @@
 			<li>
 				<a class="fNiv"> <spring:message code="master.page.register" /> </a>
 				<ul>
-					
 					<li><a class="fNiv" href="member/register.do"><spring:message code="master.page.member.register" /></a></li>
 					<li><a class="fNiv" href="brotherhood/register.do"><spring:message code="master.page.brotherhood.register" /></a></li>
 				</ul>

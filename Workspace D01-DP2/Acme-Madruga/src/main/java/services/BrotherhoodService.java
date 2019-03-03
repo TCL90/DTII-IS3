@@ -340,7 +340,7 @@ public class BrotherhoodService {
 		brotherhood.setArea(brotherhoodForm.getArea());
 		brotherhood.setStablishmentDate(brotherhoodForm.getStablishmentDate());
 		brotherhood.setTitle(brotherhoodForm.getTitle());
-
+		brotherhood.setUrls(brotherhoodForm.getUrls());
 		//		member.setFlagSpam(memberForm.isFlagSpam());
 		//		member.setPolarityScore(memberForm.getPolarityScore());
 		//		member.setBan(memberForm.getBan());
@@ -383,7 +383,7 @@ public class BrotherhoodService {
 			res.setPhoneNumber(brotherhood.getPhoneNumber());
 			res.setPhoto(brotherhood.getPhoto());
 			res.setArea(brotherhood.getArea());
-
+			res.setUrls(brotherhood.getUrls());
 			this.validator.validate(res, binding);
 		}
 		return res;
