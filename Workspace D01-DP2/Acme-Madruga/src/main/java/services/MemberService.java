@@ -21,6 +21,7 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Box;
 import domain.Brotherhood;
+import domain.Customisation;
 import domain.Enrolement;
 import domain.Finder;
 import domain.Member;
@@ -42,6 +43,9 @@ public class MemberService {
 
 	@Autowired
 	public FinderService		finderService;
+
+	@Autowired
+	public CustomisationService	customisationService;
 
 
 	//Constructor
@@ -155,6 +159,12 @@ public class MemberService {
 
 		// Restrictions
 		Assert.isTrue(mem.getBan() != true);
+
+		final String pnumber = mem.getPhoneNumber();
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCountryCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			mem.setPhoneNumber(cc.concat(pnumber));
 
 		if (mem.getId() == 0) {
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();

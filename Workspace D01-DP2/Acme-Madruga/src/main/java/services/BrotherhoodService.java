@@ -47,6 +47,9 @@ public class BrotherhoodService {
 	@Autowired
 	public AdministratorService		administratorService;
 
+	@Autowired
+	public CustomisationService		customisationService;
+
 
 	//Constructor
 	public BrotherhoodService() {
@@ -173,6 +176,12 @@ public class BrotherhoodService {
 		//		final UserAccount user = LoginService.getPrincipal();
 		//		a.setAuthority(Authority.BROTHERHOOD);
 		//		Assert.isTrue(user.getAuthorities().contains(a));
+
+		final String pnumber = brotherhood.getPhoneNumber();
+		final Customisation cus = ((List<Customisation>) this.customisationService.findAll()).get(0);
+		final String cc = cus.getPhoneNumberCountryCode();
+		if (pnumber.matches("^[0-9]{4,}$"))
+			brotherhood.setPhoneNumber(cc.concat(pnumber));
 
 		if (brotherhood.getId() != 0) {
 			Assert.isTrue(this.actorService.checkBrotherhood());
