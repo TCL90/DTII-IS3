@@ -38,6 +38,8 @@
 		  
 		  <bean class="converters.AreaToStringConverter" /> 
  		 <bean class="converters.StringToAreaConverter" /> 
+ 		 <bean class="converters.CustomisationToStringConverter" /> 
+ 		 <bean class="converters.StringToCustomisationConverter" /> 
 		  
 	</util:list>
 	

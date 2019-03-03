@@ -74,6 +74,10 @@
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/area/administrator/create.do"
 			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/customisation/edit.do"
+			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/position/administrator/**"
+			access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/members/brotherhood/**"
 			access="hasRole('BROTHERHOOD')" />

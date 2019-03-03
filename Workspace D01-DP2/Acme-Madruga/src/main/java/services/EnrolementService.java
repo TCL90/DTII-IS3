@@ -138,4 +138,8 @@ public class EnrolementService {
 
 	}
 
+	public Collection<Enrolement> findAll() {
+		return this.enrolementRepository.findAll();
+	}
+
 }
