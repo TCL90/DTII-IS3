@@ -75,7 +75,7 @@
 		
 		<jstl:when test="${row.status=='EXPELLED'}">
 		<jstl:if test="${memberView==true}">
-		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:lightgrey;"/>
+		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:orange;"/>
 		</jstl:if>
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:orange;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:orange;"/>

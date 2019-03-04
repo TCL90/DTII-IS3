@@ -62,7 +62,7 @@
 		</jstl:if>
 		
 		<jstl:if test="${memberView==true }">
-		<display:column style="background-color:orange;"></display:column>
+		<display:column style="background-color:orange;"><a href="requests/member/show.do?requestId=${row.id}"><spring:message code="request.show"/></a></display:column>
 		</jstl:if>
 		</jstl:when>
 		

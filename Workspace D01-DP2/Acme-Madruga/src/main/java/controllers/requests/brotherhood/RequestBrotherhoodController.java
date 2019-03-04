@@ -123,7 +123,7 @@ public class RequestBrotherhoodController extends AbstractController {
 				redirect = redirect + r1.getProcession().getId();
 				res = new ModelAndView(redirect);
 			} catch (final Throwable oops) {
-				res = this.createEditModelAndView(r, "error.request");
+				res = this.createEditModelAndView(r, "REJECTED");
 			}
 
 		return res;

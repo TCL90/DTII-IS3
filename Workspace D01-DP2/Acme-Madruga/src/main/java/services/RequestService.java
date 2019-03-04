@@ -69,11 +69,11 @@ public class RequestService {
 
 	private Request updateRequest(final Request r1) {
 		Request res = this.requestRepository.save(r1);
-		if (r1.getStatus().contains("REJECTED")) {
+		if (res.getStatus().contains("REJECTED")) {
 			final Request r = new Request();
-			r.setProcession(r1.getProcession());
-			r.setId(r1.getId());
-			r.setVersion(r1.getVersion());
+			r.setProcession(res.getProcession());
+			r.setId(res.getId());
+			r.setVersion(res.getVersion());
 			r.setStatus("PENDING");
 			res = this.requestRepository.save(r);
 		}
@@ -148,6 +148,8 @@ public class RequestService {
 	}
 
 	public Request saveDirectly(final Request r) {
+		if (r.getStatus().contains("REJECTED"))
+			Assert.isTrue(r.getRejectReason() != "");
 		return this.requestRepository.save(r);
 	}
 }

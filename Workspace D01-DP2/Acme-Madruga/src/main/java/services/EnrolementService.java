@@ -44,13 +44,15 @@ public class EnrolementService {
 		Enrolement res;
 
 		final Member m = this.memberService.findOnePrincipal();
-		Assert.isTrue(m.getEnrolements().contains(enrolement));
+
 		if (enrolement.getId() == 0)
 			if (this.enrolementRepository.existEnrolement(m.getId(), enrolement.getBrotherhood().getId()) != null) {
 				final Enrolement e = this.enrolementRepository.existEnrolement(m.getId(), enrolement.getBrotherhood().getId());
+				//Assert.isTrue(m.getEnrolements().contains(enrolement));
 				return this.updateEnrol(e);
 			}
-		Assert.isTrue(enrolement.getStatus() == "PENDING");
+
+		//Assert.isTrue(enrolement.getStatus().toString() == "PENDING");
 		res = this.enrolementRepository.save(enrolement);
 
 		if (enrolement.getId() == 0) {
@@ -67,7 +69,7 @@ public class EnrolementService {
 			final List<Enrolement> le = new ArrayList<>(updaB.getEnrolements());
 			le.add(res);
 
-			this.brotherhoodService.save(updaB);
+			this.brotherhoodService.saveDirectly(updaB);
 		}
 		return res;
 	}
