@@ -44,6 +44,8 @@
  		 <bean class="converters.StringToAreaConverter" /> 
  		 <bean class="converters.CustomisationToStringConverter" /> 
  		 <bean class="converters.StringToCustomisationConverter" /> 
+ 		 <bean class="converters.FloatToStringConverter" /> 
+ 		 <bean class="converters.StringToFloatConverter" /> 
 		  
 	</util:list>
 	

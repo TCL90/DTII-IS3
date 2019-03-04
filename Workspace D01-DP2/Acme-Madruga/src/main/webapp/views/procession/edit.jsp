@@ -16,7 +16,6 @@
 	<form:hidden path="version" />
 	<form:hidden path="floats" />
 	<form:hidden path="ticker" />
-	<form:hidden path="finalMode" />
 	
 
 	<form:label path="title">
@@ -40,6 +39,10 @@
 	<form:errors cssClass="error" path="departureDate" />
 	<br />	
 	
+	<form:label path="finalMode">
+		<spring:message code="procession.finalMode" />:
+	</form:label>
+	<form:input path="finalMode"/>
 	<br />	
 	<br />	
 	

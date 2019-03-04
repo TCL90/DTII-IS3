@@ -14,33 +14,26 @@
 <spring:message code="float.description" var="description" />
 <spring:message code="float.pictures" var="pictures" />
 
-<display:table name="float">
-
-	<display:column property="brotherhood.title" title="${brotherhood}" />
-	<display:column property="title" title="${title}" />
-	<display:column property="description" title="${description}" />
-	<display:column property="pictures" title="${pictures}" />
-</display:table>
 
 	<h4>
 		<spring:message code="float.title" />:
 	</h4>
-	<jstl:out value="${domain.Float.title}"></jstl:out>
+	<jstl:out value="${f.title}"></jstl:out>
 
 	<h4>
 		<spring:message code="float.description" />:
 	</h4>
-	<jstl:out value="${domain.Float.description}"></jstl:out>
+	<jstl:out value="${f.description}"></jstl:out>
 	
 	<h4>
 		<spring:message code="float.pictures" />:
 	</h4>
-	<jstl:out value="${domain.Float.pictures}"></jstl:out>
+	<jstl:out value="${f.pictures}"></jstl:out>
 	
 	<h4>
 		<spring:message code="float.brotherhood" />:
 	</h4>
-	<jstl:out value="${domain.Float.brotherhood}"></jstl:out>
+	<jstl:out value="${f.brotherhood.name}"></jstl:out>
 		
 <br/>
 <br/>

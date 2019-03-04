@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -48,6 +49,7 @@ public class Procession extends DomainEntity {
 
 	@Temporal(TemporalType.DATE)
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date getDepartureDate() {
 		return this.departureDate;
 	}

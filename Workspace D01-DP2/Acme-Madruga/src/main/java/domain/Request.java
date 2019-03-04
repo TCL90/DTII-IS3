@@ -4,7 +4,6 @@ package domain;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -25,7 +24,6 @@ public class Request extends DomainEntity {
 		this.status = status;
 	}
 
-	@NotNull
 	@Min(0)
 	public int getRowPosition() {
 		return this.rowPosition;
@@ -35,7 +33,6 @@ public class Request extends DomainEntity {
 		this.rowPosition = rowPosition;
 	}
 
-	@NotNull
 	@Min(0)
 	public int getColumnPosition() {
 		return this.columnPosition;

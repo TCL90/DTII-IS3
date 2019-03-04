@@ -60,16 +60,15 @@ public class ProcessionService {
 
 	public Procession save(final Procession proc) {
 
-		final Procession procOld = this.processionRepository.findOne(proc.getId());
-
-		Assert.isTrue(!procOld.getFinalMode());
-
 		Brotherhood res;
 
 		res = this.brotherhoodService.findByPrincipal();
 		proc.setBrotherhood(res);
 
 		if (proc.getId() != 0) {
+			final Procession procOld = this.processionRepository.findOne(proc.getId());
+			Assert.isTrue(!procOld.getFinalMode());
+
 			final Collection<Request> reqs = this.requestRepository.findByProcessionId(proc.getId());
 			for (final Request r : reqs) {
 				r.setProcession(proc);

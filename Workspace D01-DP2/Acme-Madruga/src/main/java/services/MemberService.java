@@ -134,7 +134,6 @@ public class MemberService {
 		return res;
 	}
 
-
 	// Returns logged member
 	public Member findByPrincipal() {
 		Member res;
@@ -172,6 +171,9 @@ public class MemberService {
 		if (pnumber.matches("^[0-9]{4,}$"))
 			mem.setPhoneNumber(cc.concat(pnumber));
 
+		if (mem.getEmail() != null)
+			Assert.isTrue(mem.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || mem.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"));
+
 		if (mem.getId() == 0) {
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = mem.getUserAccount().getPassword();
@@ -196,7 +198,6 @@ public class MemberService {
 		}
 		return this.memberRepository.save(mem);
 	}
-
 	public Member memberByEnrolemetId(final Integer enrolementId) {
 		return this.memberRepository.memberByEnrolementId(enrolementId);
 	}

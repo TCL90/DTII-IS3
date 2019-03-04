@@ -200,6 +200,9 @@ public class BrotherhoodService {
 		if (pnumber.matches("^[0-9]{4,}$"))
 			brotherhood.setPhoneNumber(cc.concat(pnumber));
 
+		if (brotherhood.getEmail() != null)
+			Assert.isTrue(brotherhood.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || brotherhood.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"));
+
 		if (brotherhood.getId() != 0) {
 			Assert.isTrue(this.actorService.checkBrotherhood());
 

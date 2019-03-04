@@ -129,7 +129,7 @@ public class FloatBrotherhoodController extends AbstractController {
 
 		res = new ModelAndView("float/brotherhood/show");
 		f = this.floatService.findOne(floatId);
-		res.addObject("float", f);
+		res.addObject("f", f);
 		res.addObject("requestURI", "float/brotherhood/show.do");
 
 		return res;

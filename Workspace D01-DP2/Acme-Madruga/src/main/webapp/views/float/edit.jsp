@@ -17,23 +17,11 @@
 	<form:form modelAttribute="flo" action="float/brotherhood/edit.do">
 		<form:hidden path="id" />
 		<form:hidden path="version" />
-
+		<form:hidden path="brotherhood"/>
+		
 		<!-- Brotherhood -->
-		<jstl:if test="${flo.id != 0}">
-		<form:label path="brotherhood">
-			<spring:message code="float.brotherhood" />
-		</form:label>
-		<form:select path="brotherhood">
-			<jstl:forEach items="${brotherhoods}" var="e">
-				<form:option value="${e.id}">
-					${e.title}
-				</form:option>
-			</jstl:forEach>
-		</form:select>
-		<form:errors path="brotherhood.title" />
-		<br>
-		<br>
-		</jstl:if>
+
+		
 		<!-- Title -->
 		<acme:textbox code="float.title" path="title"/>
 		<br>

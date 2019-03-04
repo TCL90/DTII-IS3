@@ -41,7 +41,12 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="float/brotherhood/list.do"><spring:message code="master.page.float.list" /></a></li>	
-					<li><a href="brotherhood/brotherhood/edit.do"><spring:message code="master.page.brotherhood.edit" /></a></li>					
+					<li><a href="brotherhood/brotherhood/edit.do"><spring:message code="master.page.brotherhood.edit" /></a></li>	
+					<li><a href="procession/brotherhood/list.do"><spring:message code="master.page.procession.list" /></a></li>	
+					<li><a href="members/brotherhood/list.do"><spring:message code="master.page.members.list" /></a></li>	
+					<li><a href="enrolements/brotherhood/list.do"><spring:message code="master.page.enrolements.list" /></a></li>	
+					
+									
 				</ul>
 			</li>
 		</security:authorize>
@@ -52,6 +57,8 @@
 					<li class="arrow"></li>
 					<li><a href="member/member/edit.do"><spring:message code="master.page.member.edit" /></a></li>
 					<li><a href="finder/member/show.do"><spring:message code="master.page.finder" /></a></li>
+					<li><a href="requests/member/list.do"><spring:message code="master.page.requests.list" /></a></li>	
+					<li><a href="enrolements/member/list.do"><spring:message code="master.page.enrolements.list" /></a></li>	
 				</ul>
 			</li>
 		</security:authorize>
@@ -59,11 +66,12 @@
 		
 		<security:authorize access="isAnonymous()">
 			<li>
-				<a class="fNiv"> <spring:message code="master.page.register" /> </a>
-				<ul>
-					<li><a class="fNiv" href="member/register.do"><spring:message code="master.page.member.register" /></a></li>
-					<li><a class="fNiv" href="brotherhood/register.do"><spring:message code="master.page.brotherhood.register" /></a></li>
-				</ul>
+					<a class="fNiv" href="brotherhood/register.do"><spring:message code="master.page.brotherhood.register" /></a>
+			</li>
+			<li>
+				
+					<a class="fNiv" href="member/register.do"><spring:message code="master.page.member.register" /></a></li>
+				
 			</li>
 			<li><a class="fNiv" href="brotherhood/list.do"><spring:message code="master.page.brotherhoods" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
