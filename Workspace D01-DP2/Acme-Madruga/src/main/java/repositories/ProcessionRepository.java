@@ -37,4 +37,13 @@ public interface ProcessionRepository extends JpaRepository<Procession, Integer>
 
 	@Query("select p from Procession p where p.departureDate between ?1 and ?2")
 	Collection<Procession> findProcessionsByDateRange(Date min, Date max);
+	
+	@Query("select p from Procession p join p.brotherhood.enrolements e where e.id=?1")
+	Collection<Procession> findByEnrolementId(int id);
+
+	@Query("select p from Procession p join p.brotherhood.enrolements e where e.id=?1 and e.status='APPROVED'")
+	Collection<Procession> findByEnrolementIdApproved(int id);
+	
+	@Query("select p from Procession p where p.finalMode='1' and p.departureDate>=?1")
+	Collection<Procession> findAllFinalModeRequests(Date today);
 }
