@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -54,17 +52,18 @@ public class ProcessionBrotherhoodController extends AbstractController {
 		return res;
 	}
 	@RequestMapping(value = "/brotherhood/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Procession procession, final BindingResult binding) {
+	public ModelAndView save(final Procession procession, final BindingResult binding) {
 		ModelAndView result;
-
+		Procession procMod;
+		procMod = this.processionService.reconstruct(procession, binding);
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(procession);
+			result = this.createEditModelAndView(procMod);
 		else
 			try {
-				this.processionService.save(procession);
+				this.processionService.save(procMod);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(procession, "procession.commit.error");
+				result = this.createEditModelAndView(procMod, "procession.commit.error");
 			}
 
 		return result;
@@ -119,7 +118,8 @@ public class ProcessionBrotherhoodController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Procession procession, final String message) {
 		ModelAndView result;
-		final Collection<domain.Float> floats = this.floatService.findAll();
+		final Brotherhood bro = this.brotherhoodService.findByPrincipal();
+		final Collection<domain.Float> floats = this.floatService.findByBrotherhoodId(bro.getId());
 
 		result = new ModelAndView("procession/edit");
 		result.addObject("floats", floats);

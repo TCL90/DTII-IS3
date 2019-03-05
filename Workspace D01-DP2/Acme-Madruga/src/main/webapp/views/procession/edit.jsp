@@ -14,7 +14,6 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="floats" />
 	<form:hidden path="ticker" />
 	
 
@@ -50,11 +49,11 @@
 	<br />	
 	<br />	
 	
-		<form:label path="floats">
-			<spring:message code="procession.float"/>
-		</form:label>
-	<form:select path="floats">	
-		<form:options items="${floats}" itemValue="id" itemLabel="title"
+	<form:label path="floats">
+		<spring:message code="procession.float"/>
+	</form:label>
+	<form:select path="floats" multiple="true">	
+		<form:options items="${floats}" itemLabel="title"
 			/>
 	</form:select>
 

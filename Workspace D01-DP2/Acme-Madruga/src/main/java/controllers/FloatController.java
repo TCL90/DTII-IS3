@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.BrotherhoodService;
 import services.FloatService;
 import domain.Float;
 
@@ -20,9 +19,7 @@ public class FloatController extends AbstractController {
 
 	//Services
 	@Autowired
-	private FloatService		floatService;
-	@Autowired
-	private BrotherhoodService	brotherhoodService;
+	private FloatService	floatService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

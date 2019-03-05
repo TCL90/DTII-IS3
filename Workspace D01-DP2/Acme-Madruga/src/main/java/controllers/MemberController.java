@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import repositories.MemberRepository;
 import security.Authority;
 import security.UserAccount;
 import services.MemberService;
@@ -23,7 +25,10 @@ import forms.MemberForm;
 public class MemberController extends AbstractController {
 
 	@Autowired
-	MemberService	memberService;
+	MemberService		memberService;
+
+	@Autowired
+	MemberRepository	memberRepository;
 
 
 	// Constructors -----------------------------------------------------------
@@ -98,6 +103,18 @@ public class MemberController extends AbstractController {
 		result.addObject("message", message);
 
 		return result;
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam final int brotherhoodId) {
+		final ModelAndView res;
+
+		final Collection<Member> members = this.memberRepository.membersByBrotherhood(brotherhoodId);
+
+		res = new ModelAndView("member/list");
+		res.addObject("requestURI", "member/list.do");
+		res.addObject("members", members);
+		return res;
 	}
 
 }

@@ -3,8 +3,6 @@ package controllers.brotherhood;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -25,10 +23,12 @@ import domain.Float;
 public class FloatBrotherhoodController extends AbstractController {
 
 	//Services
-	@Autowired
-	private FloatService		floatService;
+
 	@Autowired
 	private BrotherhoodService	brotherhoodService;
+
+	@Autowired
+	private FloatService		floatService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -45,9 +45,10 @@ public class FloatBrotherhoodController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "saveEdit")
-	public ModelAndView save(@Valid final domain.Float flo, final BindingResult binding) {
+	public ModelAndView save(domain.Float flo, final BindingResult binding) {
 		ModelAndView result;
 
+		flo = this.floatService.reconstruct(flo, binding);
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(flo);
 		else
