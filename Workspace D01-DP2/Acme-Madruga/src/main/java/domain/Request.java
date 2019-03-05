@@ -2,11 +2,16 @@
 package domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Entity
+@Table(indexes = {
+	@Index(columnList = "status, rowPosition, columnPosition")
+})
 public class Request extends DomainEntity {
 
 	private String	status;
