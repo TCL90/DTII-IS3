@@ -20,6 +20,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
+import domain.Area;
 import domain.Box;
 import domain.Brotherhood;
 import domain.Customisation;
@@ -404,4 +405,54 @@ public class BrotherhoodService {
 		}
 		return res;
 	}
+	
+	public Brotherhood getBrotherhoodByUserAccount(final UserAccount useracc) {
+		Brotherhood b;
+	    b = this.brotherhoodRepository.getBrotherhoodByUserAccount(useracc.getUsername());
+		
+		return b;
+	}
+
+	public void saveMyArea(Area area) {
+		checkAuthority();
+		Brotherhood b;
+		UserAccount ua;
+		ua = LoginService.getPrincipal();
+		b = this.getBrotherhoodByUserAccount(ua);
+		
+		b.setArea(area);
+		this.brotherhoodRepository.save(b);
+		
+		
+		
+		
+		
+	}
+	
+	private void checkAuthority() {
+		UserAccount ua;
+		ua = LoginService.getPrincipal();
+		Assert.notNull(ua);
+		final Collection<Authority> auth = ua.getAuthorities();
+		final Authority a = new Authority();
+		a.setAuthority(Authority.BROTHERHOOD);
+		Assert.isTrue(auth.contains(a));
+	}
+
+	public Brotherhood reconstructArea(Brotherhood b, BindingResult binding) {
+		Brotherhood result;
+		
+		if(b.getId()==0){
+			result = b;
+		}else{
+			result = this.brotherhoodRepository.findOne(b.getId());
+			if(result.getArea()== null){
+				result.setArea(b.getArea());
+			}
+			validator.validate(result, binding);
+		}
+		
+		return result;
+	}
+	
 }

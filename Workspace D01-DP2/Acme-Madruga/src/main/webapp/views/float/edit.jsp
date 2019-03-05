@@ -17,7 +17,7 @@
 	<form:form modelAttribute="flo" action="float/brotherhood/edit.do">
 		<form:hidden path="id" />
 		<form:hidden path="version" />
-		<form:hidden path="brotherhood"/>
+		
 		
 		<!-- Brotherhood -->
 

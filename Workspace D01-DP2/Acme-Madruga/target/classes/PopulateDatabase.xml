@@ -30,6 +30,11 @@
         <value>HORRIBLE</value>
         <value>AVERAGE</value>
         <value>DISASTER</value>
+        <value>NO</value>
+        <value>MALO</value>
+        <value>HORRIBLE</value>
+        <value>MEDIOCRE</value>
+        <value>DESASTRE</value>
       </util:list>
       	<util:list id="positive" value-type="java.lang.String">
         <value>GOOD</value>
@@ -38,6 +43,13 @@
         <value>GREAT</value>
         <value>AMAZING</value>
         <value>TERRIFIC</value>
+        <value>BEAUTIFUL</value>
+        <value>BUENO</value>
+        <value>FANTASTICO</value>
+        <value>EXCELENTE</value>
+        <value>GENIAL</value>
+        <value>MARAVILLOSO</value>
+        <value>ESTUPENDO</value>
         <value>BEAUTIFUL</value>
         </util:list>
         <util:list id="spam" value-type="java.lang.String">
@@ -51,7 +63,11 @@
         <value>UN MILLON</value>
         <value>HAS SIDO SELECCIONADO</value>
       	</util:list>
-      	
+      	<util:list id="priority" value-type="java.lang.String">
+      		<value>LOW</value>
+      		<value>HIGH</value>
+      		<value>NEUTRAL</value>
+      	</util:list>
       	<util:list id="welcome" value-type="java.lang.String">
         <value>Welcome to Acme Madruga! The site to organise your processions.</value>
         <value>¡Bienvenidos a Acme Madrugá! Tu sitio para organizar procesiones.</value>
@@ -959,12 +975,12 @@
 		<property name="positiveWords" ref="positive" />
 		<property name="spamWords" ref="spam" />
 		<property name="welcomeMessage" ref="welcome" />
-		<property name="finderDuration" value="20" />
+		<property name="finderDuration" value="24" />
 		<property name="resultsNumber" value="10" />
 		<property name="systemName" value="Acme Madruga" />
 		<property name="bannerURL" value=" https://tinyurl.com/acme-madruga" />
 		<property name="phoneNumberCountryCode" value="+34 " />
-		<property name="messagePriorities" value="" />
+		<property name="messagePriorities" ref="priority" />
 		
 	</bean>
 
@@ -994,6 +1010,31 @@
     <bean id="position2" class="domain.Position"> 
     <property name="positionEng" value="PRESIDENT" /> 
     <property name="positionEsp" value="PRESIDENTE" /> 
+    </bean>
+    
+    <bean id="position3" class="domain.Position"> 
+    <property name="positionEng" value="VICE PRESIDENT" /> 
+    <property name="positionEsp" value="VICEPRESIDENTE" /> 
+    </bean>
+    
+    <bean id="position4" class="domain.Position"> 
+    <property name="positionEng" value="TREASURE" /> 
+    <property name="positionEsp" value="TESORERO" /> 
+    </bean>
+    
+    <bean id="position5" class="domain.Position"> 
+    <property name="positionEng" value="HISTORIAN" /> 
+    <property name="positionEsp" value="HISTORIADOR" /> 
+    </bean>
+    
+    <bean id="position6" class="domain.Position"> 
+    <property name="positionEng" value="FUNDRAISER" /> 
+    <property name="positionEsp" value="PROMOTOR" /> 
+    </bean>
+    
+    <bean id="position7" class="domain.Position"> 
+    <property name="positionEng" value="OFFICER" /> 
+    <property name="positionEsp" value="VOCAL" /> 
     </bean>
 
 
@@ -1035,7 +1076,7 @@
 	<property name="endDate" value="16/03/2019" />
 	<property name="keyword" value="Nuestro" />
 	<property name="startDate" value="01/01/2019" />
-	<property name="moment" value="01/01/2019" />
+	<property name="moment" value="01/01/2019 15:40:00" />
 	<property name="processions">
 		<list>
 			
@@ -1048,7 +1089,7 @@
 	<property name="endDate" value="16/03/2019" />
 	<property name="keyword" value="Virgen" />
 	<property name="startDate" value="01/01/2019" />
-	<property name="moment" value="01/01/2019" />
+	<property name="moment" value="01/01/2019 17:55:00" />
 	<property name="processions">
 		<list>
 			
@@ -1160,81 +1201,70 @@
     </bean>
     
     
-       
-  <!-- ***************************** MESSAGE ********************************** -->
+   
+    
+    <!-- ***************************** MESSAGE ********************************** -->
     
   <bean id="message1" class="domain.Message">
-  <property name="body" value="damn body bro" /> 
+  <property name="body" value="Prueba" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018 15:30" /> 
+  <property name="moment" value="10/10/2018 00:00:00" /> 
   <property name="priority" value="HIGH" /> 
-		<property name="recipients">
-		
-			<list>
-				<ref bean="administrator1" />
-                               
-				
-			</list>
-           </property>    
+<property name="recipients">
+<list>
+<ref bean="brotherhood1" />
+</list>
+</property>
   <property name="sender" ref="member1" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>
   
   <bean id="message2" class="domain.Message">
-  <property name="body" value="Prueba msj2" /> 
+  <property name="body" value="Prueba" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018 15:30" /> 
+  <property name="moment" value="10/10/2018 00:01:55" /> 
   <property name="priority" value="HIGH" /> 
-		<property name="recipients">
-		
-			<list>
-				<ref bean="administrator1" />
-                               
-				
-			</list>
-           </property> 
-             <property name="sender" ref="member2" /> 
+<property name="recipients">
+<list>
+<ref bean="brotherhood1" />
+</list>
+</property>
+  <property name="sender" ref="member2" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>
   
   <bean id="message3" class="domain.Message">
-  <property name="body" value="Prueba msj3" /> 
+  <property name="body" value="Prueba" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018 15:30" /> 
+  <property name="moment" value="10/10/2018 02:30:45" /> 
   <property name="priority" value="HIGH" /> 
-		<property name="recipients">
-		
-			<list>
-				<ref bean="administrator1" />
-                               
-				
-			</list>
-           </property> 
-             <property name="sender" ref="member1" /> 
+<property name="recipients">
+<list>
+<ref bean="brotherhood1" />
+</list>
+</property> 
+ <property name="sender" ref="member1" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>
   
   <bean id="message4" class="domain.Message">
-  <property name="body" value="Prueba msj4" /> 
+  <property name="body" value="Prueba" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018 15:30" /> 
+  <property name="moment" value="10/10/2018 12:00:00" /> 
   <property name="priority" value="HIGH" /> 
-		<property name="recipients">
-		
-			<list>
-				<ref bean="administrator1" />
-                               
-				
-			</list>
-           </property> 
-             <property name="sender" ref="member1" /> 
+<property name="recipients">
+<list>
+<ref bean="brotherhood1" />
+</list>
+</property>
+  <property name="sender" ref="member1" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>
@@ -1289,7 +1319,7 @@
   <property name="requests">
 			<list>
 				<ref bean="request1" />
-				<ref bean="request3" />
+				<ref bean="request2" />
 			</list>
   </property>
   
@@ -1344,7 +1374,7 @@
   </property>
   <property name="requests">
 			<list>
-				<ref bean="request2" />
+				<ref bean="request3" />
 				<ref bean="request4" />
 			</list>
   </property>

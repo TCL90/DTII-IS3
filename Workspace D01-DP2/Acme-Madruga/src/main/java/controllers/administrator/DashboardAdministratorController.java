@@ -46,11 +46,11 @@ public class DashboardAdministratorController extends AbstractController {
 		final Collection<Brotherhood> smallestBrotherhoods = this.dashboardService.smallestsBrotherhoods();
 
 		final List<Object[]> requestRatioByProcession = this.dashboardService.requestRatioByProcession();
-		final List<Long> ratioList = new ArrayList<>();
+		final List<Double> ratioList = new ArrayList<>();
 		final List<String> processionList = new ArrayList<>();
 		final List<String> statusList = new ArrayList<>();
 		for (final Object[] o : requestRatioByProcession) {
-			ratioList.add((long) o[0]);
+			ratioList.add((double) o[0]);
 			processionList.add((String) o[1]);
 			statusList.add((String) o[2]);
 		}

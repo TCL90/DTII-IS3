@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.FinderRepository;
 import security.Authority;
@@ -19,6 +21,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Customisation;
 import domain.Finder;
+import domain.Member;
 import domain.Procession;
 
 @Service
@@ -33,6 +36,9 @@ public class FinderService {
 
 	@Autowired
 	private CustomisationService	customisationService;
+
+	@Autowired
+	private MemberService			memberService;
 
 
 	public FinderService() {
@@ -70,16 +76,20 @@ public class FinderService {
 	public Finder save(final Finder finder) {
 		Assert.notNull(finder);
 		final Finder res = finder;
+		final Member principal = this.memberService.findByPrincipal();
+		Assert.isTrue(principal.getFinder().getId() == finder.getId());
 		if (finder.getId() != 0) {
 			if (finder.getStartDate() != null && finder.getEndDate() != null)
 				Assert.isTrue(finder.getStartDate().before(finder.getEndDate()));
 			final Collection<Procession> results = this.processionService.finderResults(finder.getKeyword(), finder.getArea().getId(), finder.getStartDate(), finder.getEndDate());
+			for (final Procession p : results)
+				if (p.getFinalMode() == false)
+					results.remove(p);
 			res.setProcessions(results);
 			res.setMoment(Calendar.getInstance().getTime());
 		}
 		return this.repository.save(res);
 	}
-
 	public Finder getFinderMember(final int id) {
 		Assert.isTrue(this.checkMember());
 		Assert.isTrue(id != 0);
@@ -108,6 +118,30 @@ public class FinderService {
 		final long hoursDiff = milisecondsDiff / 360000;
 		if (hoursDiff > cus.getFinderDuration())
 			res = true;
+		return res;
+	}
+
+
+	//Pruned object
+	@Autowired
+	private Validator	validator;
+
+
+	public Finder reconstruct(final Finder finder, final BindingResult binding) {
+		Finder res;
+
+		Assert.isTrue(this.checkMember());
+		if (finder.getId() == 0)
+			res = finder;
+		else {
+			res = this.findOne(finder.getId());
+			res.setArea(finder.getArea());
+			res.setKeyword(finder.getKeyword());
+			res.setStartDate(finder.getStartDate());
+			res.setEndDate(finder.getEndDate());
+
+			this.validator.validate(res, binding);
+		}
 		return res;
 	}
 }

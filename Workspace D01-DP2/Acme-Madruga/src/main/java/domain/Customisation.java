@@ -26,7 +26,7 @@ public class Customisation extends DomainEntity {
 	public Collection<String>	welcomeMessage;
 	public List<String>			spamWords;
 	public String				phoneNumberCountryCode;
-	public String				messagePriorities;
+	public List<String>			messagePriorities;
 
 
 	public enum negativeWords {   //En principio no hace falta
@@ -119,11 +119,13 @@ public class Customisation extends DomainEntity {
 		this.phoneNumberCountryCode = phoneNumberCountryCode;
 	}
 
-	public String getMessagePriorities() {
+	@Column
+	@ElementCollection(targetClass = String.class)
+	public List<String> getMessagePriorities() {
 		return this.messagePriorities;
 	}
 
-	public void setMessagePriorities(final String messagePriorities) {
+	public void setMessagePriorities(final List<String> messagePriorities) {
 		this.messagePriorities = messagePriorities;
 	}
 

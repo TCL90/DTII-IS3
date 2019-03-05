@@ -10,10 +10,6 @@
 <script type="text/javascript" src="scripts/Chart.js"></script>
 
 <security:authorize access="hasRole('ADMIN')">
-	<h1>
-		<spring:message code="dashboard.show"/>
-	</h1>
-	<br/>
 	<spring:message code="dashboard.minMembers"/>
 	<jstl:out value="${minM}"/>
 	<br/>

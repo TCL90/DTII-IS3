@@ -37,7 +37,7 @@ public class Message extends DomainEntity {
 
 	@NotNull
 	@Past
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getMoment() {
 		return this.moment;

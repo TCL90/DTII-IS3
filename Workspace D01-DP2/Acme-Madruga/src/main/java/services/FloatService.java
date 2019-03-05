@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.FloatRepository;
 import repositories.ProcessionRepository;
+import security.Authority;
+import security.UserAccount;
 import domain.Brotherhood;
 import domain.Float;
 import domain.Procession;
@@ -89,5 +93,33 @@ public class FloatService {
 
 	public Collection<domain.Float> findByBrotherhoodId(final int brotherhoodId) {
 		return this.floatRepository.findByBrotherhoodId(brotherhoodId);
+	}
+
+
+	@Autowired
+	private Validator	validator;
+
+
+	public domain.Float reconstruct(final domain.Float flo, final BindingResult binding) {
+		domain.Float res;
+
+		//Check authority
+		final Authority a = new Authority();
+		final Brotherhood bro = this.brotherhoodService.findByPrincipal();
+		final UserAccount user = bro.getUserAccount();
+		a.setAuthority(Authority.BROTHERHOOD);
+		Assert.isTrue(user.getAuthorities().contains(a) && user.getAuthorities().size() == 1);
+
+		if (flo.getId() == 0)
+			res = flo;
+		else {
+			res = this.floatRepository.findOne(flo.getId());
+			res.setBrotherhood(bro);
+			res.setDescription(flo.getDescription());
+			res.setTitle(flo.getTitle());
+			res.setPictures(flo.getPictures());
+			this.validator.validate(res, binding);
+		}
+		return res;
 	}
 }

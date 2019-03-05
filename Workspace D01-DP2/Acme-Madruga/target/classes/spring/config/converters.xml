@@ -52,6 +52,8 @@
  		 <bean class="converters.StringToBoxConverter" /> 
  		 <bean class="converters.MessageToStringConverter" /> 
  		 <bean class="converters.StringToMessageConverter" /> 
+ 		 <bean class="converters.SocialProfileToStringConverter" /> 
+ 		 <bean class="converters.StringToSocialProfileConverter" /> 
 		  
 	</util:list>
 	

@@ -1,15 +1,20 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ProcessionRepository;
 import repositories.RequestRepository;
@@ -18,6 +23,7 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Brotherhood;
+import domain.Enrolement;
 import domain.Member;
 import domain.Procession;
 import domain.Request;
@@ -108,7 +114,7 @@ public class ProcessionService {
 	public Collection<Procession> findAllFinalMode() {
 		return this.processionRepository.findAllFinalMode();
 	}
-		public List<Procession> findByMemberId(final Member member) {
+	public List<Procession> findByMemberId(final Member member) {
 		final List<Procession> lp = new ArrayList<>();
 		for (final Enrolement e : member.getEnrolements())
 			lp.addAll(this.processionRepository.findByEnrolementIdApproved(e.getId()));
@@ -121,7 +127,7 @@ public class ProcessionService {
 		final Date today = Calendar.getInstance().getTime();
 		return this.processionRepository.findAllFinalModeRequests(today);
 	}
-	
+
 	public Procession findByRequestId(final Integer requestId) {
 		return this.processionRepository.findByRequestId(requestId);
 	}
@@ -187,6 +193,32 @@ public class ProcessionService {
 		else
 			results.addAll(this.findProcessionsByDateRange(min, max));
 		return results;
+	}
+
+
+	@Autowired
+	private Validator	validator;
+
+
+	public Procession reconstruct(final Procession pro, final BindingResult binding) {
+		Procession res;
+
+		//Check authority
+		final Authority a = new Authority();
+		final Brotherhood bro = this.brotherhoodService.findByPrincipal();
+		final UserAccount user = bro.getUserAccount();
+		a.setAuthority(Authority.BROTHERHOOD);
+		Assert.isTrue(user.getAuthorities().contains(a) && user.getAuthorities().size() == 1);
+
+		if (pro.getId() == 0)
+			res = pro;
+		else {
+			res = this.processionRepository.findOne(pro.getId());
+			res.setFloats(pro.getFloats());
+			//res.setTicker(pro.getTicker());
+			this.validator.validate(res, binding);
+		}
+		return res;
 	}
 
 }

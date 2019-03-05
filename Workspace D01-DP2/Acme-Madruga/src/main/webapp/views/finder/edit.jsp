@@ -10,15 +10,11 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('MEMBER')">
-	<h1>
-		<spring:message code="finder.editview"/>
-	</h1>
-	<br/>
+	
 	<form:form action="finder/member/edit.do" modelAttribute="finder">
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="processions"/>
-		<form:hidden path="moment"/>
+		
 		
 		<form:label path="keyword">
 			<spring:message code="finder.keyword"/>
