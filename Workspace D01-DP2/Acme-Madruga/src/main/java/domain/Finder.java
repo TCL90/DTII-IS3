@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,9 +51,10 @@ public class Finder extends DomainEntity {
 	public void setEndDate(final Date endDate) {
 		this.endDate = endDate;
 	}
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Past
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getMoment() {
 		return this.moment;
 	}

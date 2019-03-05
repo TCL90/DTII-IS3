@@ -1,9 +1,12 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Brotherhood;
+import domain.Enrolement;
 import domain.Member;
 import domain.Procession;
 import domain.Request;

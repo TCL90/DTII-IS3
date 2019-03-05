@@ -32,6 +32,7 @@
 					<li><a href="position/administrator/list.do"><spring:message code="master.page.administrator.position" /></a></li>
 					<li><a href="customisation/edit.do"><spring:message code="master.page.customisation" /></a></li>					
 					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.dashboard"/></a></li>
+					<li><a href="position/administrator/list.do"><spring:message code="master.page.position.edit" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -45,7 +46,7 @@
 					<li><a href="procession/brotherhood/list.do"><spring:message code="master.page.procession.list" /></a></li>	
 					<li><a href="members/brotherhood/list.do"><spring:message code="master.page.members.list" /></a></li>	
 					<li><a href="enrolements/brotherhood/list.do"><spring:message code="master.page.enrolements.list" /></a></li>	
-					
+					<li><a href="area/brotherhood/edit.do"><spring:message code="master.page.brotherhood.area" /></a></li>
 									
 				</ul>
 			</li>
@@ -85,6 +86,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="boxes/list.do"><spring:message code="master.page.boxes" /></a></li>
+					<li><a href="socialprofile/list.do"><spring:message code="master.page.socialprofile" /></a></li>
 					</ul>
 			</li>
 			<li>

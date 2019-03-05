@@ -10,9 +10,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('MEMBER')">
-	<h1>
-		<spring:message code="finder.showview"/>
-	</h1>
+	
 	
 	<spring:message code="finder.moment"/>
 	<jstl:out value="${finder.moment}"/>
@@ -42,5 +40,5 @@
 	</jstl:forEach>
 	<br/>
 	
-	<a href="finder/member/edit.do?finderId=${finder.id}"><spring:message code="finder.edit"/></a>
+	<a href="finder/member/edit.do"><spring:message code="finder.edit"/></a>
 </security:authorize>

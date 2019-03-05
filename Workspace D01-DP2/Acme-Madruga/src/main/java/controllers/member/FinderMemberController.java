@@ -3,15 +3,12 @@ package controllers.member;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AreaService;
@@ -51,8 +48,8 @@ public class FinderMemberController extends AbstractController {
 
 		member = this.memberService.findOnePrincipal();
 		finder = this.finderService.getFinderMember(member.getId());
-		//if (this.finderService.checkCache(finder))
-		//finder = this.finderService.clear(finder);
+		if (this.finderService.checkCache(finder))
+			finder = this.finderService.clear(finder);
 
 		res = new ModelAndView("finder/show");
 		res.addObject("finder", finder);
@@ -61,28 +58,28 @@ public class FinderMemberController extends AbstractController {
 
 	//Edit
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int finderId) {
+	public ModelAndView edit() {
 		ModelAndView res;
 		Finder finder;
 
-		finder = this.finderService.findOne(finderId);
+		finder = this.finderService.getFinderMember(this.memberService.findByPrincipal().getId());
 		Assert.notNull(finder);
 		res = this.createEditModelAndView(finder);
 		return res;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Finder finder, final BindingResult binding) {
+	public ModelAndView save(final Finder finder, final BindingResult binding) {
 		ModelAndView res;
-
+		final Finder finderMod = this.finderService.reconstruct(finder, binding);
 		if (binding.hasErrors())
-			res = this.createEditModelAndView(finder);
+			res = this.createEditModelAndView(finderMod);
 		else
 			try {
-				this.finderService.save(finder);
+				this.finderService.save(finderMod);
 				res = new ModelAndView("redirect:show.do");
 			} catch (final Throwable oops) {
-				res = this.createEditModelAndView(finder, "finder.error");
+				res = this.createEditModelAndView(finderMod, "finder.error");
 			}
 		return res;
 	}

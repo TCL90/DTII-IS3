@@ -37,12 +37,12 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	Collection<Brotherhood> smallestBrotherhoods();
 
 	//12.3.4
-	@Query("select count(r), r.procession.title, r.status from Request r group by r.status, r.procession")
+	@Query("select 1.0 * count(r)/(select count(r1) from Request r1), r.procession.title, r.status from Request r group by r.status, r.procession")
 	List<Object[]> requestRatioByProcession();
 
 	//12.3.5 in service
 	//12.3.6
-	@Query("select count(r1)/(select count(r) from Request r) from Request r1 group by r1.status")
+	@Query("select 1.0 * count(r1)/(select count(r) from Request r) from Request r1 group by r1.status")
 	double requestRatio();
 
 	//12.3.7 
@@ -53,7 +53,7 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	@Query("select e.position.positionEng, count(e) from Enrolement e group by e.position")
 	List<Object[]> positionHistogram();
 	//22.2.1
-	@Query("select count(b)/(select count(b1) from Brotherhood b1) from Area a join a.brotherhoods b")
+	@Query("select 1.0 * count(b)/(select count(b1) from Brotherhood b1) from Area a join a.brotherhoods b")
 	double ratioBrotherhoodsPerArea();
 
 	@Query("select a.brotherhoods.size from Area a")
@@ -84,7 +84,7 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	double stddevFinderResults();
 
 	//22.2.3
-	@Query("select count(f)/(select count(f1) from Finder f1) from Finder f where f.keyword is null and f.startDate is null and f.endDate is null and f.area is null")
+	@Query("select 1.0 * count(f)/(select count(f1) from Finder f1) from Finder f where f.keyword is null and f.startDate is null and f.endDate is null and f.area is null")
 	double ratioEmptyFinders();
 
 }

@@ -60,6 +60,8 @@
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/profile/action-3.do"
 			access="isAuthenticated()" />
+		<security:intercept-url pattern="/socialprofile/**.do"
+			access="isAuthenticated()" />
 
 		<security:intercept-url pattern="/float/brotherhood/list.do"
 			access="hasRole('BROTHERHOOD')" />
@@ -68,6 +70,8 @@
 		<security:intercept-url pattern="/float/brotherhood/create.do"
 			access="hasRole('BROTHERHOOD')" />
 		<security:intercept-url pattern="/float/brotherhood/show.do"
+			access="hasRole('BROTHERHOOD')" />
+		<security:intercept-url pattern="/area/brotherhood/edit.do"
 			access="hasRole('BROTHERHOOD')" />
 		<security:intercept-url pattern="/area/administrator/list.do"
 			access="hasRole('ADMIN')" />
