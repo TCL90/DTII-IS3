@@ -1160,54 +1160,81 @@
     </bean>
     
     
-   
-    
-    <!-- ***************************** MESSAGE ********************************** -->
+       
+  <!-- ***************************** MESSAGE ********************************** -->
     
   <bean id="message1" class="domain.Message">
-  <property name="body" value="Prueba" /> 
+  <property name="body" value="damn body bro" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018" /> 
+  <property name="moment" value="10/10/2018 15:30" /> 
   <property name="priority" value="HIGH" /> 
-  <property name="recipient" ref="brotherhood1" /> 
+		<property name="recipients">
+		
+			<list>
+				<ref bean="administrator1" />
+                               
+				
+			</list>
+           </property>    
   <property name="sender" ref="member1" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>
   
   <bean id="message2" class="domain.Message">
-  <property name="body" value="Prueba" /> 
+  <property name="body" value="Prueba msj2" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018" /> 
+  <property name="moment" value="10/10/2018 15:30" /> 
   <property name="priority" value="HIGH" /> 
-  <property name="recipient" ref="brotherhood1" /> 
-  <property name="sender" ref="member2" /> 
+		<property name="recipients">
+		
+			<list>
+				<ref bean="administrator1" />
+                               
+				
+			</list>
+           </property> 
+             <property name="sender" ref="member2" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>
   
   <bean id="message3" class="domain.Message">
-  <property name="body" value="Prueba" /> 
+  <property name="body" value="Prueba msj3" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018" /> 
+  <property name="moment" value="10/10/2018 15:30" /> 
   <property name="priority" value="HIGH" /> 
-  <property name="recipient" ref="brotherhood2" /> 
-  <property name="sender" ref="member1" /> 
+		<property name="recipients">
+		
+			<list>
+				<ref bean="administrator1" />
+                               
+				
+			</list>
+           </property> 
+             <property name="sender" ref="member1" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>
   
   <bean id="message4" class="domain.Message">
-  <property name="body" value="Prueba" /> 
+  <property name="body" value="Prueba msj4" /> 
   <property name="broadcast" value="FALSE" />
   <property name="flagSpam" value="FALSE" /> 
-  <property name="moment" value="10/10/2018" /> 
+  <property name="moment" value="10/10/2018 15:30" /> 
   <property name="priority" value="HIGH" /> 
-  <property name="recipient" ref="brotherhood2" /> 
-  <property name="sender" ref="member1" /> 
+		<property name="recipients">
+		
+			<list>
+				<ref bean="administrator1" />
+                               
+				
+			</list>
+           </property> 
+             <property name="sender" ref="member1" /> 
   <property name="subject" value="Prueba" /> 
   <property name="tag" value="Prueba" /> 
   </bean>

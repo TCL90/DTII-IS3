@@ -7,20 +7,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import repositories.BoxRepository;
-import domain.Box;
+import repositories.MessageRepository;
+import domain.Message;
 
 @Component
 @Transactional
-public class StringToBoxConverter implements Converter<String, Box> {
+public class StringToMessageConverter implements Converter<String, Message> {
 
 	@Autowired
-	BoxRepository	mr;
+	MessageRepository	mr;
 
 
 	@Override
-	public Box convert(final String text) {
-		Box result;
+	public Message convert(final String text) {
+		Message result;
 		int id;
 
 		try {

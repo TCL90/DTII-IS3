@@ -1,11 +1,14 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,16 +23,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Message extends DomainEntity {
 
-	private Date	moment;
-	private String	priority;
-	private String	tag;
-	private String	body;
-	private String	subject;
-	private boolean	flagSpam;
-	private boolean	broadcast;
+	private Date				moment;
+	private String				priority;
+	private String				tag;
+	private String				body;
+	private String				subject;
+	private boolean				flagSpam;
+	private boolean				broadcast;
 
-	private Actor	sender;
-	private Actor	recipient;
+	private Actor				sender;
+	private Collection<Actor>	recipients;	//DEBE SER UNA COLLECTION?
 
 
 	@NotNull
@@ -59,6 +62,7 @@ public class Message extends DomainEntity {
 	}
 
 	@NotBlank
+	@Column(columnDefinition = "LONGTEXT")
 	public String getBody() {
 		return this.body;
 	}
@@ -96,13 +100,17 @@ public class Message extends DomainEntity {
 	public void setSender(final Actor sender) {
 		this.sender = sender;
 	}
-	@Valid
-	@ManyToOne(optional = false)
-	public Actor getRecipient() {
-		return this.recipient;
+
+	@ManyToMany
+	public Collection<Actor> getRecipients() {
+		return this.recipients;
 	}
-	public void setRecipient(final Actor recipient) {
-		this.recipient = recipient;
+	public void setRecipients(final Collection<Actor> recipients) {
+		this.recipients = recipients;
+	}
+	@Override
+	public String toString() {
+		return "messageerror";
 	}
 
 }

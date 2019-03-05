@@ -46,6 +46,12 @@
  		 <bean class="converters.StringToCustomisationConverter" /> 
  		 <bean class="converters.FloatToStringConverter" /> 
  		 <bean class="converters.StringToFloatConverter" /> 
+ 		  		 <bean class="converters.ActorToStringConverter" /> 
+ 		 <bean class="converters.StringToActorConverter" /> 
+ 		 <bean class="converters.BoxToStringConverter" /> 
+ 		 <bean class="converters.StringToBoxConverter" /> 
+ 		 <bean class="converters.MessageToStringConverter" /> 
+ 		 <bean class="converters.StringToMessageConverter" /> 
 		  
 	</util:list>
 	

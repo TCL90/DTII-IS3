@@ -2,25 +2,20 @@
 package converters;
 
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import domain.Box;
 
-@Component
-@Transactional
 public class BoxToStringConverter implements Converter<Box, String> {
 
 	@Override
-	public String convert(final Box box) {
-		String res;
+	public String convert(final Box m) {
+		String result;
 
-		if (box == null)
-			res = null;
+		if (m == null)
+			result = null;
 		else
-			//res = String.valueOf(Float);
-			res = String.valueOf(box.getId());
-		return res;
+			result = String.valueOf(m.getId());
+		return result;
 	}
 
 }

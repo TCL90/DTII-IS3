@@ -78,6 +78,15 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
+		<li>
+				<a class="fNiv"> 
+					<spring:message code="master.page.messageboxes" /> 
+				</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="boxes/list.do"><spring:message code="master.page.boxes" /></a></li>
+					</ul>
+			</li>
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
