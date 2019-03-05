@@ -42,11 +42,23 @@
 	<form:label path="finalMode">
 		<spring:message code="procession.finalMode" />:
 	</form:label>
-	<form:input path="finalMode"/>
+	<form:select path="finalMode">
+		<form:option value="true"></form:option>
+		<form:option value="false"></form:option>
+		
+	</form:select>
 	<br />	
 	<br />	
 	
+		<form:label path="floats">
+			<spring:message code="procession.float"/>
+		</form:label>
+	<form:select path="floats">	
+		<form:options items="${floats}" itemValue="id" itemLabel="title"
+			/>
+	</form:select>
 
+		
 	<input type="submit" name="save"
 		value="<spring:message code="procession.save" />" />&nbsp; 
 		

@@ -124,11 +124,7 @@ public class RequestMemberController extends AbstractController {
 	private ModelAndView createEditModelAndView(final Request r, final String messageCode) {
 		ModelAndView res;
 		res = new ModelAndView("requests/edit");
-		final Member member = this.memberService.findOnePrincipal();
-		final List<Procession> lp = new ArrayList<>(this.processionService.findAllFinalModeRequests());
-		final List<Procession> lp2 = this.processionService.findByMemberId(member);
-
-		lp.retainAll(lp2);
+		final List<Procession> lp = new ArrayList<>(this.processionService.findAllFinalMode());
 
 		res.addObject("request", r);
 		res.addObject("message", messageCode);

@@ -108,20 +108,6 @@ public class ProcessionService {
 	public Collection<Procession> findAllFinalMode() {
 		return this.processionRepository.findAllFinalMode();
 	}
-	
-	public List<Procession> findByMemberId(final Member member) {
-		final List<Procession> lp = new ArrayList<>();
-		for (final Enrolement e : member.getEnrolements())
-			lp.addAll(this.processionRepository.findByEnrolementId(e.getId()));
-		return lp;
-
-	}
-	
-	public Collection<Procession> findAllFinalModeRequests() {
-		final Date today = Calendar.getInstance().getTime();
-		return this.processionRepository.findAllFinalModeRequests(today);
-	}
-	
 	public Procession findByRequestId(final Integer requestId) {
 		return this.processionRepository.findByRequestId(requestId);
 	}

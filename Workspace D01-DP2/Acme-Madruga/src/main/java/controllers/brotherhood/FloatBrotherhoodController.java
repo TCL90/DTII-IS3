@@ -110,9 +110,8 @@ public class FloatBrotherhoodController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final domain.Float flo, final String message) {
 		ModelAndView result;
-
+		final Brotherhood bro = this.brotherhoodService.findByPrincipal();
 		final Collection<Brotherhood> brotherhoods = this.brotherhoodService.findAll();
-
 		result = new ModelAndView("float/brotherhood/edit");
 		result.addObject("brotherhoods", brotherhoods);
 		result.addObject("flo", flo);
@@ -120,7 +119,6 @@ public class FloatBrotherhoodController extends AbstractController {
 
 		return result;
 	}
-
 	//Show
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int floatId) {

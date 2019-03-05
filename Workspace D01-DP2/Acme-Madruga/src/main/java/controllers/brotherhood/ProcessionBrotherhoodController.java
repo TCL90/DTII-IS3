@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.BrotherhoodService;
+import services.FloatService;
 import services.ProcessionService;
 import controllers.AbstractController;
 import domain.Brotherhood;
@@ -30,6 +31,9 @@ public class ProcessionBrotherhoodController extends AbstractController {
 
 	@Autowired
 	ProcessionService	processionService;
+
+	@Autowired
+	FloatService		floatService;
 
 
 	@RequestMapping(value = "/brotherhood/list", method = RequestMethod.GET)
@@ -115,7 +119,10 @@ public class ProcessionBrotherhoodController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Procession procession, final String message) {
 		ModelAndView result;
+		final Collection<domain.Float> floats = this.floatService.findAll();
+
 		result = new ModelAndView("procession/edit");
+		result.addObject("floats", floats);
 		result.addObject("procession", procession);
 		result.addObject("message", message);
 

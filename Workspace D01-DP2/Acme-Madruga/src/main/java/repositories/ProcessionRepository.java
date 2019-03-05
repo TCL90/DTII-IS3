@@ -26,9 +26,6 @@ public interface ProcessionRepository extends JpaRepository<Procession, Integer>
 	@Query("select p from Procession p where p.title like %?1% or p.description like %?1%")
 	Collection<Procession> findProcessionsByKeyword(String keyword);
 
-	@Query("select p from Procession p where p.finalMode='1' and p.departureDate>=?1")
-	Collection<Procession> findAllFinalModeRequests(Date today);
-	
 	@Query("select p from Procession p where p.brotherhood.area.id=?1")
 	Collection<Procession> findProcessionsByAreaId(int id);
 
@@ -40,7 +37,4 @@ public interface ProcessionRepository extends JpaRepository<Procession, Integer>
 
 	@Query("select p from Procession p where p.departureDate between ?1 and ?2")
 	Collection<Procession> findProcessionsByDateRange(Date min, Date max);
-	
-	@Query("select p from Procession p join p.brotherhood.enrolements e where e.id=?1")
-	Collection<Procession> findByEnrolementId(int id);
 }

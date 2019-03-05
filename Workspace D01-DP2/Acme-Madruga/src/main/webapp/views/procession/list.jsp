@@ -28,7 +28,14 @@
 			<a href="procession/brotherhood/edit.do?processionId=${row.id}">
 			<spring:message code="procession.edit.link" />
 			</a>
-		</jstl:if>
+			</jstl:if>
+			
+			<jstl:if test="${row.finalMode == true}">
+			<a href="requests/brotherhood/list.do?processionId=${row.id}">
+			<spring:message code="procession.list.request" />
+			</a>
+			</jstl:if>
+			
 	</display:column>
 	</security:authorize>			
 </display:table>

@@ -66,10 +66,9 @@ public class FloatService {
 
 	public void delete(final Float f) {
 		Assert.notNull(f);
-		//Si alguna procesión saca el paso, se le quita.
-		//	final Collection<Procession> procs = this.processionRepository.findByFloatId(f.getId());
-		final Collection<Procession> process = this.processionService.findAll();
-		//final List<Procession> procs = new ArrayList<>();
+		//Si alguna procesión en draftMode saca el paso, se le quita.
+		final Collection<Procession> process = this.processionService.findAllFinalMode();
+
 		for (final Procession pro : process)
 			if (pro.getFloats().contains(f)) {
 				final Collection<domain.Float> floats = pro.getFloats();
