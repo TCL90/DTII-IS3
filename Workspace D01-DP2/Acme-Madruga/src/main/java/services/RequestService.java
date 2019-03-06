@@ -188,4 +188,12 @@ public class RequestService {
 		
 		return res;
 	}
+	public Boolean checkPosition(final Request r) {
+		Boolean res = false;
+		if (this.requestRepository.checkPosition(r.getRowPosition(), r.getColumnPosition(), r.getProcession().getId()) != null)
+			res = true;
+
+		return res;
+	}
+
 }

@@ -67,7 +67,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		r1.setId(requestIdA);
 		r = this.requestService.findOne(r1);
 		this.requestService.checkRequestOwnsBrotherhood(r);
-		res = this.createEditModelAndView(r, "APPROVED");
+		res = this.createEditModelAndView(r, "APPROVED", null);
 
 		return res;
 	}
@@ -81,12 +81,12 @@ public class RequestBrotherhoodController extends AbstractController {
 		r1.setId(requestIdR);
 		r = this.requestService.findOne(r1);
 		this.requestService.checkRequestOwnsBrotherhood(r);
-		res = this.createEditModelAndView(r, "REJECTED");
+		res = this.createEditModelAndView(r, "REJECTED", null);
 
 		return res;
 	}
 
-	private ModelAndView createEditModelAndView(final Request r, final String status) {
+	private ModelAndView createEditModelAndView(final Request r, final String status, final String messageCode) {
 		ModelAndView res;
 		final List<Integer> li = new ArrayList<>(this.requestService.suggestPosition(r.getProcession()));
 		res = new ModelAndView("requests/edit");
@@ -96,6 +96,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		res.addObject("request", r);
 		res.addObject("status", status);
 		res.addObject("brotherhoodView", true);
+		res.addObject("error", messageCode);
 		res.addObject("formAction", "requests/brotherhood/edit.do");
 		String redirect = "requests/brotherhood/list.do?processionId=";
 		redirect = redirect + r.getProcession().getId();
@@ -110,18 +111,20 @@ public class RequestBrotherhoodController extends AbstractController {
 		ModelAndView res;
 		r = this.requestService.reconstructBrotherhood(r, binding);
 		if (binding.hasErrors())
-			res = this.createEditModelAndView(r, r.getStatus());
+			res = this.createEditModelAndView(r, r.getStatus(), "error.request");
 		else
 
 			try {
-
+				this.requestService.checkPositionBeforeSave(r);
+				if (this.requestService.checkPosition(r) == true)
+					res = this.createEditModelAndView(r, r.getStatus(), "error.position.selected");
 				final Request r1 = this.requestService.saveDirectly(r);
-				this.requestService.checkPositionBeforeSave(r1);
+
 				String redirect = "redirect:list.do?processionId=";
 				redirect = redirect + r1.getProcession().getId();
 				res = new ModelAndView(redirect);
 			} catch (final Throwable oops) {
-				res = this.createEditModelAndView(r, "REJECTED");
+				res = this.createEditModelAndView(r, r.getStatus(), "error.request");
 			}
 
 		return res;
