@@ -96,9 +96,10 @@ public class RequestMemberController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Request r, final BindingResult binding) {
+	public ModelAndView save(Request r, final BindingResult binding) {
 		ModelAndView res;
 
+		r = this.requestService.reconstructMember(r, binding);
 		if (binding.hasErrors())
 			res = this.createEditModelAndView(r);
 		else

@@ -145,4 +145,27 @@ public class EnrolementService {
 		return this.enrolementRepository.findAll();
 	}
 
+	public Enrolement reconstruct(final Enrolement e, final BindingResult binding) {
+		Enrolement res;
+
+		if (e.getId() == 0)
+			res = e;
+		else {
+			res = this.findOne(e);
+			res.setBrotherhood(e.getBrotherhood());
+		}
+		return res;
+	}
+
+	public Enrolement reconstruct2(final Enrolement e, final BindingResult binding) {
+		Enrolement res;
+
+		if (e.getId() == 0)
+			res = e;
+		else {
+			res = this.findOne(e);
+			res.setPosition(e.getPosition());
+		}
+		return res;
+	}
 }

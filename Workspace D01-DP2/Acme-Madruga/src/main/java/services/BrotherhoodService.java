@@ -176,6 +176,7 @@ public class BrotherhoodService {
 
 	public void checkBrotherhood(final Enrolement enrolement) {
 		final Brotherhood b = this.findOnePrincipal();
+		Assert.isTrue(enrolement.getStatus().contains("APPROVED"));
 		Assert.isTrue(enrolement.getBrotherhood().getId() == b.getId());
 
 	}

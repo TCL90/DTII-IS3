@@ -152,4 +152,32 @@ public class RequestService {
 			Assert.isTrue(r.getRejectReason() != "");
 		return this.requestRepository.save(r);
 	}
+	public Request reconstructMember(final Request r, final BindingResult binding) {
+		Request res;
+
+		if (r.getId() == 0)
+			res = r;
+		else {
+			res = this.findOne(r);
+			res.setProcession(r.getProcession());
+		}
+		return res;
+	}
+
+	public Request reconstructBrotherhood(final Request r, final BindingResult binding) {
+		Request res;
+
+		if (r.getId() == 0)
+			res = r;
+		else {
+			res = this.findOne(r);
+			res.setStatus(r.getStatus());
+			if (res.getStatus().contains("APPROVED")) {
+				res.setRowPosition(r.getRowPosition());
+				res.setColumnPosition(r.getColumnPosition());
+			} else if (res.getStatus().contains("REJECTED"))
+				res.setRejectReason(r.getRejectReason());
+		}
+		return res;
+	}
 }

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -92,7 +90,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		ModelAndView res;
 		final List<Integer> li = new ArrayList<>(this.requestService.suggestPosition(r.getProcession()));
 		res = new ModelAndView("requests/edit");
-
+		r.setStatus(status);
 		res.addObject("row", li.get(0));
 		res.addObject("column", li.get(1));
 		res.addObject("request", r);
@@ -108,9 +106,9 @@ public class RequestBrotherhoodController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Request r, final BindingResult binding) {
+	public ModelAndView save(Request r, final BindingResult binding) {
 		ModelAndView res;
-
+		r = this.requestService.reconstructBrotherhood(r, binding);
 		if (binding.hasErrors())
 			res = this.createEditModelAndView(r, r.getStatus());
 		else

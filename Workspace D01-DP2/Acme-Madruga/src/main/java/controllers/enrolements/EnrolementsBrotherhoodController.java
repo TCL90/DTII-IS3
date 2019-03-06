@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -75,8 +73,9 @@ public class EnrolementsBrotherhoodController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/enrol", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final Enrolement e, final BindingResult binding) {
+	public ModelAndView save(Enrolement e, final BindingResult binding) {
 		ModelAndView res;
+		e = this.enrolementService.reconstruct2(e, binding);
 
 		if (binding.hasErrors())
 			res = this.createEditModelAndView(e);

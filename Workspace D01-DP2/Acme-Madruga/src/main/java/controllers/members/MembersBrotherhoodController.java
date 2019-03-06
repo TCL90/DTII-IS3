@@ -105,9 +105,9 @@ public class MembersBrotherhoodController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView saveMember(final Enrolement e, final BindingResult binding) {
+	public ModelAndView saveMember(Enrolement e, final BindingResult binding) {
 		ModelAndView res;
-
+		e = this.enrolementService.reconstruct2(e, binding);
 		try {
 			this.brotherhoodService.checkBrotherhood(e);
 			this.enrolementService.saveDirectly(e);
