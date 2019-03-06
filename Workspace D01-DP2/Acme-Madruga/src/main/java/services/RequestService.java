@@ -31,6 +31,9 @@ public class RequestService {
 
 	@Autowired
 	public MemberService		memberService;
+	
+	@Autowired
+	private Validator			validator;
 
 
 	public Collection<Request> findRequestsByMemberId(final Member member) {
@@ -161,6 +164,7 @@ public class RequestService {
 			res = this.findOne(r);
 			res.setProcession(r.getProcession());
 		}
+		this.validator.validate(res, binding);
 		return res;
 	}
 
@@ -178,6 +182,8 @@ public class RequestService {
 			} else if (res.getStatus().contains("REJECTED"))
 				res.setRejectReason(r.getRejectReason());
 		}
+		this.validator.validate(res, binding);
+		
 		return res;
 	}
 }

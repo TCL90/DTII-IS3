@@ -28,6 +28,9 @@ public class EnrolementService {
 
 	@Autowired
 	public MemberService		memberService;
+	
+	@Autowired
+	private Validator			validator;
 
 
 	//Constructor
@@ -116,8 +119,7 @@ public class EnrolementService {
 		return this.enrolementRepository.save(e);
 	}
 	public Collection<Enrolement> enrolementsPending(final Integer brotherhoodId) {
-		final Brotherhood b = this.brotherhoodService.findOnePrincipal();
-		Assert.isTrue(b.getId() == brotherhoodId);
+
 		return this.enrolementRepository.enrolementsPending(brotherhoodId);
 	}
 
@@ -154,6 +156,7 @@ public class EnrolementService {
 			res = this.findOne(e);
 			res.setBrotherhood(e.getBrotherhood());
 		}
+		this.validator.validate(res, binding);
 		return res;
 	}
 
@@ -166,6 +169,7 @@ public class EnrolementService {
 			res = this.findOne(e);
 			res.setPosition(e.getPosition());
 		}
+		this.validator.validate(res, binding);
 		return res;
 	}
 }
