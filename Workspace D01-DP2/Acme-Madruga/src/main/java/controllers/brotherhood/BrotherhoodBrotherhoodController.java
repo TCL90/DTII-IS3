@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,10 +60,22 @@ public class BrotherhoodBrotherhoodController extends AbstractController {
 			result = this.createEditEditModelAndView(brotherhoodMod);
 		else
 			try {
+				final String vacia = "";
+				if (!brotherhoodMod.getEmail().isEmpty() || brotherhoodMod.getEmail() != vacia)
+					Assert.isTrue(brotherhoodMod.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || brotherhoodMod.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"), "Wrong email");
+
+				//	Si se introduce un área, se comprueba que no tenía una
+				if (brotherhood.getArea() != null) {
+					final Brotherhood oldBro = this.brotherhoodService.findOne(brotherhood.getId());
+					Assert.isTrue(oldBro.getArea() != null);
+				}
 				this.brotherhoodService.save(brotherhoodMod);
 				result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
 			} catch (final Throwable error) {
-				result = this.createEditEditModelAndView(brotherhoodMod, "brotherhood.comit.error");
+				if (error.getMessage() == "Wrong email")
+					result = this.createEditEditModelAndView(brotherhoodMod, "brotherhood.email.error");
+				else
+					result = this.createEditEditModelAndView(brotherhoodMod, "brotherhood.comit.error");
 				System.out.println(error.getMessage());
 			}
 

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,10 +76,17 @@ public class MemberController extends AbstractController {
 				result = this.createEditModelAndView(memberForm);
 			else
 				try {
+					final String vacia = "";
+					if (!member.getEmail().isEmpty() || member.getEmail() != vacia)
+						Assert.isTrue(member.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || member.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"), "Wrong email");
+
 					this.memberService.save(member);
 					result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
 				} catch (final Throwable error) {
-					result = this.createEditModelAndView(memberForm, "member.comit.error");
+					if (error.getMessage() == "Wrong email")
+						result = this.createEditModelAndView(memberForm, "member.email.error");
+					else
+						result = this.createEditModelAndView(memberForm, "member.comit.error");
 					System.out.println(error.getMessage());
 				}
 		}

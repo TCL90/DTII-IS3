@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,10 +59,17 @@ public class AdministratorAdministratorController extends AbstractController {
 			result = this.createEditModelAndView(administrator);
 		else
 			try {
+				final String vacia = "";
+				if (!administratorMod.getEmail().isEmpty() || administratorMod.getEmail() != vacia)
+					Assert.isTrue(administratorMod.getEmail().matches("^[A-z0-9]+@$") || administratorMod.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@>$"), "Wrong email");
+
 				this.administratorService.save(administratorMod);
 				result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
 			} catch (final Throwable error) {
-				result = this.createEditModelAndView(administratorMod, "administrator.comit.error");
+				if (error.getMessage() == "Wrong email")
+					result = this.createEditModelAndView(administratorMod, "administrator.email.error");
+				else
+					result = this.createEditModelAndView(administratorMod, "administrator.comit.error");
 				System.out.println(error.getMessage());
 			}
 
@@ -155,10 +163,17 @@ public class AdministratorAdministratorController extends AbstractController {
 				result = this.createCreateModelAndView(administratorForm);
 			else
 				try {
+					final String vacia = "";
+					if (!administrator.getEmail().isEmpty() || administrator.getEmail() != vacia)
+						Assert.isTrue(administrator.getEmail().matches("^[A-z0-9]+@$") || administrator.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@>$"), "Wrong email");
+
 					this.administratorService.save(administrator);
 					result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
 				} catch (final Throwable error) {
-					result = this.createEditModelAndView(administrator, "administrator.comit.error");
+					if (error.getMessage() == "Wrong email")
+						result = this.createCreateModelAndView(administratorForm, "administrator.email.error");
+					else
+						result = this.createCreateModelAndView(administratorForm, "administrator.comit.error");
 					System.out.println(error.getMessage());
 				}
 		}

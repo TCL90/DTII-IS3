@@ -76,9 +76,10 @@ public class FinderService {
 	public Finder save(final Finder finder) {
 		Assert.notNull(finder);
 		final Finder res = finder;
-		final Member principal = this.memberService.findByPrincipal();
-		Assert.isTrue(principal.getFinder().getId() == finder.getId());
+
 		if (finder.getId() != 0) {
+			final Member principal = this.memberService.findByPrincipal();
+			Assert.isTrue(principal.getFinder().getId() == finder.getId());
 			if (finder.getStartDate() != null && finder.getEndDate() != null)
 				Assert.isTrue(finder.getStartDate().before(finder.getEndDate()));
 			final Collection<Procession> results = this.processionService.finderResults(finder.getKeyword(), finder.getArea().getId(), finder.getStartDate(), finder.getEndDate());

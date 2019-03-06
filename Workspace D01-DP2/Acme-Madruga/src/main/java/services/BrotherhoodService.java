@@ -202,9 +202,6 @@ public class BrotherhoodService {
 		if (pnumber.matches("^[0-9]{4,}$"))
 			brotherhood.setPhoneNumber(cc.concat(pnumber));
 
-		if (brotherhood.getEmail() != null)
-			Assert.isTrue(brotherhood.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || brotherhood.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"));
-
 		if (brotherhood.getId() != 0) {
 			Assert.isTrue(this.actorService.checkBrotherhood());
 
@@ -214,9 +211,6 @@ public class BrotherhoodService {
 			Assert.notNull(logBrotherhood);
 			Assert.notNull(logBrotherhood.getId());
 
-			//	La brotherhood editada no puede tener un área asociada
-			final Brotherhood oldBro = this.findOne(brotherhood.getId());
-			Assert.isTrue(oldBro.getArea() != null);
 		} else {
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = brotherhood.getUserAccount().getPassword();
@@ -406,30 +400,26 @@ public class BrotherhoodService {
 		}
 		return res;
 	}
-	
+
 	public Brotherhood getBrotherhoodByUserAccount(final UserAccount useracc) {
 		Brotherhood b;
-	    b = this.brotherhoodRepository.getBrotherhoodByUserAccount(useracc.getUsername());
-		
+		b = this.brotherhoodRepository.getBrotherhoodByUserAccount(useracc.getUsername());
+
 		return b;
 	}
 
-	public void saveMyArea(Area area) {
-		checkAuthority();
+	public void saveMyArea(final Area area) {
+		this.checkAuthority();
 		Brotherhood b;
 		UserAccount ua;
 		ua = LoginService.getPrincipal();
 		b = this.getBrotherhoodByUserAccount(ua);
-		
+
 		b.setArea(area);
 		this.brotherhoodRepository.save(b);
-		
-		
-		
-		
-		
+
 	}
-	
+
 	private void checkAuthority() {
 		UserAccount ua;
 		ua = LoginService.getPrincipal();
@@ -440,20 +430,19 @@ public class BrotherhoodService {
 		Assert.isTrue(auth.contains(a));
 	}
 
-	public Brotherhood reconstructArea(Brotherhood b, BindingResult binding) {
+	public Brotherhood reconstructArea(final Brotherhood b, final BindingResult binding) {
 		Brotherhood result;
-		
-		if(b.getId()==0){
+
+		if (b.getId() == 0)
 			result = b;
-		}else{
+		else {
 			result = this.brotherhoodRepository.findOne(b.getId());
-			if(result.getArea()== null){
+			if (result.getArea() == null)
 				result.setArea(b.getArea());
-			}
-			validator.validate(result, binding);
+			this.validator.validate(result, binding);
 		}
-		
+
 		return result;
 	}
-	
+
 }

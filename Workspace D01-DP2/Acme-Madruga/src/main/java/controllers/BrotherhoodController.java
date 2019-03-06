@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,10 +77,17 @@ public class BrotherhoodController extends AbstractController {
 				result = this.createEditModelAndView(brotherhoodForm);
 			else
 				try {
+					final String vacia = "";
+					if (!brotherhood.getEmail().isEmpty() || brotherhood.getEmail() != vacia)
+						Assert.isTrue(brotherhood.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || brotherhood.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"), "Wrong email");
+
 					this.brotherhoodService.save(brotherhood);
 					result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
 				} catch (final Throwable error) {
-					result = this.createEditModelAndView(brotherhoodForm, "member.comit.error");
+					if (error.getMessage() == "Wrong email")
+						result = this.createEditModelAndView(brotherhoodForm, "brotherhood.email.error");
+					else
+						result = this.createEditModelAndView(brotherhoodForm, "brotherhood.comit.error");
 					System.out.println(error.getMessage());
 				}
 		}
