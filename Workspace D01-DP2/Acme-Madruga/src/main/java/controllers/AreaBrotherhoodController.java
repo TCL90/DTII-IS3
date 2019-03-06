@@ -83,7 +83,7 @@ public class AreaBrotherhoodController {
 		ModelAndView result;
 		final Collection<Area> areaList = this.areaService.findAll();
 	
-		result = new ModelAndView("area/edit");
+		result = new ModelAndView("area/brotherhood/edit");
 		result.addObject("brotherhood",b);
 		result.addObject("areaList", areaList);
 		
