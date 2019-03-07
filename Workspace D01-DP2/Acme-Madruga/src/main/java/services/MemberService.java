@@ -18,6 +18,7 @@ import repositories.MemberRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import utilities.TickerGenerator;
 import domain.Actor;
 import domain.Box;
 import domain.Brotherhood;
@@ -46,6 +47,9 @@ public class MemberService {
 
 	@Autowired
 	public CustomisationService	customisationService;
+
+	@Autowired
+	public SocialProfileService	socialProfileService;
 
 
 	//Constructor
@@ -293,5 +297,30 @@ public class MemberService {
 			this.validator.validate(res, binding);
 		}
 		return res;
+	}
+
+	public void leave() {
+		final Member logMember = this.findByPrincipal();
+
+		logMember.setAddress("Unknown");
+		logMember.setBan(true);
+		logMember.setEmail("unknown@unknown.com");
+		logMember.setMiddleName("Unknown");
+		logMember.setName("Unknown");
+		logMember.setPhoneNumber("Unknown");
+		logMember.setPhoto("http://www.unknown.com");
+		logMember.setPolarityScore(0);
+		for (final SocialProfile sp : logMember.getSocialProfiles())
+			this.socialProfileService.deleteLeave(sp);
+		logMember.setSocialProfiles(null);
+		logMember.setSurname("Unknown");
+		final UserAccount ua = logMember.getUserAccount();
+		final String tick1 = TickerGenerator.tickerLeave();
+		ua.setUsername("Unknown" + tick1);
+		final String pass1 = TickerGenerator.generateTicker();
+		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		final String pass2 = encoder.encodePassword(pass1, null);
+		ua.setPassword(pass2);
+		logMember.setUserAccount(ua);
 	}
 }

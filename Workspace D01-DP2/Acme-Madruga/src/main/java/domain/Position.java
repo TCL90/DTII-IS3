@@ -4,7 +4,6 @@ package domain;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 public class Position extends DomainEntity {
@@ -14,7 +13,6 @@ public class Position extends DomainEntity {
 
 
 	@NotBlank
-	@SafeHtml
 	public String getPositionEsp() {
 		return this.positionEsp;
 	}
@@ -24,7 +22,6 @@ public class Position extends DomainEntity {
 	}
 
 	@NotBlank
-	@SafeHtml
 	public String getPositionEng() {
 		return this.positionEng;
 	}

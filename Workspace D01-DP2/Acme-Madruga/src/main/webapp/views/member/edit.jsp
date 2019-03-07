@@ -94,11 +94,17 @@
 		
 	</fieldset>
 	<br/>
-	<br/>
 
+	<spring:message code="member.leave.explanation" var="leaveExplanation"/>
+	<jstl:out value="${leaveExplanation}"/>
+	
+	<a href="member/member/show.do"> Link </a>
+		<br/>
 	<br/>
 	<br/>
 	<input type="submit" name="save" value="<spring:message code="member.edit.save.save" />" />&nbsp;
+		<input type="submit" name="leave" value="<spring:message code="member.edit.leave" />" 
+		onclick="return confirm('<spring:message code="member.confirm.delete" />')" />&nbsp;
 	<input type="button" name="cancel" onclick="javascript: window.location.replace('welcome/index.do')"
 			value="<spring:message code="member.edit.cancel" />" />
 

@@ -17,6 +17,7 @@ import services.BrotherhoodService;
 import controllers.AbstractController;
 import domain.Area;
 import domain.Brotherhood;
+import domain.Member;
 
 @Controller
 @RequestMapping("/brotherhood/brotherhood")
@@ -183,6 +184,33 @@ public class BrotherhoodBrotherhoodController extends AbstractController {
 		//		result.addObject("fixUpTasks", fixUpTasks);
 		result.addObject("userAccount", userAccount);
 		return result;
+	}
+
+	////////////////////////////
+	//////////DELETE//////////////
+	////////////////////////////
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "leave")
+	public ModelAndView saveLeave(final Brotherhood brotherhood, final BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.createEditEditModelAndView(brotherhood);
+		else
+			try {
+
+				this.brotherhoodService.leave();
+				result = new ModelAndView("redirect:../../j_spring_security_logout");
+			} catch (final Throwable error) {
+				if (error.getMessage() == "Wrong email")
+					result = this.createEditEditModelAndView(brotherhood, "brotherhood.email.error");
+				else
+					result = this.createEditEditModelAndView(brotherhood, "brotherhood.comit.error");
+				System.out.println(error.getMessage());
+			}
+
+		return result;
+
 	}
 
 }

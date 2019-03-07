@@ -129,10 +129,16 @@
 		
 	</fieldset>
 
-
 	<br/>
+	<spring:message code="brotherhood.leave.explanation" var="leaveExplanation"/>
+	<jstl:out value="${leaveExplanation}"/>
+	
+	<a href="brotherhood/brotherhood/show.do"> Link </a>
+	
 	<br/>
 	<input type="submit" name="save" value="<spring:message code="brotherhood.edit.save.save" />" />&nbsp;
+	<input type="submit" name="leave" value="<spring:message code="brotherhood.edit.leave" />" 
+		onclick="return confirm('<spring:message code="brotherhood.confirm.delete" />')" />&nbsp;
 	<input type="button" name="cancel" onclick="javascript: window.location.replace('welcome/index.do')"
 			value="<spring:message code="brotherhood.edit.cancel" />" />
 

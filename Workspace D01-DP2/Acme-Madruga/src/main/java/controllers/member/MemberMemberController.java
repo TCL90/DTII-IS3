@@ -189,4 +189,32 @@ public class MemberMemberController extends AbstractController {
 		return result;
 	}
 
+	////////////////////////////
+	//////////DELETE//////////////
+	////////////////////////////
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "leave")
+	public ModelAndView saveLeave(final Member member, final BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.createEditEditModelAndView(member);
+		else
+			try {
+
+				this.memberService.leave();
+
+				result = new ModelAndView("redirect:../../j_spring_security_logout");
+			} catch (final Throwable error) {
+				if (error.getMessage() == "Wrong email")
+					result = this.createEditEditModelAndView(member, "member.email.error");
+				else
+					result = this.createEditEditModelAndView(member, "member.comit.error");
+				System.out.println(error.getMessage());
+			}
+
+		return result;
+
+	}
+
 }
