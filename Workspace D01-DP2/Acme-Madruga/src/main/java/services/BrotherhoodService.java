@@ -150,7 +150,17 @@ public class BrotherhoodService {
 		final Date today = Calendar.getInstance().getTime();
 		e.setDropOutMoment(today);
 		e.setStatus("EXPELLED");
+		this.deleteRequests(member);
 		this.enrolementService.saveDirectly(e);
+
+	}
+
+	private void deleteRequests(final Member member) {
+		final Member m = this.memberService.findOne(member.getId());
+		for (final Request r : m.getRequests()) {
+			r.setStatus("REJECTED");
+			r.setRejectReason("You have been expelled. Has sido eliminado de la hermandad");
+		}
 
 	}
 
