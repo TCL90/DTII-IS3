@@ -18,7 +18,6 @@
 		<jstl:choose>
 		
 		<jstl:when test="${row.status=='PENDING'}">
-		
 		<display:column property="procession.title" titleKey="request.procession.title" style="background-color:lightgrey;"/>
 		<display:column property="procession.departureDate" titleKey="request.departureDate" style="background-color:lightgrey;"/>
 		<display:column property="status" titleKey="request.status" sortable="true" style="background-color:lightgrey;"/>
@@ -40,13 +39,13 @@
 		<display:column property="procession.title" titleKey="request.procession.title" style="background-color:lightgreen;"/>
 		<display:column property="procession.departureDate" titleKey="request.departureDate" style="background-color:lightgreen;"/>
 		<display:column property="status" titleKey="request.status" sortable="true" style="background-color:lightgreen;"/>
-	
-		<jstl:if test="${brotherhoodView==true }">
+
 		<display:column property="rowPosition" titleKey="request.rowPosition" style="background-color:lightgreen;"/>
 		<display:column property="columnPosition" titleKey="request.columnPosition" style="background-color:lightgreen;"/>
-		</jstl:if>
+		
 		
 		<jstl:if test="${memberView==true}">
+		<display:column style="background-color:lightgreen;"></display:column>
 		<display:column style="background-color:lightgreen;"><a href="requests/member/show.do?requestId=${row.id}"><spring:message code="request.show"/></a></display:column>
 		</jstl:if>
 		</jstl:when>
@@ -55,11 +54,9 @@
 		<display:column property="procession.title" titleKey="request.procession.title" style="background-color:orange;"/>
 		<display:column property="procession.departureDate" titleKey="request.departureDate" style="background-color:orange;"/>
 		<display:column property="status" titleKey="request.status" sortable="true" style="background-color:orange;"/>
-		
-		<jstl:if test="${brotherhoodView==true }">
 		<display:column property="rejectReason" titleKey="request.rejectReason" style="background-color:orange;"/>
-		<display:column style="background-color:orange;"></display:column>
-		</jstl:if>
+		
+
 		
 		<jstl:if test="${memberView==true }">
 		<display:column style="background-color:orange;"><a href="requests/member/show.do?requestId=${row.id}"><spring:message code="request.show"/></a></display:column>

@@ -14,11 +14,11 @@
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
 	<jstl:if test="${brotherhoodView==true}">
-	<form:hidden path="status" value="${status }"/>
 	</jstl:if>
 	<jstl:if test="${memberView==true}">
 	<form:hidden path="status"/>
 	<jstl:out value="${errors }"/>
+	<p style="color:red;"> <jstl:out value="${error }"/></p>
 	
 	<h2><form:label path="procession">
 			<spring:message code="request.procession"/>:

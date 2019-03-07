@@ -90,7 +90,6 @@ public class RequestBrotherhoodController extends AbstractController {
 		ModelAndView res;
 		final List<Integer> li = new ArrayList<>(this.requestService.suggestPosition(r.getProcession()));
 		res = new ModelAndView("requests/edit");
-		r.setStatus(status);
 		res.addObject("row", li.get(0));
 		res.addObject("column", li.get(1));
 		res.addObject("request", r);
@@ -109,15 +108,20 @@ public class RequestBrotherhoodController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(Request r, final BindingResult binding) {
 		ModelAndView res;
+		if (r.getRowPosition() != 0 && r.getColumnPosition() != 0)
+			if (this.requestService.checkPosition(r) == true) {
+				res = this.createEditModelAndView(r, "APPROVED", "error.position.selected");
+				return res;
+			}
 		r = this.requestService.reconstructBrotherhood(r, binding);
+
 		if (binding.hasErrors())
 			res = this.createEditModelAndView(r, r.getStatus(), "error.request");
 		else
 
 			try {
 				this.requestService.checkPositionBeforeSave(r);
-				if (this.requestService.checkPosition(r) == true)
-					res = this.createEditModelAndView(r, r.getStatus(), "error.position.selected");
+
 				final Request r1 = this.requestService.saveDirectly(r);
 
 				String redirect = "redirect:list.do?processionId=";

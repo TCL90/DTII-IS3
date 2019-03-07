@@ -157,7 +157,7 @@ public class RequestService {
 			Assert.isTrue(r.getRejectReason() != "");
 		return this.requestRepository.save(r);
 	}
-	public Request reconstructMember(final Request r, final BindingResult binding) {
+public Request reconstructMember(final Request r, final BindingResult binding) {
 		Request res;
 
 		if (r.getId() == 0)
@@ -165,6 +165,7 @@ public class RequestService {
 		else {
 			res = this.findOne(r);
 			res.setProcession(r.getProcession());
+
 		}
 		this.validator.validate(res, binding);
 		return res;
@@ -177,7 +178,14 @@ public class RequestService {
 			res = r;
 		else {
 			res = this.findOne(r);
-			res.setStatus(r.getStatus());
+
+			if (r.getRowPosition() != 0 && r.getColumnPosition() != 0)
+				res.setStatus("APPROVED");
+			else if (r.getRejectReason() != null)
+				res.setStatus("REJECTED");
+			else
+				res.setStatus("PENDING");
+
 			if (res.getStatus().contains("APPROVED")) {
 				res.setRowPosition(r.getRowPosition());
 				res.setColumnPosition(r.getColumnPosition());
@@ -185,7 +193,7 @@ public class RequestService {
 				res.setRejectReason(r.getRejectReason());
 		}
 		this.validator.validate(res, binding);
-		
+
 		return res;
 	}
 	public Boolean checkPosition(final Request r) {
@@ -195,5 +203,4 @@ public class RequestService {
 
 		return res;
 	}
-
 }

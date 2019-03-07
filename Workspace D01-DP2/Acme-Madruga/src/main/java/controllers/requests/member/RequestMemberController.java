@@ -102,19 +102,17 @@ public class RequestMemberController extends AbstractController {
 		r = this.requestService.reconstructMember(r, binding);
 		if (binding.hasErrors())
 			res = this.createEditModelAndView(r);
-		else
 
-			try {
+		try {
 
-				this.requestService.save(r);
-				res = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				res = this.createEditModelAndView(r, "error.request");
-			}
+			this.requestService.save(r);
+			res = new ModelAndView("redirect:list.do");
+		} catch (final Throwable oops) {
+			res = this.createEditModelAndView(r, "error.request");
+		}
 
 		return res;
 	}
-
 	private ModelAndView createEditModelAndView(final Request r) {
 		ModelAndView res;
 		res = this.createEditModelAndView(r, null);

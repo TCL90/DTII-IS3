@@ -244,4 +244,41 @@ public class AdministratorService {
 		}
 		return res;
 	}
+	public void calculateScoreApp() {
+		Integer score = 0;
+		final List<Customisation> cus = new ArrayList<>(this.customisationService.findAll());
+		final Customisation cus1 = cus.get(0);
+		final List<String> positive = new ArrayList<String>(cus1.getPositiveWords());
+		final List<String> negative = new ArrayList<String>(cus1.getNegativeWords());
+
+		final List<Actor> la = new ArrayList<>(this.actorService.findAll());
+		Double res1 = null;
+
+		for (final Actor a : la) {
+			final List<Box> lb = new ArrayList<>(a.getBoxes());
+			for (final Box b : lb)
+				if (b.getName().contains("out box")) {
+					final List<Message> lm = new ArrayList<>(b.getMessages());
+					for (final Message m : lm) {
+						final String text = m.getBody();
+						for (final String p : positive)
+							if (text.contains(p))
+								score++;
+						for (final String n : negative)
+							if (text.contains(n))
+								score--;
+					}
+					break;
+				}
+			if ((score >= -10 || score <= 10))
+				res1 = new Double(score / 10);
+			else if (score <= 100 || score >= -100)
+				res1 = new Double(score / 100);
+			else if (score <= 1000 || score >= -1000)
+				res1 = new Double(score / 1000);
+
+			a.setPolarityScore(res1);
+		}
+
+	}
 }
