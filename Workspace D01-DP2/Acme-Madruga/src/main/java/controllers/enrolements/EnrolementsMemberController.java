@@ -89,7 +89,8 @@ public class EnrolementsMemberController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final Enrolement e, final String messageCode) {
 		ModelAndView res;
 		res = new ModelAndView("enrolements/edit");
-		final List<Brotherhood> lb = new ArrayList<>(this.brotherhoodService.findAll());
+		final Member m = this.memberService.findByPrincipal();
+		final List<Brotherhood> lb = new ArrayList<>(this.brotherhoodService.findAllNotApproved(m));
 
 		res.addObject("memberView", true);
 		res.addObject("enrolement", e);

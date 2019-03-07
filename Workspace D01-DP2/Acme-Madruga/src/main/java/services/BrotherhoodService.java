@@ -423,6 +423,11 @@ public class BrotherhoodService {
 		}
 		return res;
 	}
+	
+		public Collection<Brotherhood> findAllNotApproved(final Member m) {
+
+		return this.brotherhoodRepository.findAllNotApproved(m.getId());
+	}
 
 	public Brotherhood getBrotherhoodByUserAccount(final UserAccount useracc) {
 		Brotherhood b;

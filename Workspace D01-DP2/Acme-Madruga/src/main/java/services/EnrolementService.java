@@ -79,7 +79,7 @@ public class EnrolementService {
 		return res;
 	}
 	public Enrolement updateEnrol(final Enrolement e) {
-		if (e.getStatus() != "APPROVED") {
+		if (!e.getStatus().contains("APPROVED")) {
 			e.setEnrolMoment(Calendar.getInstance().getTime());
 			e.setDropOutMoment(null);
 			e.setStatus("PENDING");
