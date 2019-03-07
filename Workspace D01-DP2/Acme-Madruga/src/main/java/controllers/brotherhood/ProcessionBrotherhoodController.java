@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,20 +54,41 @@ public class ProcessionBrotherhoodController extends AbstractController {
 		res.addObject("finalModes", finalModes);
 		return res;
 	}
+
+
+	@Autowired
+	Validator	validator;
+
+
 	@RequestMapping(value = "/brotherhood/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(final Procession procession, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute final Procession procession, final BindingResult binding) {
 		ModelAndView result;
 		Procession procMod;
-		procMod = this.processionService.reconstruct(procession, binding);
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(procMod);
-		else
-			try {
+		try {
+			Assert.notNull(procession.getDescription());
+			Assert.isTrue(procession.getDescription() != "");
+			Assert.notNull(procession.getDepartureDate());
+			Assert.notNull(procession.getFloats());
+			Assert.isTrue(procession.getFloats().isEmpty() == false);
+			Assert.notNull(procession.getTitle());
+			Assert.isTrue(procession.getTitle() != "");
+
+		} catch (final Throwable error) {
+			result = this.createEditModelAndView(procession, "procession.mandatory");
+			return result;
+		}
+		try {
+			procMod = this.processionService.reconstruct(procession, binding);
+			this.validator.validate(procMod, binding);
+			if (binding.hasErrors())
+				result = this.createEditModelAndView(procMod);
+			else {
 				this.processionService.save(procMod);
 				result = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(procMod, "procession.commit.error");
 			}
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(procession, "procession.commit.error");
+		}
 
 		return result;
 	}

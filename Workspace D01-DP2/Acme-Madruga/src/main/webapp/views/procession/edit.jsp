@@ -16,7 +16,8 @@
 	<form:hidden path="version" />
 	<form:hidden path="ticker" />
 	
-
+	<spring:message code="procession.ob" var="ob"/>
+	<jstl:out value="${ob}"/>
 	<form:label path="title">
 		<spring:message code="procession.title" />:
 	</form:label>
@@ -57,7 +58,7 @@
 			/>
 	</form:select>
 
-		
+	
 	<input type="submit" name="save"
 		value="<spring:message code="procession.save" />" />&nbsp; 
 		

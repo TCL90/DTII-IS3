@@ -24,10 +24,10 @@ import security.UserAccount;
 import utilities.TickerGenerator;
 import domain.Brotherhood;
 import domain.Enrolement;
+import domain.Finder;
 import domain.Member;
 import domain.Procession;
 import domain.Request;
-import domain.Finder;
 
 @Service
 @Transactional
@@ -74,7 +74,7 @@ public class ProcessionService {
 
 		if (proc.getId() != 0) {
 			final Procession procOld = this.processionRepository.findOne(proc.getId());
-			Assert.isTrue(!procOld.getFinalMode());
+			//Assert.isTrue(!procOld.getFinalMode());
 
 			final Collection<Request> reqs = this.requestRepository.findByProcessionId(proc.getId());
 			for (final Request r : reqs) {
@@ -198,6 +198,7 @@ public class ProcessionService {
 		return results;
 	}
 
+
 	@Autowired
 	private Validator	validator;
 
@@ -217,7 +218,10 @@ public class ProcessionService {
 		else {
 			res = this.processionRepository.findOne(pro.getId());
 			res.setFloats(pro.getFloats());
-			//res.setTicker(pro.getTicker());
+			res.setTitle(pro.getTitle());
+			res.setFinalMode(pro.getFinalMode());
+			res.setDescription(pro.getDescription());
+			res.setDepartureDate(pro.getDepartureDate());
 			this.validator.validate(res, binding);
 		}
 		return res;
