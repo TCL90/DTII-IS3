@@ -20,10 +20,11 @@
 		<jstl:when test="${row.status=='PENDING'}">
 		<jstl:if test="${memberView==true}">
 		<display:column property="brotherhood.title" titleKey="enrolement.brotherhood" style="background-color:lightgrey;"/>
-		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:lightgrey;"/>
+		
 		</jstl:if>
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:lightgrey;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:lightgrey;"/>
+		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:lightgrey;"/>
 		<jstl:if test="${memberView==true}">
 		<display:column style="background-color:lightgrey;"/>
 		</jstl:if>
@@ -45,15 +46,13 @@
 		</jstl:if>
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:lightgreen;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:lightgreen;"/>
-	
 		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:lightgreen;"/>
+	
 		
 		<display:column style="background-color:lightgreen;"><a href="brotherhood/member/show.do?brotherhoodId=${row.brotherhood.id}"><spring:message code="brotherhood.show"/></a></display:column>
 		<security:authorize access="hasRole('BROTHERHOOD')">
 		<display:column style="background-color:lightgreen;">></display:column>
-		<display:column style="background-color:lightgreen;">></display:column>
-		<display:column style="background-color:lightgreen;">></display:column>
-		<display:column style="background-color:lightgreen;">></display:column>
+		
 		</security:authorize>
 		</jstl:when>
 		
@@ -64,12 +63,10 @@
 		<display:column property="enrolMoment" titleKey="enrolement.enrolMoment" style="background-color:orange;"/>
 		<display:column property="status" titleKey="enrolement.status" sortable="true" style="background-color:orange;"/>
 		<display:column property="dropOutMoment" titleKey="enrolement.dropOutMoment" style="background-color:orange;"/>
-		
+		<display:column style="background-color:orange;"></display:column>
 		<security:authorize access="hasRole('BROTHERHOOD')">
 		<display:column style="background-color:orange;">></display:column>
-		<display:column style="background-color:orange;">></display:column>
-		<display:column style="background-color:orange;">></display:column>
-		<display:column style="background-color:orange;">></display:column>
+
 		</security:authorize>
 		</jstl:when>
 		
@@ -84,9 +81,6 @@
 		<display:column style="background-color:orange;"></display:column>
 		
 		<security:authorize access="hasRole('BROTHERHOOD')">
-		<display:column style="background-color:orange;">></display:column>
-		<display:column style="background-color:orange;">></display:column>
-		<display:column style="background-color:orange;">></display:column>
 		<display:column style="background-color:orange;">></display:column>
 		</security:authorize>
 		</jstl:when>
