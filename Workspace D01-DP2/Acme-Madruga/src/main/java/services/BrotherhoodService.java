@@ -27,6 +27,7 @@ import domain.Customisation;
 import domain.Enrolement;
 import domain.Member;
 import domain.Procession;
+import domain.Request;
 import domain.SocialProfile;
 import forms.BrotherhoodForm;
 
