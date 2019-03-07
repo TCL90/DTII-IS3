@@ -155,8 +155,14 @@ public class BrotherhoodService {
 		this.enrolementService.saveDirectly(e);
 
 	}
+	public void checkBrotherhood2(final Enrolement enrolement) {
+		final Brotherhood b = this.findOnePrincipal();
+		Assert.isTrue(enrolement.getStatus().contains("APPROVED"));
+		Assert.isTrue(enrolement.getBrotherhood().getId() == b.getId());
 
-	private void deleteRequests(final Member member) {
+	}
+
+	public void deleteRequests(final Member member) {
 		final Member m = this.memberService.findOne(member.getId());
 		for (final Request r : m.getRequests()) {
 			r.setStatus("REJECTED");

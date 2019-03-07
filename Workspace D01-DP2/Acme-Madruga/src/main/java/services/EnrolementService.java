@@ -104,6 +104,8 @@ public class EnrolementService {
 	public void leaveBrotherhood(final Enrolement e) {
 		e.setDropOutMoment(Calendar.getInstance().getTime());
 		e.setStatus("EXPELLED");
+		final Member m = this.memberService.memberByEnrolemetId(e.getId());
+		this.brotherhoodService.deleteRequests(m);
 		e.setPosition(null);
 		this.saveDirectly(e);
 	}

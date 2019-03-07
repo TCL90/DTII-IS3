@@ -36,7 +36,7 @@
 		</jstl:if>
 		<jstl:if test="${memberView==true}">
 		<display:column style="background-color:lightgrey;"><a href="requests/member/show.do?requestId=${row.id}"><spring:message code="request.show"/></a></display:column>
-		<display:column style="background-color:lightgrey;"></display:column>
+
 		</jstl:if>
 		</jstl:when>
 		
@@ -53,7 +53,7 @@
 		<display:column style="background-color:lightgreen;"></display:column>
 		</jstl:if>
 		<jstl:if test="${memberView==true}">
-		<display:column style="background-color:lightgreen;"></display:column>
+
 		<display:column style="background-color:lightgreen;"><a href="requests/member/show.do?requestId=${row.id}"><spring:message code="request.show"/></a></display:column>
 		</jstl:if>
 		</jstl:when>
@@ -63,7 +63,12 @@
 		<display:column property="procession.departureDate" titleKey="request.departureDate" style="background-color:orange;"/>
 		<display:column property="status" titleKey="request.status" sortable="true" style="background-color:orange;"/>
 		<display:column property="rejectReason" titleKey="request.rejectReason" style="background-color:orange;"/>
-		
+		<display:column property="columnPosition" titleKey="request.columnPosition" style="background-color:orange;"/>
+		<display:column property="rowPosition" titleKey="request.rowPosition" style="background-color:orange;"/>
+		<jstl:if test="${brotherhoodView==true }">
+		<display:column style="background-color:orange;"></display:column>
+		<display:column style="background-color:orange;"></display:column>
+		</jstl:if>
 
 		
 		<jstl:if test="${memberView==true }">
@@ -80,7 +85,10 @@
 		<display:column property="rejectReason" titleKey="request.rejectReason" style="background-color:orange;"/>
 		
 		<display:column style="background-color:orange;"><a href="requests/member/show.do?requestId=${row.id}"><spring:message code="request.show"/></a></display:column>
-		<display:column style="background-color:orange;"></display:column>
+		<jstl:if test="${brotherhoodView==true }">
+		<display:column style="background.color:orange;"></display:column>
+		<display:column style="background.color:orange;"></display:column>
+		</jstl:if>
 		</jstl:when>
 		
 		</jstl:choose>

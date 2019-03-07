@@ -67,7 +67,7 @@ public class MembersBrotherhoodController extends AbstractController {
 		b = this.brotherhoodService.findOnePrincipal();
 
 		enrolement = this.enrolementService.findEnrolementByIds(b, member);
-		this.brotherhoodService.checkBrotherhood(enrolement);
+		this.brotherhoodService.checkBrotherhood2(enrolement);
 
 		res = new ModelAndView("members/show");
 		res.addObject("member", member);
