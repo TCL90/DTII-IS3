@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -85,9 +86,11 @@ public class ProcessionBrotherhoodController extends AbstractController {
 	public ModelAndView edit(@RequestParam final int processionId) {
 		ModelAndView result;
 		Procession procession;
+		final Brotherhood brotherhood = this.brotherhoodService.findByPrincipal();
 
 		procession = this.processionService.findOne(processionId);
-
+		Assert.isTrue(procession.getBrotherhood().getId() == brotherhood.getId());
+		Assert.isTrue(procession.getFinalMode() == false);
 		result = this.createEditModelAndView(procession);
 
 		return result;

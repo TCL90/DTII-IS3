@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Access(AccessType.PROPERTY)
 public class Customisation extends DomainEntity {
@@ -19,7 +21,7 @@ public class Customisation extends DomainEntity {
 	//ATRIBUTOS DEL SISTEMA.
 	public List<String>			negativeWords;
 	public List<String>			positiveWords;
-	public Double				finderDuration;
+	public Integer				finderDuration;
 	public Integer				resultsNumber;
 	public String				systemName;
 	public String				bannerURL;
@@ -59,11 +61,11 @@ public class Customisation extends DomainEntity {
 
 	@Min(value = 1L)
 	@Max(value = 24)
-	public Double getFinderDuration() {
+	public Integer getFinderDuration() {
 		return this.finderDuration;
 	}
 
-	public void setFinderDuration(final Double finderDuration) {
+	public void setFinderDuration(final Integer finderDuration) {
 		this.finderDuration = finderDuration;
 	}
 	@Min(value = 1L)
@@ -75,7 +77,7 @@ public class Customisation extends DomainEntity {
 	public void setResultsNumber(final Integer resultsNumber) {
 		this.resultsNumber = resultsNumber;
 	}
-
+	@NotBlank
 	public String getSystemName() {
 		return this.systemName;
 	}

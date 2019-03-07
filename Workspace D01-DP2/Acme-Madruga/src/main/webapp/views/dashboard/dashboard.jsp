@@ -83,7 +83,6 @@
 	<spring:message code="dashboard.ratioEmptyFinder"/>
 	<jstl:out value="${ratioEmptyFinders}"/>
 	<br/>
-	<jstl:out value="${posCountList}"/>
 	<h2><spring:message code="dashboard.histogram"/></h2>
 	<canvas id="myChart" width="300" height="300"></canvas>
 	<script type="text/javascript">
