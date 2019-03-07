@@ -95,7 +95,7 @@ public class RequestBrotherhoodController extends AbstractController {
 		res.addObject("request", r);
 		res.addObject("status", status);
 		res.addObject("brotherhoodView", true);
-		res.addObject("error", messageCode);
+		res.addObject("message", messageCode);
 		res.addObject("formAction", "requests/brotherhood/edit.do");
 		String redirect = "requests/brotherhood/list.do?processionId=";
 		redirect = redirect + r.getProcession().getId();
