@@ -49,7 +49,7 @@
 		<input type="submit" name = "delete" value = "<spring:message code="mes.delete"/> " />
 		
 		<spring:message code ="mes.cancel" var="cancel" />
-		<input type="button" name="cancel" value="${cancel}" onclick="javascript:relativeRedir('messageBox/list.do');" />
+		<input type="button" name="cancel" value="${cancel}" onclick="javascript:relativeRedir('boxes/list.do');" />
 		
 		
 		

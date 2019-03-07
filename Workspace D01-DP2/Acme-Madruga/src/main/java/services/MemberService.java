@@ -176,6 +176,8 @@ public class MemberService {
 			mem.setPhoneNumber(cc.concat(pnumber));
 
 		if (mem.getId() == 0) {
+			Collection<Box> boxes = actorService.createPredefinedBoxes();
+			mem.setBoxes(boxes);
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = mem.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);

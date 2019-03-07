@@ -32,6 +32,12 @@
 			<spring:message code="mes.display"/>
 			</a>
 		</display:column>
+		
+				<display:column>
+			<a href="boxes/move.do?messageId=${row.id}">
+			<spring:message code="mes.move"/>
+			</a>
+		</display:column>
 	
 	</display:table>
 	

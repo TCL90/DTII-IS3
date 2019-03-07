@@ -226,6 +226,9 @@ public class BrotherhoodService {
 			Assert.notNull(logBrotherhood.getId());
 
 		} else {
+
+			Collection<Box> boxes = actorService.createPredefinedBoxes();
+			brotherhood.setBoxes(boxes);
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = brotherhood.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);
