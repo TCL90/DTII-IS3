@@ -35,7 +35,7 @@
 	<h2>
 		<spring:message code="member.photo" />
 	</h2>
-	<img src="${member.photo}"/>
+	<p><jstl:out value="${member.photo}"/>
 	
 	<h2>
 		<spring:message code="member.phoneNumber" />
