@@ -173,28 +173,29 @@ public class ProcessionService {
 		return this.processionRepository.findProcessionsByDateRange(minDate, maxDate);
 	}
 
-	public Collection<Procession> finderResults(final String keyword, final Integer areaId, final Date min, final Date max) {
+	public Set<Procession> finderResults(final Finder finder) {
 		Assert.isTrue(this.checkMember());
 		final Set<Procession> results = new HashSet<>();
 
-		if (keyword != null && keyword != "")
-			results.addAll(this.findProcessionsByKeyworkd(keyword));
+		if (finder.getKeyword() != null && finder.getKeyword() != "")
+			results.addAll(this.findProcessionsByKeyworkd(finder.getKeyword()));
 		else
 			results.addAll(this.findAll());
 
-		if (areaId != 0 && areaId != null)
-			results.addAll(this.findProcessionsByArea(areaId));
+		if (finder.getArea() == null)
+			results.addAll(this.findAll());
+		else
+			results.addAll(this.findProcessionsByArea(finder.getArea().getId()));
+		if (finder.getStartDate() != null && finder.getEndDate() == null)
+			results.addAll(this.findProcessionsByMinimumDate(finder.getStartDate()));
+		else if (finder.getEndDate() != null && finder.getStartDate() == null)
+			results.addAll(this.findProcessionsByMaximumDate(finder.getEndDate()));
+		else if (finder.getEndDate() != null && finder.getStartDate() != null)
+			results.addAll(this.findProcessionsByDateRange(finder.getStartDate(), finder.getEndDate()));
 		else
 			results.addAll(this.findAll());
-		if (min != null && max == null)
-			results.addAll(this.findProcessionsByMinimumDate(min));
-		else if (max != null && min == null)
-			results.addAll(this.findProcessionsByMaximumDate(max));
-		else
-			results.addAll(this.findProcessionsByDateRange(min, max));
 		return results;
 	}
-
 
 	@Autowired
 	private Validator	validator;
