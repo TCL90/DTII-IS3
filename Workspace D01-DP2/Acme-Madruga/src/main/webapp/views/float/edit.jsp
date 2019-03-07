@@ -19,8 +19,8 @@
 		<form:hidden path="version" />
 		
 		
-		<!-- Brotherhood -->
-
+		<spring:message code="float.obligatorio" var="ob"/>
+		<jstl:out value="${ob}"/>
 		
 		<!-- Title -->
 		<acme:textbox code="float.title" path="title"/>

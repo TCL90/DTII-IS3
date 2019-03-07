@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,23 +46,23 @@ public class FloatBrotherhoodController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "saveEdit")
-	public ModelAndView save(domain.Float flo, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("flo") final domain.Float flo, final BindingResult binding) {
 		ModelAndView result;
-
-		flo = this.floatService.reconstruct(flo, binding);
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(flo);
-		else
-			try {
-				this.floatService.save(flo);
+		final domain.Float floatReconstructed;
+		try {
+			floatReconstructed = this.floatService.reconstruct(flo, binding);
+			if (binding.hasErrors())
+				result = this.createEditModelAndView(flo);
+			else {
+				this.floatService.save(floatReconstructed);
 				result = new ModelAndView("redirect:list.do");
-			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(flo, "float.commit.error");
 			}
+		} catch (final Throwable oops) {
+			result = this.createEditModelAndView(flo, "float.commit.error.blank");
+		}
 
 		return result;
 	}
-
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView res;
@@ -78,14 +79,17 @@ public class FloatBrotherhoodController extends AbstractController {
 	public ModelAndView edit(@RequestParam final int floatId) {
 		ModelAndView result;
 		domain.Float flo;
+		final Brotherhood bro;
 
+		bro = this.brotherhoodService.findByPrincipal();
 		flo = this.floatService.findOne(floatId);
 		Assert.notNull(flo);
+		Assert.isTrue(flo.getBrotherhood().getId() == bro.getId());
+
 		result = this.createEditModelAndView(flo);
 
 		return result;
 	}
-
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(final domain.Float flo, final BindingResult binding) {
 		ModelAndView result;
