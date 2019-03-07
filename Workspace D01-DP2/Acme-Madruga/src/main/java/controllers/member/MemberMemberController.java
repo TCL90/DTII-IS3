@@ -55,6 +55,19 @@ public class MemberMemberController extends AbstractController {
 	public ModelAndView save(final Member member, final BindingResult binding) {
 		ModelAndView result;
 
+		try{ //name, surname, address, email, title, departure	
+			Assert.notNull(member.getName());
+			Assert.isTrue(member.getName() != "");
+			Assert.notNull(member.getEmail());
+			Assert.isTrue(member.getEmail() != "");
+			Assert.notNull(member.getAddress());
+			Assert.isTrue(member.getAddress() != "");
+
+		}catch(Throwable error){
+			result = this.createEditEditModelAndView(member, "member.mandatory");
+			return result;
+		}
+		
 		final Member memberMod = this.memberService.reconstruct(member, binding);
 		if (binding.hasErrors())
 			result = this.createEditEditModelAndView(memberMod);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +18,6 @@ import services.BrotherhoodService;
 import controllers.AbstractController;
 import domain.Area;
 import domain.Brotherhood;
-import domain.Member;
 
 @Controller
 @RequestMapping("/brotherhood/brotherhood")
@@ -53,15 +53,35 @@ public class BrotherhoodBrotherhoodController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(final Brotherhood brotherhood, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("brotherhood") final Brotherhood brotherhood, final BindingResult binding) {
 		ModelAndView result;
+		Brotherhood brotherhoodMod = brotherhood;
 
-		final Brotherhood brotherhoodMod = this.brotherhoodService.reconstruct(brotherhood, binding);
-		if (binding.hasErrors())
-			result = this.createEditEditModelAndView(brotherhoodMod);
-		else
+		try{ //name, surname, address, email, title, departure	
+			Assert.notNull(brotherhood.getName());
+			Assert.isTrue(brotherhood.getName() != "");
+			Assert.notNull(brotherhood.getEmail());
+			Assert.isTrue(brotherhood.getEmail() != "");
+			Assert.notNull(brotherhood.getAddress());
+			Assert.isTrue(brotherhood.getAddress() != "");
+			Assert.notNull(brotherhood.getTitle());
+			Assert.isTrue(brotherhood.getTitle() != "");
+			Assert.notNull(brotherhood.getStablishmentDate());
+		}catch(Throwable error){
+			result = this.createEditEditModelAndView(brotherhood, "brotherhood.mandatory");
+			return result;
+		}
+		
+
+			
+			
 			try {
+				brotherhoodMod = this.brotherhoodService.reconstruct(brotherhood, binding);
+				if (binding.hasErrors())
+					result = this.createEditEditModelAndView(brotherhood);
+				else{
 				final String vacia = "";
+
 				if (!brotherhoodMod.getEmail().isEmpty() || brotherhoodMod.getEmail() != vacia)
 					Assert.isTrue(brotherhoodMod.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || brotherhoodMod.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"), "Wrong email");
 
@@ -72,11 +92,12 @@ public class BrotherhoodBrotherhoodController extends AbstractController {
 				}
 				this.brotherhoodService.save(brotherhoodMod);
 				result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
+				}
 			} catch (final Throwable error) {
 				if (error.getMessage() == "Wrong email")
-					result = this.createEditEditModelAndView(brotherhoodMod, "brotherhood.email.error");
+					result = this.createEditEditModelAndView(brotherhood, "brotherhood.email.error");
 				else
-					result = this.createEditEditModelAndView(brotherhoodMod, "brotherhood.comit.error");
+					result = this.createEditEditModelAndView(brotherhood, "brotherhood.comit.error");
 				System.out.println(error.getMessage());
 			}
 

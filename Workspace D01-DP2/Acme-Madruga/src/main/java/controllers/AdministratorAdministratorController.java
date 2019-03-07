@@ -54,6 +54,20 @@ public class AdministratorAdministratorController extends AbstractController {
 	public ModelAndView save(@Valid final Administrator administrator, final BindingResult binding) {
 		ModelAndView result;
 
+		try{ //name, surname, address, email, title, departure	
+			Assert.notNull(administrator.getName());
+			Assert.isTrue(administrator.getName() != "");
+			Assert.notNull(administrator.getEmail());
+			Assert.isTrue(administrator.getEmail() != "");
+			Assert.notNull(administrator.getAddress());
+			Assert.isTrue(administrator.getAddress() != "");
+
+		}catch(Throwable error){
+			result = this.createEditModelAndView(administrator, "administrator.mandatory");
+			return result;
+		}
+		
+		
 		final Administrator administratorMod = this.administratorService.reconstruct(administrator, binding);
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(administrator);
