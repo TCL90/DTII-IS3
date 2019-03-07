@@ -428,6 +428,10 @@
          <property name="messages">
 		
 			<list>
+		<ref bean="message1" />
+		<ref bean="message2" />
+		<ref bean="message3" />
+		<ref bean="message4" />
 		
 			</list>
 			</property>
@@ -1291,6 +1295,7 @@
   <property name="boxes">
   	<list>
   		<ref bean="in5" /> 
+  		<ref bean="notification5" />
   		<ref bean="out5" /> 
   		<ref bean="trash5" /> 
   		<ref bean="spam5" /> 
@@ -1347,6 +1352,7 @@
   <property name="boxes">
   	<list>
   		<ref bean="in6" /> 
+  		<ref bean="notification6" />
   		<ref bean="out6" /> 
   		<ref bean="trash6" /> 
   		<ref bean="spam6" /> 
