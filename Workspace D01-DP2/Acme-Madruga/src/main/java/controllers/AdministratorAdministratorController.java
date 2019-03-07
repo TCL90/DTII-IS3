@@ -169,6 +169,16 @@ public class AdministratorAdministratorController extends AbstractController {
 	public ModelAndView saveCreate(@Valid final AdministratorForm administratorForm, final BindingResult binding) {
 		ModelAndView result;
 
+		try { //name, surname, address, email, title, departure	
+			;
+			Assert.notNull(administratorForm.getEmail());
+			Assert.isTrue(administratorForm.getEmail() != "");
+
+		} catch (final Throwable error) {
+			result = this.createCreateModelAndView(administratorForm, "administrator.mandatory");
+			return result;
+		}
+		
 		if (!administratorForm.isConditionsAccepted())
 			result = this.createCreateModelAndView(administratorForm, "member.conditionsError");
 		else {
@@ -182,7 +192,7 @@ public class AdministratorAdministratorController extends AbstractController {
 						Assert.isTrue(administrator.getEmail().matches("^[A-z0-9]+@$") || administrator.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@>$"), "Wrong email");
 
 					this.administratorService.save(administrator);
-					result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
+					result = new ModelAndView("redirect:/welcome/index.do");
 				} catch (final Throwable error) {
 					if (error.getMessage() == "Wrong email")
 						result = this.createCreateModelAndView(administratorForm, "administrator.email.error");

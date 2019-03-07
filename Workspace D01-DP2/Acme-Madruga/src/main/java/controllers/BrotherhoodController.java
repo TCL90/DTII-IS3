@@ -69,7 +69,6 @@ public class BrotherhoodController extends AbstractController {
 		ModelAndView result;
 
 		try { //name, surname, address, email, title, departure	
-			;
 			Assert.notNull(brotherhoodForm.getEmail());
 			Assert.isTrue(brotherhoodForm.getEmail() != "");
 
@@ -77,7 +76,7 @@ public class BrotherhoodController extends AbstractController {
 			result = this.createEditModelAndView(brotherhoodForm, "brotherhood.mandatory");
 			return result;
 		}
-
+		
 		if (!brotherhoodForm.isConditionsAccepted())
 			result = this.createEditModelAndView(brotherhoodForm, "brotherhood.conditionsError");
 		//result.addObject("conditionsError", true);

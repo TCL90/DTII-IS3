@@ -51,7 +51,7 @@
 		<br/>
 	
 		<form:label path="email">
-			<spring:message code="administrator.edit.label.email" />:
+			<spring:message code="administrator.edit.label.email" />*:
 		</form:label>
 		<form:input path="email" />
 		<form:errors cssClass="error" path="email" />	
