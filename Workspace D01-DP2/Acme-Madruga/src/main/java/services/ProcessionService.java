@@ -27,6 +27,7 @@ import domain.Enrolement;
 import domain.Member;
 import domain.Procession;
 import domain.Request;
+import domain.Finder;
 
 @Service
 @Transactional
