@@ -83,17 +83,18 @@ public class DashboardService {
 	public Collection<Procession> processionsOrganizedIn30Days() {
 		Assert.isTrue(this.checkAdmin());
 		final List<Procession> processions = new ArrayList<Procession>(this.processionService.findAll());
+		final List<Procession> processionsQ = new ArrayList<Procession>(processions);
 		for (final Procession p : processions) {
 			final long diffInMillies = Math.abs(p.getDepartureDate().getTime() - Calendar.getInstance().getTime().getTime());
 			final long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 			if (diff >= 30)
-				processions.remove(p);
+				processionsQ.remove(p);
 		}
-		return processions;
+		return processionsQ;
 	}
 
 	//12.3.6
-	public double requestRatio() {
+	public List<Double> requestRatio() {
 		Assert.isTrue(this.checkAdmin());
 		return this.dashboardRepository.requestRatio();
 	}

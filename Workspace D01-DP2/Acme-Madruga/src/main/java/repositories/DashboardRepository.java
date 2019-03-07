@@ -43,7 +43,7 @@ public interface DashboardRepository extends JpaRepository<Administrator, Intege
 	//12.3.5 in service
 	//12.3.6
 	@Query("select 1.0 * count(r1)/(select count(r) from Request r) from Request r1 group by r1.status")
-	double requestRatio();
+	List<Double> requestRatio();
 
 	//12.3.7 
 	@Query("select distinct m from Member m join m.requests r1 where r1.status='APPROVED' group by m.id having count(r1)> 0.1 * m.requests.size")
