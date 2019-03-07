@@ -79,8 +79,8 @@
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin" />
-		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -93,7 +93,7 @@
 	
 		<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="admin2" />
-		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -106,7 +106,7 @@
 	
 			<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="brotherhood1" />
-		<property name="password" value="44843b89fec33a1c48bbb3967b65abce" />
+		<property name="password" value="479e3180a45b21ea8e88beb0c45aa8ed" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -119,7 +119,7 @@
 	
 			<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="brotherhood2" />
-		<property name="password" value="44843b89fec33a1c48bbb3967b65abce" />
+		<property name="password" value="88f1b810c40cd63107fb758fef4d77db" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -1278,8 +1278,8 @@
   <!-- Member1 -->
   
   <bean id="userAccount5" class="security.UserAccount">
-  <property name="username" value="member" /> 
-  <property name="password" value="aa08769cdcb26674c6706093503ff0a3" /> 
+  <property name="username" value="member1" /> 
+  <property name="password" value="c7764cfed23c5ca3bb393308a0da2306" /> 
   <property name="authorities">
   	<list>
   		<bean class="security.Authority">
@@ -1336,7 +1336,7 @@
   
   <bean id="userAccount6" class="security.UserAccount">
   <property name="username" value="member2" /> 
-  <property name="password" value="aa08769cdcb26674c6706093503ff0a3" /> 
+  <property name="password" value="88ed421f060aadcacbd63f28d889797f" /> 
   <property name="authorities">
   	<list>
   		<bean class="security.Authority">
