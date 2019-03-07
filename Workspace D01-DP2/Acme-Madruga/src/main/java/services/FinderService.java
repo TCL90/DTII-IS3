@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,7 +83,7 @@ public class FinderService {
 			Assert.isTrue(principal.getFinder().getId() == finder.getId());
 			if (finder.getStartDate() != null && finder.getEndDate() != null)
 				Assert.isTrue(finder.getStartDate().before(finder.getEndDate()));
-			final Collection<Procession> results = this.processionService.finderResults(finder.getKeyword(), finder.getArea().getId(), finder.getStartDate(), finder.getEndDate());
+			final Set<Procession> results = this.processionService.finderResults(finder);
 			for (final Procession p : results)
 				if (p.getFinalMode() == false)
 					results.remove(p);
@@ -116,7 +117,8 @@ public class FinderService {
 		final List<Customisation> cusList = new ArrayList<>(this.customisationService.findAll());
 		final Customisation cus = cusList.get(0);
 		final long milisecondsDiff = Math.abs(today.getTime() - moment.getTime());
-		final long hoursDiff = milisecondsDiff / 360000;
+		final long hoursDiff = milisecondsDiff / 3600000;
+
 		if (hoursDiff > cus.getFinderDuration())
 			res = true;
 		return res;

@@ -83,18 +83,20 @@
 	<spring:message code="dashboard.ratioEmptyFinder"/>
 	<jstl:out value="${ratioEmptyFinders}"/>
 	<br/>
+	<jstl:out value="${posCountList}"/>
 	<h2><spring:message code="dashboard.histogram"/></h2>
-	<canvas id="myChart" width="400" height="400"></canvas>
+	<canvas id="myChart" width="300" height="300"></canvas>
 	<script type="text/javascript">
-	var position = "<jstl:out value='${positionList}'/>";
-	var count = "<jstl:out value='${positionCountList}'/>";
-	var labels=[];
-	var values=[];
-	<jstl:forEach var="val" items="${positionList}">
-		values.push("<jstl:out value='${val}'/>");
-	</jstl:forEach>
-	values.push("${minM}");
-	document.writeln(values[0]);
+	var labels= new Array();
+	var values = new Array();
+	<jstl:forEach items="${posHistList}" var="pos">
+	 labels.push("<jstl:out value='${pos}'/>");
+	 </jstl:forEach>
+	 <jstl:forEach items="${posCountList}" var="count">
+	 values.push(<jstl:out value='${count}'/>);
+	 </jstl:forEach>
+
+	
 	
 	
 	var ctx = document.getElementById("myChart");
