@@ -62,9 +62,11 @@
 	<br/>
 	<form:form action="requests/member/show.do" modelAttribute="request">
 	<form:hidden path="id"/>
+	<jstl:if test="${request.status=='APPROVED' }">
 	<input type="submit" name="delete"
 			value="<spring:message code="request.delete" />"
 			onclick="return confirm('<spring:message code="message.confirm.delete" />')" />
+	</jstl:if>
 	</form:form>
 	
 	<input type="button" name="back" onclick="javascript: window.location.replace('requests/member/list.do')"
