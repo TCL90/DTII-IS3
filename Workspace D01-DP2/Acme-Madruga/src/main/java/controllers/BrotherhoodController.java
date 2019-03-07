@@ -68,6 +68,15 @@ public class BrotherhoodController extends AbstractController {
 	public ModelAndView save(@Valid final BrotherhoodForm brotherhoodForm, final BindingResult binding) {
 		ModelAndView result;
 
+		try { //name, surname, address, email, title, departure	
+			Assert.notNull(brotherhoodForm.getEmail());
+			Assert.isTrue(brotherhoodForm.getEmail() != "");
+
+		} catch (final Throwable error) {
+			result = this.createEditModelAndView(brotherhoodForm, "brotherhood.mandatory");
+			return result;
+		}
+		
 		if (!brotherhoodForm.isConditionsAccepted())
 			result = this.createEditModelAndView(brotherhoodForm, "brotherhood.conditionsError");
 		//result.addObject("conditionsError", true);
@@ -82,7 +91,7 @@ public class BrotherhoodController extends AbstractController {
 						Assert.isTrue(brotherhood.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || brotherhood.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"), "Wrong email");
 
 					this.brotherhoodService.save(brotherhood);
-					result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
+					result = new ModelAndView("redirect:/welcome/index.do");
 				} catch (final Throwable error) {
 					if (error.getMessage() == "Wrong email")
 						result = this.createEditModelAndView(brotherhoodForm, "brotherhood.email.error");

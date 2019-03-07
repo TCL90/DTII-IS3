@@ -57,7 +57,7 @@ public class DashboardAdministratorController extends AbstractController {
 
 		final Collection<Procession> processionsOrganizedIn30Days = this.dashboardService.processionsOrganizedIn30Days();
 
-		final double requestRatio = this.dashboardService.requestRatio();
+		final List<Double> requestRatio = this.dashboardService.requestRatio();
 
 		final Collection<Member> members10Percent = this.dashboardService.membersWith10PercentRequestsApproved();
 

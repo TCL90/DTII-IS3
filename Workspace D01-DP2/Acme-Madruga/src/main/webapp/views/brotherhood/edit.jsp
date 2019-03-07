@@ -47,7 +47,7 @@
 		<br/>
 	
 		<form:label path="email">
-			<spring:message code="brotherhood.edit.label.email" />:
+			<spring:message code="brotherhood.edit.label.email" />*:
 		</form:label>
 		<form:input path="email" />
 		<form:errors cssClass="error" path="email" />	

@@ -67,6 +67,15 @@ public class MemberController extends AbstractController {
 	public ModelAndView save(@Valid final MemberForm memberForm, final BindingResult binding) {
 		ModelAndView result;
 
+		try { //name, surname, address, email, title, departure	
+			Assert.notNull(memberForm.getEmail());
+			Assert.isTrue(memberForm.getEmail() != "");
+
+		} catch (final Throwable error) {
+			result = this.createEditModelAndView(memberForm, "member.mandatory");
+			return result;
+		}
+		
 		if (!memberForm.isConditionsAccepted())
 			result = this.createEditModelAndView(memberForm, "member.conditionsError");
 		//result.addObject("conditionsError", true);
@@ -81,7 +90,7 @@ public class MemberController extends AbstractController {
 						Assert.isTrue(member.getEmail().matches("^[A-z0-9]+@[A-z0-9.]+$") || member.getEmail().matches("^[A-z0-9 ]+ <[A-z0-9]+@[A-z0-9.]+>$"), "Wrong email");
 
 					this.memberService.save(member);
-					result = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga");
+					result = new ModelAndView("redirect:/welcome/index.do");
 				} catch (final Throwable error) {
 					if (error.getMessage() == "Wrong email")
 						result = this.createEditModelAndView(memberForm, "member.email.error");
