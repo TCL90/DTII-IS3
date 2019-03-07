@@ -425,8 +425,10 @@ public class BrotherhoodService {
 	}
 	
 		public Collection<Brotherhood> findAllNotApproved(final Member m) {
-
-		return this.brotherhoodRepository.findAllNotApproved(m.getId());
+		final List<Brotherhood> lb1 = new ArrayList<>(this.brotherhoodRepository.findAll());
+		final List<Brotherhood> lb2 = new ArrayList<>(this.brotherhoodRepository.findAllNotApproved(m.getId()));
+		lb1.removeAll(lb2);
+		return lb1;
 	}
 
 	public Brotherhood getBrotherhoodByUserAccount(final UserAccount useracc) {
