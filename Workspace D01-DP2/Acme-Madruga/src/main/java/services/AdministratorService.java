@@ -18,6 +18,7 @@ import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import utilities.TickerGenerator;
 import domain.Actor;
 import domain.Administrator;
 import domain.Box;
@@ -44,6 +45,9 @@ public class AdministratorService {
 
 	@Autowired
 	public CustomisationService		customisationService;
+
+	@Autowired
+	public SocialProfileService		socialProfileService;
 
 
 	public AdministratorService() {
@@ -157,6 +161,8 @@ public class AdministratorService {
 		Assert.isTrue(mem.getBan() != true);
 
 		if (mem.getId() == 0) {
+			Collection<Box> boxes = actorService.createPredefinedBoxes();
+			mem.setBoxes(boxes);
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = mem.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);
@@ -287,5 +293,30 @@ public class AdministratorService {
 			a.setPolarityScore(res1);
 		}
 
+	}
+	public void leave() {
+		final Administrator logAdministrator = this.findByPrincipal();
+
+		logAdministrator.setAddress("Unknown");
+		logAdministrator.setBan(true);
+		logAdministrator.setEmail("unknown@unknown.com");
+		logAdministrator.setMiddleName("Unknown");
+		logAdministrator.setName("Unknown");
+		logAdministrator.setPhoneNumber("Unknown");
+		logAdministrator.setPhoto("http://www.unknown.com");
+		logAdministrator.setPolarityScore(0);
+		for (final SocialProfile sp : logAdministrator.getSocialProfiles())
+			this.socialProfileService.deleteLeave(sp);
+		logAdministrator.setSocialProfiles(null);
+		logAdministrator.setSurname("Unknown");
+
+		final UserAccount ua = logAdministrator.getUserAccount();
+		final String tick1 = TickerGenerator.tickerLeave();
+		ua.setUsername("Unknown" + tick1);
+		final String pass1 = TickerGenerator.generateTicker();
+		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		final String pass2 = encoder.encodePassword(pass1, null);
+		ua.setPassword(pass2);
+		logAdministrator.setUserAccount(ua);
 	}
 }

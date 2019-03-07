@@ -47,6 +47,11 @@ public class SocialProfileService {
 		a.getSocialProfiles().remove(socialProfile);
 	}
 
+	public void deleteLeave(final SocialProfile socialProfile) {
+		this.socialProfileRepository.delete(socialProfile);
+
+	}
+
 	public void saveMyProfile(SocialProfile socialProfile) {
 		final UserAccount actual = LoginService.getPrincipal();
 		final Actor a = this.actorRepository.getActor(actual);

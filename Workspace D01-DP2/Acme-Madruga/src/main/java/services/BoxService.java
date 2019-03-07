@@ -62,6 +62,13 @@ public class BoxService {
 	public Box findOne(final int messageBoxId) {
 		return this.messageBoxRepository.findOne(messageBoxId);
 	}
+	
+	public Box saveInitial(final Box messageBox) {
+		final Box mb = this.messageBoxRepository.save(messageBox);
+		return mb;
+
+	}
+
 
 	public Box save(final Box messageBox) {
 		final UserAccount actual = LoginService.getPrincipal();

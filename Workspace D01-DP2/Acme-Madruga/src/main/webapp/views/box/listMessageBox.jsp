@@ -48,6 +48,6 @@
 	<security:authorize access="hasRole('ADMIN')">
 		<br/>
 	<a href="messages/breach.do">
-				<spring:message	code="mes.create" />
+				<spring:message	code="mes.breach.create" />
 	</a>
 		</security:authorize>

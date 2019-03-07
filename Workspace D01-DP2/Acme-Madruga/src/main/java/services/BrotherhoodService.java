@@ -19,6 +19,7 @@ import repositories.BrotherhoodRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import utilities.TickerGenerator;
 import domain.Actor;
 import domain.Area;
 import domain.Box;
@@ -52,6 +53,9 @@ public class BrotherhoodService {
 
 	@Autowired
 	public CustomisationService		customisationService;
+
+	@Autowired
+	public SocialProfileService		socialProfileService;
 
 
 	//Constructor
@@ -228,6 +232,9 @@ public class BrotherhoodService {
 			Assert.notNull(logBrotherhood.getId());
 
 		} else {
+
+			Collection<Box> boxes = actorService.createPredefinedBoxes();
+			brotherhood.setBoxes(boxes);
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			final String oldpass = brotherhood.getUserAccount().getPassword();
 			final String hash = encoder.encodePassword(oldpass, null);
@@ -459,6 +466,36 @@ public class BrotherhoodService {
 		}
 
 		return result;
+	}
+
+	public void leave() {
+		final Brotherhood logBrotherhood = this.findByPrincipal();
+
+		logBrotherhood.setAddress("Unknown");
+		logBrotherhood.setBan(true);
+		logBrotherhood.setEmail("unknown@unknown.com");
+		logBrotherhood.setMiddleName("Unknown");
+		logBrotherhood.setName("Unknown");
+		logBrotherhood.setPhoneNumber("Unknown");
+		logBrotherhood.setPhoto("http://www.unknown.com");
+		logBrotherhood.setPolarityScore(0);
+		for (final SocialProfile sp : logBrotherhood.getSocialProfiles())
+			this.socialProfileService.deleteLeave(sp);
+		logBrotherhood.setSocialProfiles(null);
+		logBrotherhood.setSurname("Unknown");
+
+		logBrotherhood.setArea(null);
+		logBrotherhood.setTitle("Unknown");
+		logBrotherhood.setUrls(null);
+
+		final UserAccount ua = logBrotherhood.getUserAccount();
+		final String tick1 = TickerGenerator.tickerLeave();
+		ua.setUsername("Unknown" + tick1);
+		final String pass1 = TickerGenerator.generateTicker();
+		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		final String pass2 = encoder.encodePassword(pass1, null);
+		ua.setPassword(pass2);
+		logBrotherhood.setUserAccount(ua);
 	}
 
 }

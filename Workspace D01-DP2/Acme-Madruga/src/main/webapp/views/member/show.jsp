@@ -13,54 +13,49 @@
 	<h4>
 		<spring:message code="brotherhood.edit.label.name" />:
 	</h4>
-	<jstl:out value="${brotherhood.name}"></jstl:out>
+	<jstl:out value="${member.name}"></jstl:out>
 	
 	<h4>
 		<spring:message code="brotherhood.edit.label.middleName" />:
 	</h4>
-	<jstl:out value="${brotherhood.middleName}"></jstl:out>
+	<jstl:out value="${member.middleName}"></jstl:out>
 
 	<h4>
 		<spring:message code="brotherhood.edit.label.surname" />:
 	</h4>
-	<jstl:out value="${brotherhood.surname}"></jstl:out>
+	<jstl:out value="${member.surname}"></jstl:out>
 	
 	<h4>
 		<spring:message code="brotherhood.edit.label.address" />:
 	</h4>
-	<jstl:out value="${brotherhood.address}"></jstl:out>
+	<jstl:out value="${member.address}"></jstl:out>
 	
 	<h4>
 		<spring:message code="brotherhood.edit.label.email" />:
 	</h4>
-	<jstl:out value="${brotherhood.email}"></jstl:out>
+	<jstl:out value="${member.email}"></jstl:out>
 	
 	<h4>
 		<spring:message code="brotherhood.edit.label.phoneNumber" />:
 	</h4>
-	<jstl:out value="${brotherhood.phoneNumber}"></jstl:out>
+	<jstl:out value="${member.phoneNumber}"></jstl:out>
 
 	<h4>
 		<spring:message code="brotherhood.edit.label.username" />:
 	</h4>
-	<jstl:out value="${brotherhood.userAccount.username}"></jstl:out>
+	<jstl:out value="${member.userAccount.username}"></jstl:out>
 	
-		<h4>
-		<spring:message code="brotherhood.edit.label.title" />:
-	</h4>
-	<jstl:out value="${brotherhood.title}"></jstl:out>
-
-	<h4>
-		<spring:message code="brotherhood.edit.label.stablishmentDate" />:
-	</h4>
-	<jstl:out value="${brotherhood.stablishmentDate}"></jstl:out>
-
-	<h4>
-		<spring:message code="brotherhood.urlImages" />:
-	</h4>
-	<jstl:out value="${brotherhood.urlImages}"></jstl:out>
 <br/>
 <br/>
+	<spring:message code="member.export.explanation" var="exportExplanation"/>
+	<jstl:out value="${exportExplanation}"/>
+	
+	<a href="member/member/edit.do"> Link </a>
+	
+	
+	<br/>
+	<br/>
+	<br/>
 
 	<input type="button" name="back" onclick="javascript: window.location.replace('welcome/index.do')"
 		value="<spring:message code="brotherhood.back" />" />

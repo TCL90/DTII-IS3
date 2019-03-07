@@ -51,10 +51,12 @@ public class FloatService {
 
 	public Float save(final Float f) {
 		Assert.notNull(f);
+		final Brotherhood b = this.brotherhoodService.findByPrincipal();
 
 		if (f.getId() == 0) {
 			final Brotherhood logBro = this.brotherhoodService.findByPrincipal();
 			f.setBrotherhood(logBro);
+			Assert.isTrue(f.getBrotherhood().getId() == b.getId());
 		}
 
 		return this.floatRepository.save(f);
@@ -113,11 +115,12 @@ public class FloatService {
 		if (flo.getId() == 0)
 			res = flo;
 		else {
-			res = this.floatRepository.findOne(flo.getId());
-			res.setBrotherhood(bro);
-			res.setDescription(flo.getDescription());
-			res.setTitle(flo.getTitle());
-			res.setPictures(flo.getPictures());
+			final Float originCopy = this.floatRepository.findOne(flo.getId());
+			res = flo;
+			res.setBrotherhood(originCopy.getBrotherhood());
+			//			res.setDescription(flo.getDescription());
+			//			res.setTitle(flo.getTitle());
+			//			res.setPictures(flo.getPictures());
 			this.validator.validate(res, binding);
 		}
 		return res;

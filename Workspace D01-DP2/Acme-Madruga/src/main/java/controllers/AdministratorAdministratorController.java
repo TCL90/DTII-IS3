@@ -181,4 +181,87 @@ public class AdministratorAdministratorController extends AbstractController {
 
 	}
 
+	////////////////////////////
+	//////////DELETE////////////
+	////////////////////////////
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "leave")
+	public ModelAndView saveLeave(final Administrator administrator, final BindingResult binding) {
+		ModelAndView result;
+
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(administrator);
+		else
+			try {
+
+				this.administratorService.leave();
+				result = new ModelAndView("redirect:../../j_spring_security_logout");
+			} catch (final Throwable error) {
+				if (error.getMessage() == "Wrong email")
+					result = this.createEditModelAndView(administrator, "brotherhood.email.error");
+				else
+					result = this.createEditModelAndView(administrator, "brotherhood.comit.error");
+				System.out.println(error.getMessage());
+			}
+
+		return result;
+
+	}
+
+	////////////////////////////
+	///////////SHOW/////////////
+	////////////////////////////
+
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show() {
+		ModelAndView res;
+		Administrator administrator;
+
+		administrator = this.administratorService.findByPrincipal();
+		//brotherhood = this.brotherhoodService.findOne(brotherhoodId);
+		res = this.createShowModelAndView(administrator);
+		return res;
+
+	}
+
+	protected ModelAndView createShowModelAndView(final Administrator administrator) {
+		ModelAndView result;
+
+		result = this.createShowModelAndView(administrator, null);
+
+		return result;
+
+	}
+
+	protected ModelAndView createShowModelAndView(final Administrator administrator, final String message) {
+		ModelAndView result;
+		//		Collection<Box> boxes;
+		//		final Collection<SocialProfile> socialProfiles;
+		//		final Collection<Endorsement> endorsements;
+		//		final Collection<FixUpTask> fixUpTasks;
+		UserAccount userAccount;
+
+		//		fixUpTasks = brotherhood.getFixUpTasks();
+		//		boxes = brotherhood.getBoxes();
+		//		socialProfiles = brotherhood.getSocialProfiles();
+		//		endorsements = brotherhood.getEndorsements();
+		userAccount = administrator.getUserAccount();
+		//		 if (socialProfiles.isEmpty())
+		//		 * socialProfiles = null;
+		//		 * if (endorsements.isEmpty())
+		//		 * endorsements = null;
+		//if (boxes.isEmpty())
+		//	boxes = null;
+
+		result = new ModelAndView("administrator/show");
+		result.addObject("administrator", administrator);
+		//		result.addObject("boxes", boxes);
+		//		result.addObject("socialProfiles", socialProfiles);
+		result.addObject("message", message);
+		//		result.addObject("endorsements", endorsements);
+		//		result.addObject("fixUpTasks", fixUpTasks);
+		result.addObject("userAccount", userAccount);
+		return result;
+	}
+
 }

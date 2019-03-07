@@ -95,8 +95,15 @@
 	</fieldset>
 
 	<br/>
+	<spring:message code="administrator.leave.explanation" var="leaveExplanation"/>
+	<jstl:out value="${leaveExplanation}"/>
+	
+	<a href="administrator/administrator/show.do"> Link </a>
+	
 	<br/>
 	<input type="submit" name="save" value="<spring:message code="administrator.edit.save" />" />&nbsp;
+	<input type="submit" name="leave" value="<spring:message code="administrator.edit.leave" />" 
+		onclick="return confirm('<spring:message code="administrator.confirm.delete" />')" />&nbsp;
 	<input type="button" name="cancel" onclick="javascript: window.location.replace('welcome/index.do')"
 			value="<spring:message code="administrator.edit.cancel" />" />
 
