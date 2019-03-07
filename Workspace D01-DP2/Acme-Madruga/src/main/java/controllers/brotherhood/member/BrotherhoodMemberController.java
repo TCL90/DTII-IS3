@@ -59,9 +59,9 @@ public class BrotherhoodMemberController extends AbstractController {
 			final Member m = this.memberService.findOnePrincipal();
 			final Enrolement e = this.enrolementService.findEnrolementByIds(b, m);
 			this.enrolementService.leaveBrotherhood(e);
-			res = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga/enrolements/member/list.do");
+			res = new ModelAndView("redirect:/welcome/index.do");
 		} catch (final Throwable oops) {
-			res = new ModelAndView("redirect:http://localhost:8080/Acme-Madruga/enrolements/member/list.do");
+			res = new ModelAndView("redirect:/welcome/index.do");
 		}
 		return res;
 
