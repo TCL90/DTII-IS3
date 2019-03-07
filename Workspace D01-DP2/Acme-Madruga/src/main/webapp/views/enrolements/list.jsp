@@ -35,8 +35,7 @@
 		
 		<display:column style="background-color:lightgrey;"><div style="align:center;"><a href="enrolements/brotherhood/reject.do?enrolementId=${row.id}">
 			<spring:message code="enrolement.reject" /></a></div></display:column>
-		<display:column style="background-color:lightgrey;"><a href="enrolements/brotherhood/show.do?enrolementId=${row.id }">
-		<spring:message code="enrolement.showMore"/></a></display:column>
+		<display:column style="background-color:lightgrey;"></display:column>
 		</jstl:if>
 		</jstl:when>
 		
