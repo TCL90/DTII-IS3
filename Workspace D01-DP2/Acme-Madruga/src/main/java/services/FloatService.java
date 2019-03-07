@@ -72,7 +72,7 @@ public class FloatService {
 
 	public void delete(final Float f) {
 		Assert.notNull(f);
-		//Si alguna procesión en draftMode saca el paso, se le quita.
+		//Si alguna procesiÃ³n en draftMode saca el paso, se le quita.
 		final Collection<Procession> process = this.processionService.findAllFinalMode();
 
 		for (final Procession pro : process)
@@ -112,17 +112,19 @@ public class FloatService {
 		a.setAuthority(Authority.BROTHERHOOD);
 		Assert.isTrue(user.getAuthorities().contains(a) && user.getAuthorities().size() == 1);
 
-		if (flo.getId() == 0)
+		if (flo.getId() == 0) {
 			res = flo;
-		else {
+			res.setBrotherhood(bro);
+		} else {
 			final Float originCopy = this.floatRepository.findOne(flo.getId());
 			res = flo;
 			res.setBrotherhood(originCopy.getBrotherhood());
 			//			res.setDescription(flo.getDescription());
 			//			res.setTitle(flo.getTitle());
 			//			res.setPictures(flo.getPictures());
-			this.validator.validate(res, binding);
+			
 		}
+		this.validator.validate(res, binding);
 		return res;
 	}
 }
